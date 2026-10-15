@@ -1,0 +1,1692 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quy trình Đầu tư công - TP.HCM</title>
+<style>
+:root{--main:#0b4f8a;--main-d:#083a68;--bg:#f4f6f9;--card:#fff;--line:#d9e0e8;--text:#1c2733;--muted:#5b6b7b;--ok:#e8f6ee;--warn:#fff4e0}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+header{background:var(--main);color:#fff;padding:16px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.head{display:flex;align-items:center;gap:16px}
+.head img{height:64px;background:#fff;border-radius:8px;padding:4px}
+.head h1{font-size:1.25rem;margin:0 0 4px}
+.head p{margin:0;font-size:.9rem;opacity:.9}
+.status{background:var(--ok);border-left:4px solid #2e9e5b;padding:10px 14px;margin:16px 0;border-radius:6px}
+.meta{background:var(--card);border:1px solid var(--line);padding:10px 14px;border-radius:6px;margin-bottom:16px;font-size:.93rem;color:var(--muted)}
+nav{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto}
+nav button{border:0;background:none;padding:12px 14px;font:inherit;font-size:.92rem;cursor:pointer;white-space:nowrap;color:var(--muted);border-bottom:3px solid transparent}
+nav button:hover{color:var(--main)}
+nav button.on{color:var(--main);border-color:var(--main);font-weight:600}
+main{padding:20px 0 32px}
+section.tab{display:none;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px}
+section.tab.on{display:block}
+h2{margin-top:0;color:var(--main-d)}
+.pending{background:var(--warn);border:1px dashed #e0a030;padding:14px;border-radius:6px}
+h3{color:var(--main);margin:22px 0 8px;font-size:1.05rem}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:8px 0}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#eaf1f8}
+tr.hl td{background:#f1f8ff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.box{border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93rem}
+.box ul{margin:6px 0 0;padding-left:20px}
+.box.ok{background:var(--ok);border-left:4px solid #2e9e5b}
+.box.no{background:#fdecec;border-left:4px solid #c94a4a}
+.box.warn{background:var(--warn);border-left:4px solid #e0a030}
+.flow{padding-left:22px}
+.steps li,.tree li{margin-bottom:10px}
+.yes{color:#1c7a45;font-weight:600}.no{color:#b23a3a;font-weight:600}
+.row3{display:grid;grid-template-columns:2fr 1fr 2fr;gap:10px}
+@media(max-width:700px){.row3{grid-template-columns:1fr}}
+.calc label{display:block;font-size:.9rem}
+.calc textarea{width:100%;padding:8px;font:inherit;border:1px solid var(--line);border-radius:4px}
+.ckbar{display:flex;gap:10px;align-items:center;margin:8px 0}
+.ckbar button{padding:6px 12px;border:1px solid var(--line);background:#fff;border-radius:4px;cursor:pointer;font:inherit}
+details.ckg{border:1px solid var(--line);border-radius:6px;margin:8px 0;background:#fff}
+details.ckg summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--main-d)}
+details.ckg ul{list-style:none;margin:0;padding:4px 14px 12px}
+details.ckg li{padding:4px 0}
+details.ckg label{display:flex;gap:8px;align-items:flex-start;font-size:.92rem}
+details.ckg .src{color:var(--muted);font-size:.8rem}
+header a,footer a{color:#fff;text-decoration:underline}
+.tw a{color:var(--main)}
+.note{font-size:.85rem;color:var(--muted)}
+.calc{background:#f7fafd;border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:10px}
+.calc select,.calc input{width:100%;padding:8px;font:inherit;border:1px solid var(--line);border-radius:4px}
+.res{font-weight:600;padding:8px 10px;background:#fff;border-radius:4px;border:1px solid var(--line)}
+footer{background:var(--main-d);color:#fff;padding:18px 0;font-size:.9rem}
+footer .head img{height:44px}
+@media print{nav,.exp,.vbtools,.ckbar button,footer .head img,.btn{display:none!important}section.tab{display:none!important}section.tab.on{display:block!important}body.prmode section.tab.on{display:none!important}body.prmode section.tab.pr{display:block!important;page-break-before:always}body.prmode section.tab.pr:first-of-type{page-break-before:auto}details.ckg:not([open])>*:not(summary){display:block}a.cite{color:#000;border:0}select.st{border:0;appearance:none;-webkit-appearance:none}}
+.cite{color:var(--main);text-decoration:none;border-bottom:1px dotted var(--main)}
+.cite:hover{background:#e7f1fb}
+.cite.ext::after{content:" ↗";font-size:.75em}
+.cite.doc{font-weight:600;border-bottom:1px solid #9bb7d4}
+.hl-cite{background:#fff3b0;outline:2px solid #e0a030;border-radius:3px}
+.bdg{display:inline-block;font-size:.78rem;padding:2px 8px;border-radius:10px}
+.bdg.ok{background:#e3f4ea;color:#17613a}.bdg.info{background:#e4eefb;color:#1d4e89}.bdg.warn{background:#fff1d6;color:#8a5a00}.bdg.muted{background:#eceff3;color:#4b5967}
+.btn{display:inline-block;padding:5px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--main);text-decoration:none;font-size:.88rem;margin:2px 4px 2px 0;cursor:pointer;font-family:inherit}
+.btn:hover{background:#eaf1f8}
+.vbtools{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.vbtools input,.vbtools select{padding:8px;font:inherit;border:1px solid var(--line);border-radius:4px}
+.vbtools input{flex:1;min-width:200px}
+.vbten{font-weight:600}
+.vbext{margin:10px 0}
+.toc{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:6px;padding:8px 12px;background:#fafcfe}
+.tocl{font-size:.88rem;padding:1px 0;color:var(--muted)}
+.tocl.has a{font-weight:600;color:var(--main)}
+.tocl a{text-decoration:none;color:inherit}
+.tocl a.ext::after{content:" ↗";font-size:.75em}
+.vbart{border-left:3px solid var(--line);padding-left:12px;margin:16px 0}
+.vbart h4{margin:0 0 6px;color:var(--main-d)}
+.vbl{margin:5px 0}
+.vbl.pt{margin-left:16px}
+.chips .chip{display:inline-block;margin:2px;padding:2px 9px;border:1px solid var(--line);border-radius:12px;font-size:.85rem;text-decoration:none;color:var(--main);background:#fff}
+.exp{margin-top:12px}
+#exp{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:0 14px}
+#exp summary{cursor:pointer;padding:10px 0;font-weight:600;color:var(--main-d)}
+#expbody{padding:4px 0 14px}
+#expbody .tabsel{columns:2;font-size:.88rem;margin:8px 0}
+#expbody label{display:block;break-inside:avoid;padding:1px 0}
+.scorebox{border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:8px 0 14px;background:#f7fafd}
+.sbig{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.sbig .num{font-size:2.2rem;font-weight:700;color:var(--main-d)}
+.sbig .den{color:var(--muted)}
+.rate{margin-left:auto;padding:3px 12px;border-radius:12px;font-weight:600;font-size:.9rem;background:#eceff3}
+.rate.r1{background:#fde4e4;color:#a02727}.rate.r2{background:#fff1d6;color:#8a5a00}.rate.r3{background:#e4eefb;color:#1d4e89}.rate.r4{background:#e3f4ea;color:#17613a}
+.bar{height:10px;background:#e3e9f0;border-radius:6px;overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;background:var(--main)}
+select.st{font:inherit;font-size:.82rem;padding:2px 4px;border:1px solid var(--line);border-radius:4px;background:#fff;flex:none}
+details.ckg li.okk label>span{color:#17613a}
+details.ckg li.nak label>span{color:#7a8794;text-decoration:line-through}
+</style>
+</head>
+<body>
+<header><div class="wrap head">
+  <img src="https://tuvangiaothong.bzz.vn/wp-content/uploads/sites/1000002/2026/09/logo-tdc-nguyenban-253x300.png" alt="Logo TDC">
+  <div>
+    <h1>Quy trình Đầu tư công - TP.HCM</h1>
+    <p>Công ty Cổ phần Tư vấn Giao thông Thành phố Hồ Chí Minh (TDC) · 0978 488 260 · vuvhien@gmail.com · <a href="https://tuvangiaothong.com/" target="_blank" rel="noopener">tuvangiaothong.com</a></p>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <div class="status">✅ <b>Đang có hiệu lực:</b> Luật Đầu tư công 58/2024/QH15 (từ 01/01/2025), đã sửa đổi bởi Luật 90/2025/QH15 (từ 01/7/2025). Tra cứu ngày 15/10/2026. 📅 22 tab: tab “Văn bản” (thư viện toàn văn, mở đầu), I đến X là quy trình chung, XI đến XXI dành cho đơn vị tư vấn (XIX khảo sát, XX PCCC, XXI ĐTM). Nội dung còn cần đối chiếu văn bản gốc (xem cột “Mức đối chiếu” ở tab I).</div>
+  <div class="meta"><b>Phạm vi:</b> toàn bộ chu trình vốn đầu tư công tại TP.HCM · <b>Thẩm quyền:</b> HĐND, UBND Thành phố, UBND xã, phường, đặc khu · <b>Căn cứ chính:</b> Luật 58/2024/QH15, Luật 90/2025/QH15, Nghị định 85/2025/NĐ-CP (sửa đổi bởi Nghị định 275/2025/NĐ-CP), Quyết định 3321/QĐ-UBND</div>
+</div>
+
+<nav><div class="wrap" id="tabs"></div></nav>
+
+<div class="wrap exp"><details id="exp"><summary>Xuất nội dung: PDF, Word, Excel</summary><div id="expbody"></div></details></div>
+
+<main><div class="wrap">
+  <section class="tab" id="tv"></section>
+
+  <section class="tab" id="t1">
+    <h2>I. Tổng quan &amp; căn cứ pháp lý</h2>
+
+    <h3>1. Phạm vi</h3>
+    <div class="grid2">
+      <div class="box ok"><b>✅ Thuộc phạm vi trang này</b>
+        <ul>
+          <li>Hoạt động đầu tư công do TP.HCM quản lý: lập, thẩm định, quyết định chủ trương đầu tư và quyết định đầu tư; lập, giao và thực hiện kế hoạch vốn; nghiệm thu, thanh toán, quyết toán; theo dõi, đánh giá, kiểm tra (Điều 4 khoản 18 Luật Đầu tư công, sửa đổi bởi Điều 7 Luật 90/2025/QH15).</li>
+          <li>Dự án nhóm A, B, C sử dụng vốn ngân sách địa phương của Thành phố và của cấp xã.</li>
+        </ul></div>
+      <div class="box no"><b>🚫 Loại trừ hoặc xử lý riêng</b>
+        <ul>
+          <li>Nhiệm vụ, dự án do tổ chức, cá nhân tài trợ hợp pháp và yêu cầu không đưa vào ngân sách nhà nước: không áp dụng Luật Đầu tư công (Điều 3 khoản 5 mới).</li>
+          <li>Dự án quan trọng quốc gia, chương trình mục tiêu quốc gia, chương trình vốn ngân sách trung ương: do Quốc hội, Chính phủ, Thủ tướng quyết định chủ trương, chỉ nêu để đối chiếu ở tab II.</li>
+          <li>Dự án đầu tư theo phương thức đối tác công tư (PPP): thực hiện theo Luật PPP, không thuộc trang này (chưa đối chiếu ranh giới với Luật PPP).</li>
+        </ul></div>
+    </div>
+
+    <h3>2. Chu trình đầu tư công</h3>
+    <p>Theo Điều 4 khoản 18 Luật Đầu tư công (đã sửa đổi), hoạt động đầu tư công gồm các khâu sau, tương ứng với các tab của trang này:</p>
+    <ol class="flow">
+      <li>Lập, thẩm định, quyết định chủ trương đầu tư và quyết định đầu tư (tab II, III, IV)</li>
+      <li>Lập, thẩm định, phê duyệt, giao kế hoạch đầu tư công trung hạn và hằng năm (tab V)</li>
+      <li>Triển khai thực hiện, quản lý và sử dụng vốn, giải ngân (tab VI)</li>
+      <li>Nghiệm thu, thanh toán, quyết toán, bàn giao (tab VII)</li>
+      <li>Theo dõi, đánh giá, kiểm tra, thanh tra (tab VII)</li>
+    </ol>
+
+    <h3>3. Căn cứ pháp lý</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Văn bản</th><th>Nội dung áp dụng</th><th>Hiệu lực</th><th>Mức đối chiếu</th></tr></thead>
+      <tbody>
+      <tr><td>Luật Đầu tư công <b>58/2024/QH15</b> (29/11/2024)</td><td>Phân loại dự án (Điều 8 đến 11); thẩm quyền quyết định chủ trương (Điều 18) và quyết định đầu tư (Điều 38); kế hoạch vốn; thực hiện, quyết toán</td><td>Từ 01/01/2025</td><td>Điều 8 đến 11, 18, 19, 46, 57 đã đọc từng khoản trên hethongphapluat.com; chưa đọc bản Công báo hay văn bản hợp nhất</td></tr>
+      <tr><td>Luật <b>90/2025/QH15</b> (25/6/2025)</td><td>Điều 7 sửa nhiều điều của Luật Đầu tư công: thẩm quyền theo hai cấp chính quyền địa phương, hạn mức thẩm định nguồn vốn (Điều 36a), dự án đầu tư công đặc biệt, gia hạn giải ngân</td><td>Từ 01/7/2025. Kho dữ liệu ghi “hết hiệu lực một phần”; Luật 141/2025/QH15 (hiệu lực 01/01/2026) sửa Luật Quản lý nợ công đã được Luật 90 sửa, chưa thấy ảnh hưởng đến Điều 7 về đầu tư công</td><td>Đã đọc toàn văn Điều 7 trong kho regai. Chưa đọc toàn văn Luật 141/2025/QH15</td></tr>
+      <tr><td>Luật Tổ chức chính quyền địa phương <b>72/2025/QH15</b></td><td>Bỏ cấp huyện, còn hai cấp tỉnh và xã; HĐND, UBND cấp xã thay các nội dung cấp huyện</td><td>Cấp huyện chấm dứt từ 01/7/2025</td><td>Từ tin báo chí, cần đối chiếu</td></tr>
+      <tr><td>Nghị định <b>85/2025/NĐ-CP</b> (08/4/2025)</td><td>Quy định chi tiết thi hành một số điều của Luật Đầu tư công: hồ sơ, trình tự, thời hạn</td><td>Từ 08/4/2025, đã được sửa đổi</td><td>Đã đọc nội dung từng khoản các Điều 10 đến 12, 14, 21, 22, 24, 43, 44, 47, 48, 50, 52 trên hethongphapluat.com (bản gốc, trước sửa đổi); chưa đọc bản Công báo</td></tr>
+      <tr><td>Nghị định <b>275/2025/NĐ-CP</b> (18/10/2025)</td><td>Sửa đổi Nghị định 85/2025/NĐ-CP: hạn mức thẩm định nguồn vốn, trình tự cho dự án vốn ngân sách cấp xã do cơ quan cấp tỉnh thực hiện</td><td>Từ 18/10/2025; riêng Điều 50 mới (điều chỉnh kế hoạch) áp dụng từ kế hoạch năm 2026</td><td>Đã đọc nội dung từng khoản các mục sửa Điều 43, 44, 47, 50 trên hethongphapluat.com; chưa đọc bản Công báo</td></tr>
+      <tr><td>Nghị định <b>254/2025/NĐ-CP</b> (26/9/2025)</td><td>Quản lý, thanh toán, quyết toán dự án sử dụng vốn đầu tư công; thay Nghị định 99/2021/NĐ-CP</td><td>Từ 26/9/2025. Kho dữ liệu ghi “hết hiệu lực một phần”, chưa xác định phần nào</td><td>Đã đọc nguyên văn các Điều 4, 8, 9, 10, 12, 26, 28, 34, 46, 47, 50, 52, 54 trong kho regai</td></tr>
+      <tr><td>Quyết định <b>3321/QĐ-UBND</b> của UBND TP.HCM (ký 26/12/2025)</td><td>Ủy quyền quyết định đầu tư dự án đầu tư công thuộc thẩm quyền Chủ tịch UBND Thành phố</td><td>Ủy quyền đến hết 31/12/2026</td><td>Từ báo SGGP và Báo Đại biểu Nhân dân (hai nguồn khớp nhau), chưa có văn bản gốc</td></tr>
+      </tbody></table></div>
+
+    <div class="box warn">⚠️ <b>Lưu ý khi sử dụng.</b> (1) Trang tổng hợp ngày 15/10/2026, chưa tìm thấy nghị định nào thay hoặc sửa tiếp Nghị định 85/2025/NĐ-CP trong năm 2026 (Nghị định 291/2026 và 292/2026 nêu trong kết quả tìm kiếm thuộc lĩnh vực thuế, hóa đơn và quản lý ngoại thương, không liên quan). (2) Thông tin báo chí cho biết Chính phủ có yêu cầu sửa tiếp Nghị định 85/2025/NĐ-CP cho phù hợp bộ máy mới, nên cần tra lại trước khi lập hồ sơ. (3) Cột “Mức đối chiếu” cho biết điều khoản nào đã đọc nguyên văn, điều khoản nào chưa.</div>
+  </section>
+
+  <section class="tab" id="t2">
+    <h2>II. Phân loại dự án</h2>
+    <p>Dự án đầu tư công phân loại theo mức độ quan trọng và quy mô thành dự án quan trọng quốc gia, nhóm A, nhóm B và nhóm C (Điều 6 Luật Đầu tư công). Phân loại quyết định cấp có thẩm quyền quyết định chủ trương đầu tư và quyết định đầu tư.</p>
+
+    <h3>1. Tra nhanh nhóm dự án</h3>
+    <div class="calc">
+      <label>Lĩnh vực
+        <select id="cg">
+          <option value="0">Nhóm 4.600 tỷ: cầu, cảng, sân bay, đường sắt, quốc lộ; điện; dầu khí; hóa chất, xi măng; chế tạo máy, luyện kim; khoáng sản; khu nhà ở</option>
+          <option value="1">Nhóm 3.000 tỷ: giao thông khác; thủy lợi; cấp thoát nước, rác thải, hạ tầng kỹ thuật; kỹ thuật điện; vật liệu; cơ khí; bưu chính viễn thông</option>
+          <option value="2">Nhóm 2.000 tỷ: nông, lâm, diêm nghiệp, thủy sản; vườn quốc gia; hạ tầng khu đô thị mới; công nghiệp khác</option>
+          <option value="3" selected>Nhóm 1.600 tỷ: y tế, văn hóa, giáo dục; khoa học công nghệ, môi trường, công nghệ số, tài chính ngân hàng; kho tàng; du lịch, thể thao; dân dụng; quốc phòng, an ninh</option>
+        </select></label>
+      <label>Tổng mức đầu tư (tỷ đồng)
+        <input type="number" id="cv" min="0" step="1" placeholder="Ví dụ: 350"></label>
+      <div id="cr" class="res">Nhập tổng mức đầu tư để xem kết quả.</div>
+      <small>Công cụ chỉ so ngưỡng tổng mức đầu tư. Dự án sản xuất chất độc hại, chất nổ (trừ quốc phòng, an ninh) và hạ tầng khu công nghiệp, khu chế xuất, khu công nghệ cao là nhóm A không phân biệt quy mô (Điều 9 khoản 1). Danh mục ngành đầy đủ xem Điều 9 đến 11.</small>
+    </div>
+
+    <h3>2. Ngưỡng tổng mức đầu tư (tỷ đồng)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Nhóm lĩnh vực</th><th>Nhóm A (từ)</th><th>Nhóm B</th><th>Nhóm C (dưới)</th></tr></thead>
+      <tbody>
+        <tr><td>Điều 9 khoản 2 (nhóm 4.600)</td><td>4.600</td><td>240 đến dưới 4.600</td><td>240</td></tr>
+        <tr><td>Điều 9 khoản 3 (nhóm 3.000)</td><td>3.000</td><td>160 đến dưới 3.000</td><td>160</td></tr>
+        <tr><td>Điều 9 khoản 4 (nhóm 2.000)</td><td>2.000</td><td>120 đến dưới 2.000</td><td>120</td></tr>
+        <tr><td>Điều 9 khoản 5 (nhóm 1.600)</td><td>1.600</td><td>90 đến dưới 1.600</td><td>90</td></tr>
+      </tbody></table></div>
+    <p class="note">Nguồn: Điều 9, 10, 11 Luật 58/2024/QH15 đọc từng khoản trên hethongphapluat.com (không phải bản Công báo); Điều 9 khoản 5 điểm b được Luật 90/2025/QH15 sửa thành khoa học, công nghệ, đổi mới sáng tạo, môi trường, công nghệ số, phát thanh, truyền hình, tài chính, ngân hàng (đã đọc nguyên văn).</p>
+    <details class="ckg"><summary>Danh mục lĩnh vực theo Điều 9</summary>
+      <ul>
+        <li><b>Khoản 2 (nhóm 4.600 tỷ):</b> giao thông (cầu, cảng biển, cảng sông, sân bay, đường sắt, quốc lộ); công nghiệp điện; khai thác dầu khí; hóa chất, phân bón, xi măng; chế tạo máy, luyện kim; khai thác, chế biến khoáng sản; xây dựng khu nhà ở.</li>
+        <li><b>Khoản 3 (nhóm 3.000 tỷ):</b> giao thông khác; thủy lợi, phòng chống thiên tai; cấp thoát nước, xử lý rác thải, hạ tầng kỹ thuật khác; kỹ thuật điện; sản xuất thiết bị thông tin, điện tử; hóa dược; sản xuất vật liệu; công trình cơ khí; bưu chính, viễn thông.</li>
+        <li><b>Khoản 4 (nhóm 2.000 tỷ):</b> sản xuất nông, lâm nghiệp, diêm nghiệp, nuôi trồng thủy sản; vườn quốc gia, khu bảo tồn thiên nhiên; hạ tầng kỹ thuật khu đô thị mới; công nghiệp khác.</li>
+        <li><b>Khoản 5 (nhóm 1.600 tỷ):</b> y tế, văn hóa, xã hội, thông tin, giáo dục; khoa học, công nghệ, đổi mới sáng tạo, môi trường, công nghệ số, phát thanh, truyền hình, tài chính, ngân hàng; kho tàng; du lịch, thể dục, thể thao; xây dựng dân dụng (trừ khu nhà ở); quốc phòng, an ninh.</li>
+      </ul>
+      <p class="note" style="padding:0 14px 10px">Nghị định 275/2025 sửa danh mục ngành tại Điều 4 Nghị định 85/2025 (thêm “công nghiệp công nghệ số”); chưa đối chiếu ảnh hưởng đến phân nhóm.</p>
+    </details>
+
+    <h3>3. Dự án quan trọng quốc gia (Điều 8)</h3>
+    <ul>
+      <li>Sử dụng vốn đầu tư công từ 30.000 tỷ đồng trở lên.</li>
+      <li>Ảnh hưởng lớn hoặc có nguy cơ ảnh hưởng nghiêm trọng đến môi trường (khoản 2): nhà máy điện hạt nhân (điểm a); chuyển mục đích sử dụng đất rừng (điểm b): rừng đặc dụng từ 50 ha; rừng phòng hộ đầu nguồn hoặc biên giới từ 50 ha; rừng phòng hộ chắn gió, chắn cát bay, chắn sóng, lấn biển từ 500 ha; rừng sản xuất từ 1.000 ha.</li>
+      <li>Chuyển mục đích sử dụng đất trồng lúa nước từ hai vụ trở lên, quy mô từ 500 ha trở lên (khoản 3).</li>
+      <li>Di dân tái định cư từ 20.000 người (miền núi) hoặc 50.000 người (vùng khác).</li>
+      <li>Cần cơ chế, chính sách đặc biệt do Quốc hội quyết định.</li>
+    </ul>
+
+    <h3>4. Thẩm quyền quyết định chủ trương đầu tư (Luật 58/2024 Điều 18, sửa đổi bởi Luật 90/2025/QH15)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Cấp</th><th>Chương trình, dự án</th></tr></thead>
+      <tbody>
+        <tr><td>Quốc hội</td><td>Chương trình mục tiêu quốc gia; dự án quan trọng quốc gia, trừ nhà máy điện hạt nhân (Điều 8 khoản 2 điểm a)</td></tr>
+        <tr><td>Chính phủ</td><td>Chương trình đầu tư công vốn ngân sách trung ương, trừ chương trình mục tiêu quốc gia</td></tr>
+        <tr><td>Thủ tướng Chính phủ</td><td>Nhà máy điện hạt nhân (Điều 8 khoản 2 điểm a); thủ tục riêng tại Điều 9a Nghị định 85/2025 do Nghị định 275/2025 bổ sung. Luật 90/2025 đã viết lại khoản 3 và khoản 4 Điều 18, nên bản gốc quy định “dự án nhóm A từ 10.000 tỷ đồng do Bộ quản lý” không còn áp dụng, dự án nhóm A, B, C do Bộ quản lý thuộc người đứng đầu Bộ</td></tr>
+        <tr><td>Người đứng đầu Bộ, cơ quan trung ương</td><td>Chương trình vốn ODA, vốn vay ưu đãi nước ngoài; dự án nhóm A, B, C do cơ quan mình quản lý</td></tr>
+        <tr class="hl"><td>HĐND Thành phố (cấp tỉnh)</td><td>Chương trình đầu tư công vốn ngân sách địa phương; dự án nhóm A vốn ngân sách địa phương các cấp, kể cả vốn bổ sung có mục tiêu từ ngân sách trung ương và nguồn vốn hợp pháp của địa phương trên địa bàn; dự án nhóm A trên địa bàn từ 02 tỉnh trở lên do UBND tỉnh là cơ quan chủ quản theo quyết định của Thủ tướng; dự án nhóm A dùng toàn bộ vốn ngân sách địa phương hỗ trợ nhiệm vụ chi của ngân sách trung ương, sau khi thống nhất với cơ quan trung ương</td></tr>
+        <tr class="hl"><td>UBND Thành phố</td><td>Dự án nhóm B, C vốn ngân sách địa phương; dự án nhóm B, C trải trên từ 02 đơn vị hành chính cấp tỉnh trở lên do UBND tỉnh là cơ quan chủ quản theo quyết định của Thủ tướng; dự án nhóm B, C dùng toàn bộ vốn ngân sách địa phương hỗ trợ nhiệm vụ chi của ngân sách trung ương, sau khi thống nhất với cơ quan trung ương (Điều 18 khoản 7, bổ sung điểm d)</td></tr>
+        <tr class="hl"><td>UBND xã, phường, đặc khu</td><td>Dự án nhóm B, C vốn ngân sách địa phương thuộc cấp mình quản lý; dự án nhóm B, C trên địa bàn từ 02 đơn vị cấp xã trở lên khi Chủ tịch UBND Thành phố giao (Điều 18 khoản 9, Điều 31)</td></tr>
+        <tr><td>Doanh nghiệp nhà nước</td><td>Hội đồng thành viên, Chủ tịch công ty hoặc Hội đồng quản trị quyết định chủ trương dự án nhóm A, B, C được Thủ tướng giao đầu tư</td></tr>
+      </tbody></table></div>
+    <p class="note">Cấp huyện không còn: Luật 90/2025/QH15 bãi bỏ Điều 18 khoản 6, khoản 8 và điểm c khoản 7, đồng thời thay thẩm quyền cấp huyện bằng cấp xã. Các dòng tô màu là thẩm quyền ở TP.HCM.</p>
+    <div class="box warn">⏰ <b>Dự án không phải quyết định chủ trương đầu tư.</b> Luật 58/2024 Điều 19 khoản 6 liệt kê các dự án không phải quyết định chủ trương, nay bổ sung dự án đầu tư công đặc biệt và dự án đường sắt địa phương, kể cả đường sắt đô thị theo mô hình TOD nằm trong quy hoạch đã được phê duyệt (điểm c1, c2). Dự án khẩn cấp và danh mục khác xem Luật 58/2024 Điều 19 gốc.</div>
+
+    <h3>5. Thẩm quyền quyết định đầu tư (Luật 58/2024 Điều 38, sửa đổi bởi Luật 90/2025/QH15)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Cấp</th><th>Dự án</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>Chủ tịch UBND Thành phố</td><td>Chương trình đầu tư công, dự án nhóm A đã được HĐND Thành phố quyết định chủ trương; dự án nhóm B, C đã được UBND Thành phố quyết định chủ trương; dự án nhóm B, C vốn ODA, vốn vay ưu đãi nước ngoài; dự án vốn ODA không hoàn lại (Điều 38 khoản 3)</td></tr>
+        <tr class="hl"><td>Chủ tịch UBND xã, phường, đặc khu</td><td>Dự án nhóm B, C do cấp xã quản lý (Điều 38 khoản 4)</td></tr>
+        <tr><td>Giám đốc, Tổng giám đốc doanh nghiệp nhà nước</td><td>Dự án vốn ODA không hoàn lại; dự án nhóm A, B, C đã được cấp có thẩm quyền của doanh nghiệp quyết định chủ trương (khoản 5)</td></tr>
+      </tbody></table></div>
+    <div class="box ok">📌 <b>Ủy quyền tại TP.HCM.</b> Quyết định 3321/QĐ-UBND (ký 26/12/2025, ủy quyền đến hết 31/12/2026) cho phép Chủ tịch UBND Thành phố ủy quyền quyết định đầu tư: Giám đốc Sở Văn hóa và Thể thao đối với dự án bảo tồn, tu bổ di tích có cấu phần xây dựng; Chủ tịch UBND xã, phường, đặc khu đối với dự án nhóm C có cấu phần xây dựng do địa phương làm chủ đầu tư; thủ trưởng sở chuyên ngành xây dựng (Sở Xây dựng, Sở Công Thương, Sở Nông nghiệp và Môi trường) theo lĩnh vực; thủ trưởng các sở đối với dự án không có cấu phần xây dựng. Không được ủy quyền lại, và không bao gồm việc phê duyệt quyết toán dự án hoàn thành dùng vốn ngân sách Thành phố. Nội dung lấy từ bài báo SGGP, cần đối chiếu văn bản gốc.</div>
+  </section>
+  <section class="tab" id="t3">
+    <h2>III. Cơ quan lập hồ sơ</h2>
+    <p>Hồ sơ chủ trương đầu tư do đơn vị được Chủ tịch UBND giao lập. Hội đồng thẩm định hoặc đơn vị có chức năng thẩm định. Cấp có thẩm quyền theo tab II quyết định. Bảng dưới áp dụng cho dự án vốn ngân sách địa phương tại TP.HCM.</p>
+
+    <h3>1. Phân công theo thẩm quyền quyết định chủ trương</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Dự án</th><th>Lập hồ sơ</th><th>Thẩm định</th><th>Quyết định chủ trương</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>Nhóm A vốn ngân sách địa phương (Điều 25)</td><td>Đơn vị trực thuộc, kể cả đơn vị sự nghiệp công lập trực thuộc, hoặc UBND cấp xã do Chủ tịch UBND Thành phố giao. Lập báo cáo nghiên cứu tiền khả thi</td><td>Hội đồng thẩm định do Chủ tịch hoặc một Phó Chủ tịch UBND Thành phố làm Chủ tịch; cơ quan chuyên môn quản lý đầu tư công cấp tỉnh làm Thường trực</td><td>UBND Thành phố trình HĐND Thành phố quyết định</td></tr>
+        <tr class="hl"><td>Nhóm B, C vốn ngân sách địa phương (Điều 28)</td><td>Đơn vị trực thuộc hoặc UBND cấp xã do Chủ tịch UBND giao. Lập báo cáo đề xuất chủ trương đầu tư</td><td>Hội đồng thẩm định hoặc đơn vị có chức năng</td><td>UBND Thành phố (dự án cấp Thành phố); UBND xã, phường, đặc khu (dự án cấp xã)</td></tr>
+        <tr class="hl"><td>Chương trình đầu tư công do địa phương quản lý (Điều 27)</td><td>Đơn vị trực thuộc hoặc UBND cấp dưới do Chủ tịch UBND giao</td><td>Hội đồng thẩm định hoặc đơn vị có chức năng, gồm thẩm định nguồn vốn</td><td>UBND trình HĐND cùng cấp quyết định</td></tr>
+        <tr><td>Dự án vốn ngân sách địa phương do cơ quan trung ương thực hiện, hoặc vốn ngân sách cấp xã do cơ quan cấp tỉnh thực hiện (NĐ 85/2025 Điều 10, sửa bởi NĐ 275/2025)</td><td>Theo Điều 25, 26, 28 Luật; phần vốn địa phương phải có nghị quyết HĐND cùng cấp về bố trí vốn làm cơ sở thẩm định nguồn vốn</td><td>Theo cấp quyết định</td><td>Theo tab II</td></tr>
+      </tbody></table></div>
+    <p class="note">Nguồn: Luật 58/2024/QH15 Điều 25, 27, 28 (bản caselaw.vn, tóm tắt); Luật 90/2025/QH15 Điều 7 khoản 10, 11, 12, 13 (đã đọc nguyên văn: lập hồ sơ giao cả đơn vị sự nghiệp công lập hoặc UBND cấp xã; Điều 28 áp dụng cho UBND các cấp); NĐ 85/2025 Điều 10 qua hethongphapluat.com. Điều 25 sau Luật 90 chỉ sửa điểm a khoản 1, nên thành phần Hội đồng giữ như luật gốc.</p>
+
+    <h3>2. Thẩm định nguồn vốn và khả năng cân đối vốn</h3>
+    <ul>
+      <li>Là một nội dung trong thẩm định chủ trương đầu tư (Điều 36 khoản 1, sửa đổi).</li>
+      <li>Chủ tịch UBND các cấp tổ chức thẩm định đối với chương trình, dự án thuộc cấp mình, trong hạn mức của Luật 58/2024 Điều 36a (Điều 36 khoản 5, sửa đổi).</li>
+      <li><b>Hạn mức:</b> tổng vốn các chương trình, dự án được thẩm định nguồn vốn không vượt quá hai lần mức vốn kế hoạch đầu tư công trung hạn giai đoạn hiện tại đã giao theo từng nguồn vốn cho địa phương. Vượt hạn mức thì Chủ tịch UBND cấp tỉnh xem xét, quyết định đối với ngân sách địa phương (Điều 36a khoản 1).</li>
+      <li>Cơ quan chủ trì thẩm định phải lấy ý kiến cơ quan được giao thẩm định nguồn vốn, trừ khi chính cơ quan đó chủ trì (NĐ 85/2025 Điều 11 khoản 4). Nghị định 275/2025/NĐ-CP thêm Điều 15a hướng dẫn cách áp dụng hạn mức.</li>
+    </ul>
+
+    <h3>3. Hồ sơ cơ bản</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Dự án</th><th>Báo cáo chính</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Nhóm A</td><td>Báo cáo nghiên cứu tiền khả thi. Dự án có cấu phần xây dựng lập theo pháp luật về xây dựng</td><td>Điều 34 Luật; NĐ 85/2025 Điều 11 khoản 1</td></tr>
+        <tr><td>Nhóm B, C</td><td>Báo cáo đề xuất chủ trương đầu tư</td><td>Điều 35 Luật; NĐ 85/2025 Điều 11 khoản 1</td></tr>
+        <tr><td>Chương trình đầu tư công</td><td>Báo cáo đề xuất chủ trương đầu tư chương trình</td><td>Điều 33 Luật</td></tr>
+      </tbody></table></div>
+    <p>Hồ sơ trình thẩm định gồm tờ trình, báo cáo nói trên và tài liệu liên quan. Hồ sơ gửi dưới dạng điện tử, trừ tài liệu chứa bí mật nhà nước (NĐ 85/2025 Điều 11 khoản 1).</p>
+
+    <h3>4. Cây quyết định: ai làm đầu mối cho dự án của tôi?</h3>
+    <ol class="tree">
+      <li><b>Dự án thuộc nhóm nào không phải quyết định chủ trương đầu tư?</b> Gồm nhiệm vụ chuẩn bị đầu tư, nhiệm vụ quy hoạch, dự án khẩn cấp, dự án thuộc chương trình mục tiêu quốc gia, dự án thành phần của dự án đã có chủ trương, dự án vốn ODA không hoàn lại và hỗ trợ kỹ thuật chuẩn bị dự án, dự án đầu tư công đặc biệt, đường sắt địa phương theo quy hoạch (Điều 19 khoản 6).
+        <br><span class="yes">Có</span> thì bỏ qua bước chủ trương, lập hồ sơ quyết định đầu tư (tab IV, bước 6 đến 9). <span class="no">Không</span> thì xuống câu tiếp.</li>
+      <li><b>Nhóm A hay B, C?</b> Tra ở tab II.
+        <br>Nhóm A: đơn vị lập báo cáo nghiên cứu tiền khả thi; Hội đồng do lãnh đạo UBND Thành phố chủ trì thẩm định; HĐND Thành phố quyết định.
+        <br>Nhóm B, C: đơn vị lập báo cáo đề xuất chủ trương; UBND quyết định.</li>
+      <li><b>Dự án do cấp nào quản lý?</b> Dự án cấp Thành phố do UBND Thành phố quyết định chủ trương. Dự án cấp xã do UBND xã, phường, đặc khu quyết định (Điều 18 khoản 9 mới).</li>
+      <li><b>Dự án trải trên từ hai xã, phường, đặc khu?</b> Chủ tịch UBND Thành phố giao một UBND cấp xã quyết định chủ trương; nếu dự án do cấp Thành phố thực hiện thì UBND Thành phố quyết định (Điều 31 mới).</li>
+    </ol>
+    <div class="box warn">⚠️ Sở nào giữ vai trò cơ quan chuyên môn quản lý đầu tư công và thẩm định dự án có cấu phần xây dựng phụ thuộc quyết định tổ chức bộ máy hiện hành của Thành phố. Nghị định 85/2025 dùng cụm “Sở Tài chính và cơ quan chuyên môn về đầu tư”. Tab IX sẽ liệt kê theo từng Sở sau khi tra quyết định phân công của UBND Thành phố.</div>
+  </section>
+
+  <section class="tab" id="t4">
+    <h2>IV. Trình tự thủ tục chuẩn bị đầu tư</h2>
+    <p>Chuẩn bị đầu tư gồm hai giai đoạn: quyết định chủ trương đầu tư, rồi lập, thẩm định và quyết định đầu tư dự án. Thời hạn dưới đây là thời hạn tối đa, tính từ ngày cơ quan nhận đủ hồ sơ hợp lệ.</p>
+
+    <h3>1. Trình tự</h3>
+    <ol class="steps">
+      <li><b>Bước 1. Giao nhiệm vụ chuẩn bị đầu tư.</b> Chủ tịch UBND giao đơn vị lập hồ sơ; vốn chuẩn bị đầu tư bố trí để lập, thẩm định, quyết định chủ trương và quyết định đầu tư (Luật 58/2024 Điều 58 khoản 1, sửa đổi).</li>
+      <li><b>Bước 2. Lập báo cáo.</b> Báo cáo nghiên cứu tiền khả thi (nhóm A) hoặc báo cáo đề xuất chủ trương (nhóm B, C).</li>
+      <li><b>Bước 3. Thẩm định chủ trương.</b> Hội đồng hoặc cơ quan chủ trì thẩm định, kèm thẩm định nguồn vốn và khả năng cân đối vốn. Nhóm A tối đa 30 ngày làm việc; nhóm B, C tối đa 20 ngày làm việc. Hồ sơ không hợp lệ thì trong 05 ngày làm việc phải có văn bản yêu cầu bổ sung.</li>
+      <li><b>Bước 4. Hoàn thiện hồ sơ và trình quyết định chủ trương.</b> Hồ sơ trình gồm tờ trình, báo cáo đã hoàn thiện theo ý kiến thẩm định và báo cáo thẩm định.</li>
+      <li><b>Bước 5. Quyết định chủ trương.</b> Nhóm A tối đa 07 ngày làm việc; nhóm B, C tối đa 05 ngày làm việc; chương trình đầu tư công 10 ngày làm việc. Nếu HĐND quyết định thì thời gian theo chương trình kỳ họp. Trong 03 ngày làm việc sau khi quyết định, gửi quyết định cho Sở Tài chính và cơ quan chuyên môn về đầu tư cùng cấp.</li>
+      <li><b>Bước 6. Lập báo cáo nghiên cứu khả thi.</b> Dự án không có cấu phần xây dựng lập theo Luật 58/2024 Điều 47; dự án có cấu phần xây dựng lập theo pháp luật về xây dựng.</li>
+      <li><b>Bước 7. Thẩm định dự án.</b> Dự án không có cấu phần xây dựng: nhóm A tối đa 30 ngày làm việc, nhóm B, C tối đa 20 ngày làm việc; hồ sơ không hợp lệ thì trong 03 ngày làm việc phải có văn bản yêu cầu bổ sung. Dự án có cấu phần xây dựng: thời gian theo pháp luật về xây dựng.</li>
+      <li><b>Bước 8. Quyết định đầu tư.</b> Nhóm A tối đa 07 ngày làm việc; nhóm B, C tối đa 05 ngày làm việc; chương trình đầu tư công 10 ngày làm việc. Người quyết định đầu tư theo tab II. Quyết định đầu tư phải phù hợp mục tiêu, địa điểm, mức vốn trong chủ trương đã duyệt.</li>
+      <li><b>Bước 9. Gửi quyết định đầu tư.</b> Trong 05 ngày làm việc, gửi cho Sở Tài chính và cơ quan chuyên môn quản lý đầu tư cùng cấp.</li>
+    </ol>
+
+    <h3>2. Bảng thời hạn tối đa (ngày làm việc)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Khâu</th><th>Chương trình ĐTC</th><th>Nhóm A</th><th>Nhóm B, C</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Thẩm định chủ trương</td><td>30</td><td>30</td><td>20</td><td>NĐ 85/2025 Điều 11 khoản 5</td></tr>
+        <tr><td>Yêu cầu bổ sung hồ sơ chủ trương</td><td colspan="3">05 kể từ ngày nhận hồ sơ</td><td>Điều 11 khoản 5</td></tr>
+        <tr><td>Quyết định chủ trương</td><td>10</td><td>07</td><td>05</td><td>Điều 12 khoản 2</td></tr>
+        <tr><td>Gửi quyết định chủ trương</td><td colspan="3">03 kể từ ngày quyết định</td><td>Điều 12 khoản 3</td></tr>
+        <tr><td>Thẩm định dự án (không có cấu phần xây dựng)</td><td>30</td><td>30</td><td>20</td><td>Điều 22 khoản 1</td></tr>
+        <tr><td>Yêu cầu bổ sung hồ sơ thẩm định dự án</td><td colspan="3">03 kể từ ngày nhận hồ sơ</td><td>Điều 22 khoản 1</td></tr>
+        <tr><td>Quyết định đầu tư</td><td>10</td><td>07</td><td>05</td><td>Điều 24 khoản 2</td></tr>
+        <tr><td>Gửi quyết định đầu tư</td><td colspan="3">05 kể từ ngày quyết định</td><td>Điều 24 khoản 3</td></tr>
+        <tr><td>Quyết định điều chỉnh chủ trương</td><td>10</td><td>07</td><td>05</td><td>Điều 14</td></tr>
+      </tbody></table></div>
+    <p class="note">Nguồn: các Điều 11, 12, 14, 22, 24 Nghị định 85/2025/NĐ-CP đọc qua hethongphapluat.com. Theo bản tóm tắt Nghị định 275/2025/NĐ-CP trên cùng trang, Nghị định 275 không sửa các điều này. Mốc thời hạn riêng cho dự án thuộc chương trình mục tiêu quốc gia không nêu ở đây. Tab X sẽ có công cụ cộng ngày làm việc.</p>
+
+    <h3>3. Điều chỉnh chủ trương đầu tư</h3>
+    <ul>
+      <li>Phải điều chỉnh chủ trương khi dự án thay đổi mục tiêu, thay đổi địa điểm hoặc vượt mức vốn đầu tư công so với chủ trương (Luật 58/2024 Điều 37 khoản 2, sửa đổi bởi Luật 90/2025/QH15).</li>
+      <li>Thực hiện thủ tục điều chỉnh chủ trương trước khi cấp có thẩm quyền quyết định điều chỉnh dự án (Luật 58/2024 Điều 46 khoản 5, sửa đổi).</li>
+      <li>Cơ quan thẩm định chỉ chịu trách nhiệm về nội dung đề nghị điều chỉnh, không chịu trách nhiệm về nội dung đã thẩm định, quyết định trước đó (NĐ 85/2025 Điều 14).</li>
+      <li>Hồ sơ trình gồm tờ trình, quyết định chủ trương hiện hành, báo cáo đã điều chỉnh và báo cáo thẩm định. Các trường hợp dừng chủ trương xem Điều 15 NĐ 85/2025 (Nghị định 275/2025 sửa điểm c khoản 3).</li>
+    </ul>
+
+    <div class="box warn">⏰ <b>Chuyển tiếp.</b> Dự án đã được HĐND cấp tỉnh quyết định chủ trương trước ngày 18/10/2025 nhưng chưa quyết định đầu tư thì do Chủ tịch UBND cùng cấp quyết định đầu tư (Điều 2 Nghị định 275/2025/NĐ-CP, theo bản tóm tắt).</div>
+    <div class="box ok">📌 <b>Mốc của Thành phố năm 2026.</b> Theo báo SGGP, UBND Thành phố yêu cầu hoàn thành thủ tục quyết định đầu tư các dự án đang lập, thẩm định hoặc chờ quyết định trước 10/3/2026, và hồ sơ các dự án chưa có chủ trương trước 30/5/2026. Mốc này đã qua tại thời điểm tra cứu 15/10/2026 và chưa đối chiếu văn bản gốc nên chỉ để tham khảo.</div>
+  </section>
+  <section class="tab" id="t5">
+    <h2>V. Kế hoạch trung hạn &amp; hằng năm</h2>
+    <p>Kế hoạch đầu tư công là căn cứ bố trí vốn cho dự án. Chương trình, dự án phải có trong kế hoạch đầu tư công trung hạn mới được bố trí vốn, trừ dự án khẩn cấp, dự án đầu tư công đặc biệt và dự án vốn ODA không hoàn lại (Luật 58/2024 Điều 56 khoản 1, sửa đổi bởi Luật 90/2025/QH15). Phần dưới nói về vốn ngân sách địa phương của TP.HCM.</p>
+
+    <h3>1. Kế hoạch trung hạn (5 năm)</h3>
+    <ol class="steps">
+      <li><b>Lập nhu cầu giai đoạn sau.</b> UBND Thành phố hướng dẫn các đơn vị lập nhu cầu; cơ quan chuyên môn tổng hợp, trình UBND để trình HĐND Thành phố cho ý kiến; nhu cầu gửi Bộ Tài chính theo tiến độ Thủ tướng quy định (NĐ 85/2025 Điều 43 khoản 4).</li>
+      <li><b>Dự kiến kế hoạch sau khi Chính phủ xác định khả năng cân đối.</b> HĐND Thành phố và HĐND cấp xã cho ý kiến trước 31/7 của năm thứ năm kỳ trước; dự kiến kế hoạch gửi Bộ Tài chính trước 30/8 cùng năm (Điều 43 khoản 7).</li>
+      <li><b>HĐND Thành phố quyết định kế hoạch trung hạn của địa phương</b>, gồm tổng vốn, danh mục, mức vốn từng dự án, vốn cho nhiệm vụ quy hoạch, chuẩn bị đầu tư và mức vốn bổ sung có mục tiêu cho cấp dưới; gửi báo cáo Bộ Tài chính. HĐND cấp xã quyết định kế hoạch của cấp mình trên cơ sở nghị quyết của HĐND Thành phố (Luật 58/2024 Điều 59 khoản 9 điểm a, b, sửa đổi).</li>
+      <li><b>Mốc phê duyệt.</b> Trước 10/3 của năm đầu kỳ kế hoạch mới (Điều 43 khoản 10).</li>
+      <li><b>UBND giao kế hoạch.</b> Trong 30 ngày kể từ ngày HĐND ban hành nghị quyết, UBND cùng cấp giao kế hoạch cho các đơn vị thực hiện (Luật 58/2024 Điều 59 khoản 9 điểm c).</li>
+    </ol>
+    <div class="box warn">⚠️ Nghị định 275/2025/NĐ-CP bãi bỏ khoản 1 và sửa các khoản 3b, 4c, 6b, 7a, 7c, 7d, 9b, 10b, 10c của Điều 43, đồng thời bỏ nội dung cấp huyện. Mốc cấp xã (31/7, 30/8, 10/3) đã đối chiếu với nội dung từng khoản của Nghị định 275 trên hethongphapluat.com; mốc của HĐND Thành phố giữ theo bản gốc Điều 43 vì Nghị định 275 không liệt kê sửa phần này. Chưa đọc bản Công báo.</div>
+    <p><b>Hạn mức chủ động chuẩn bị đầu tư.</b> Địa phương được chủ động chuẩn bị đầu tư và quyết định chủ trương cho dự án thực hiện trong giai đoạn sau, với tổng vốn thẩm định nguồn vốn không vượt quá hai lần vốn trung hạn giai đoạn hiện tại đã giao theo từng nguồn (Luật 58/2024 Điều 36a). Xem tab III.</p>
+
+    <h3>2. Kế hoạch hằng năm</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Mốc</th><th>Công việc</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Trước 15/5</td><td>Thủ tướng quy định về lập kế hoạch kinh tế - xã hội và dự toán ngân sách năm sau</td><td>NĐ 85/2025 Điều 44 khoản 1</td></tr>
+        <tr><td>Sau khi có quy định của Thủ tướng</td><td>Bộ Tài chính hướng dẫn trong 10 ngày; địa phương hướng dẫn cấp dưới trong 07 ngày sau văn bản của Bộ Tài chính</td><td>Điều 44 khoản 2, 3 (sửa bởi NĐ 275/2025)</td></tr>
+        <tr><td>Trước 10/7</td><td>Nộp nhu cầu vốn theo hướng dẫn</td><td>Điều 44 khoản 4 (sửa bởi NĐ 275/2025; bản gốc là 30/7)</td></tr>
+        <tr><td>Trước 10/8</td><td>Bộ Tài chính báo cáo Thủ tướng phương án vốn ngân sách trung ương; sau khi được thông qua, thông báo vốn dự kiến cho từng Bộ và địa phương</td><td>Điều 44 khoản 5 (sửa)</td></tr>
+        <tr><td>Kỳ họp cuối năm HĐND</td><td>UBND trình HĐND cùng cấp kế hoạch năm sau, gồm danh mục và mức vốn từng dự án</td><td>Điều 44 khoản 6</td></tr>
+        <tr><td>Trước 01/9</td><td>Gửi kế hoạch tổng hợp cho Bộ Tài chính</td><td>Điều 44 khoản 7 (sửa)</td></tr>
+        <tr><td>Trước 15/12</td><td>Thủ tướng giao kế hoạch</td><td>Điều 44 khoản 9 (sửa, bổ sung)</td></tr>
+        <tr><td>Trước 31/12</td><td>Phân bổ chi tiết danh mục và mức vốn từng dự án; báo cáo Bộ Tài chính trước 10/01 năm kế hoạch</td><td>Điều 44 khoản 10; Điều 48 khoản 1</td></tr>
+      </tbody></table></div>
+    <p class="note">Các mốc ghi “sửa” lấy từ bản tóm tắt Nghị định 275/2025/NĐ-CP, cần đối chiếu toàn văn trước khi dùng trong tờ trình.</p>
+
+    <h3>3. Điều chỉnh kế hoạch</h3>
+    <ul>
+      <li>UBND các cấp quyết định điều chỉnh kế hoạch trung hạn và hằng năm vốn ngân sách địa phương khi không thay đổi tổng mức vốn trung hạn và hằng năm đã được HĐND cùng cấp quyết định (Luật 58/2024 Điều 71 khoản 8, sửa đổi). Trường hợp thay đổi tổng mức vốn thì không thuộc điều kiện này, thẩm quyền theo Luật 58/2024 Điều 71 (cần đối chiếu).</li>
+      <li>Nghị định 275/2025/NĐ-CP thay Điều 50 của Nghị định 85 (áp dụng từ kế hoạch năm 2026): điều chỉnh kế hoạch hằng năm phải thực hiện trước 15/12 của năm kế hoạch (bản gốc là 15/11). Với vốn ngân sách địa phương, UBND các cấp điều chỉnh giữa các cơ quan, đơn vị khi không đổi tổng vốn đã được HĐND quyết định và báo cáo HĐND cùng cấp tại kỳ họp gần nhất (Điều 50 khoản 6).</li>
+      <li>Báo cáo Bộ Tài chính trong 03 ngày làm việc áp dụng cho điều chỉnh vốn ngân sách trung ương, kể cả vốn bổ sung có mục tiêu cho địa phương (Điều 50 khoản 4, 5), không áp dụng cho điều chỉnh thuần vốn ngân sách địa phương.</li>
+      <li>Nợ đọng xây dựng cơ bản là khối lượng đã nghiệm thu nhưng chưa được giao kế hoạch trung hạn, không gồm dự án khẩn cấp, dự án đặc biệt và dự án chuyển tiếp qua kỳ kế hoạch (Luật 58/2024 Điều 4 khoản 22, sửa đổi).</li>
+    </ul>
+  </section>
+
+  <section class="tab" id="t6">
+    <h2>VI. Thực hiện &amp; giải ngân</h2>
+
+    <h3>1. Thời gian bố trí vốn dự án</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Dự án</th><th>Tối đa</th><th>Gia hạn vốn địa phương (lần đầu)</th></tr></thead>
+      <tbody>
+        <tr><td>Nhóm A</td><td>06 năm</td><td>Không quá 01 năm; nhóm A có tổng mức từ 10.000 đến dưới 30.000 tỷ đồng không quá 02 năm</td></tr>
+        <tr><td>Nhóm B</td><td>04 năm</td><td>Không quá 01 năm</td></tr>
+        <tr><td>Nhóm C</td><td>03 năm</td><td>Không quá 01 năm</td></tr>
+      </tbody></table></div>
+    <ul>
+      <li>Thời gian tính liên tục từ năm đầu tiên bố trí vốn đến năm nghiệm thu, đưa vào sử dụng; không tính thời gian chuẩn bị đầu tư và quyết toán (Điều 57 khoản 1).</li>
+      <li>Lần gia hạn đầu với vốn ngân sách địa phương do Chủ tịch UBND quyết định. Dự án đã gia hạn mà phải gia hạn tiếp thì UBND kiểm điểm trách nhiệm và báo cáo HĐND cùng cấp quyết định (Điều 57 khoản 3 điểm c, d, sửa đổi).</li>
+      <li>Hồ sơ đề nghị gia hạn tiếp phải giải trình sự cần thiết, chứng minh dự án hết vướng mắc và có thể hoàn thành giải ngân trong thời gian đề xuất, kèm phương án bảo đảm đủ vốn (NĐ 85/2025 Điều 47 khoản 2).</li>
+      <li>Dự án không phải quyết định chủ trương đầu tư: cấp quyết định đầu tư quyết định gia hạn (Điều 57 khoản 3 điểm đ).</li>
+    </ul>
+
+    <h3>2. Thời hạn giải ngân kế hoạch hằng năm</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Trường hợp</th><th>Thời hạn</th></tr></thead>
+      <tbody>
+        <tr><td>Kế hoạch vốn hằng năm</td><td>Đến 31/01 năm sau</td></tr>
+        <tr><td>Vốn được bổ sung sau 30/9 của năm kế hoạch</td><td>Đến hết 31/12 năm sau</td></tr>
+        <tr><td>Kéo dài thời gian thực hiện và giải ngân</td><td>Không quá 31/12 năm sau. Chủ tịch UBND các cấp quyết định đối với vốn ngân sách địa phương do cấp mình quản lý</td></tr>
+      </tbody></table></div>
+    <p>Các trường hợp được kéo dài (Điều 72 khoản 2, sửa đổi):</p>
+    <ul>
+      <li>Dự án quan trọng quốc gia.</li>
+      <li>Dự án bồi thường, hỗ trợ, tái định cư, giải phóng mặt bằng.</li>
+      <li>Dự án được bố trí vốn để hoàn thành, đưa vào sử dụng trong năm kế hoạch nhưng không được bố trí vốn năm sau.</li>
+      <li>Dự án bị ảnh hưởng tiến độ do thiên tai, thảm họa, dịch bệnh hoặc nguyên nhân khách quan không thể lường trước và không thể khắc phục.</li>
+      <li>Dự án của cơ quan đại diện và cơ quan khác của Việt Nam ở nước ngoài.</li>
+      <li>Đơn vị, kể cả UBND cấp xã, chỉ có duy nhất 01 dự án trong năm kế hoạch hoặc không thể điều chỉnh kế hoạch.</li>
+    </ul>
+    <p>Người quyết định chịu trách nhiệm về danh mục, mức vốn được kéo dài và bảo đảm giải ngân toàn bộ số vốn được kéo dài.</p>
+
+    <h3>3. Điều chỉnh dự án trong giai đoạn thực hiện</h3>
+    <ul>
+      <li><b>Các trường hợp điều chỉnh:</b> điều chỉnh hoặc dừng chủ trương đầu tư; điều chỉnh quy hoạch ảnh hưởng trực tiếp; bất khả kháng làm thay đổi mục tiêu, quy mô, chi phí hoặc thời gian; thiên tai, hỏa hoạn khi đã hết thời gian bảo hiểm; có yếu tố mang lại hiệu quả cao hơn và được cơ quan có thẩm quyền thẩm định; chỉ số giá lớn hơn chỉ số đã tính dự phòng trượt giá (Điều 46 khoản 2).</li>
+      <li><b>Thẩm quyền:</b> cấp quyết định đầu tư quyết định điều chỉnh và chịu trách nhiệm (khoản 3). Chỉ điều chỉnh sau khi dự án đã được thẩm định, kiểm tra, đánh giá (khoản 4).</li>
+      <li><b>Thay đổi mục tiêu, địa điểm hoặc vượt mức vốn đầu tư công</b> so với chủ trương: phải điều chỉnh chủ trương đầu tư trước (khoản 5, sửa đổi). Thời hạn quyết định điều chỉnh chủ trương xem bảng ở tab IV.</li>
+      <li>Quyết định đầu tư hoặc điều chỉnh quyết định đầu tư không đúng mục tiêu, địa điểm, vượt mức vốn trong chủ trương là hành vi bị nghiêm cấm (Điều 17 khoản 2, sửa đổi).</li>
+    </ul>
+
+    <h3>4. Thanh toán vốn</h3>
+    <div class="box warn">⚠️ Phần tạm ứng, hồ sơ thanh toán và kiểm soát chi chưa được tra cứu. Luật 90/2025/QH15 giao Bộ Tài chính ban hành quy định về quản lý, thanh toán, quyết toán dự án sử dụng vốn đầu tư công (Điều 85 khoản 8, sửa đổi). Mình sẽ tra văn bản hướng dẫn thanh toán cùng với tab VII.</div>
+    <p class="note">Nguồn tab V, VI: Luật 90/2025/QH15 Điều 7 (đã đọc nguyên văn trong kho regai); Điều 46, 57 Luật 58/2024/QH15 và Điều 43, 44, 47, 48 Nghị định 85/2025 đọc qua hethongphapluat.com (bản tóm tắt); Nghị định 275/2025 qua bản tóm tắt. Cần đối chiếu văn bản gốc trước khi trích dẫn.</p>
+  </section>
+  <section class="tab" id="t7">
+    <h2>VII. Quyết toán &amp; đánh giá</h2>
+    <div class="box ok">📌 Quản lý, thanh toán, quyết toán dự án vốn đầu tư công thực hiện theo <b>Nghị định 254/2025/NĐ-CP</b> (ký 26/9/2025, thay Nghị định 99/2021/NĐ-CP). Kho dữ liệu pháp luật ghi tình trạng “hết hiệu lực một phần”, chưa xác định phần nào, cần kiểm tra trước khi trích dẫn từng điều. Hồ sơ và quyết toán đã nộp trước ngày nghị định có hiệu lực tiếp tục theo Nghị định 99/2021 (Điều 54 khoản 3).</div>
+
+    <h3>1. Thanh toán vốn</h3>
+    <ul>
+      <li><b>Cơ quan thanh toán:</b> Kho bạc Nhà nước giải ngân vốn ngân sách nhà nước và nguồn thu hợp pháp dành để đầu tư; đơn vị sự nghiệp công lập tự kiểm soát, giải ngân nguồn thu hợp pháp của mình (Điều 4).</li>
+      <li><b>Hồ sơ pháp lý</b> gửi lần đầu hoặc khi có điều chỉnh: kế hoạch vốn hằng năm được giao; quyết định phê duyệt dự án hoặc văn bản giao nhiệm vụ và các điều chỉnh; bảng tổng hợp thông tin hợp đồng (Mẫu 02.a/TT) hoặc thông tin dự toán (Mẫu 02.b/TT) hoặc thông tin bồi thường, hỗ trợ, tái định cư (Mẫu 02.c/TT) (Điều 8 khoản 1).</li>
+      <li><b>Hồ sơ tạm ứng:</b> giấy đề nghị thanh toán vốn (Mẫu 04.a/TT), giấy rút vốn (Mẫu 05.a/TT) và bảo lãnh tạm ứng nếu thuộc diện phải có. <b>Hồ sơ thanh toán khối lượng:</b> thêm bảng xác định giá trị khối lượng hoàn thành (Mẫu 03.a/TT) và giấy đề nghị thu hồi tạm ứng (Mẫu 04.b/TT) khi thu hồi (Điều 8 khoản 2, 3).</li>
+      <li>Hồ sơ chưa đầy đủ: cơ quan thanh toán từ chối và có văn bản nêu lý do, gửi một lần, trong 02 ngày làm việc kể từ khi nhận hồ sơ (Điều 8 khoản 9).</li>
+    </ul>
+    <div class="tw"><table>
+      <thead><tr><th>Nội dung</th><th>Quy định</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Bảo lãnh tạm ứng</td><td>Bắt buộc khi giá trị tạm ứng hợp đồng lớn hơn 01 tỷ đồng. Không bắt buộc với hợp đồng tạm ứng từ 01 tỷ đồng trở xuống, tự thực hiện, thuê tư vấn quản lý dự án, công việc không qua hợp đồng, bồi thường, hỗ trợ, tái định cư (trừ phần xây dựng công trình) và tạm ứng chi phí quản lý dự án</td><td>Điều 9 khoản 2</td></tr>
+        <tr><td>Giới hạn tạm ứng</td><td>Không vượt kế hoạch vốn hằng năm của nhiệm vụ, dự án; không vượt mức tạm ứng trong hợp đồng và mức tối đa theo pháp luật về xây dựng</td><td>Điều 9 khoản 1, 4</td></tr>
+        <tr><td>Thu hồi tạm ứng</td><td>Thu hồi hết khi giá trị giải ngân đạt 80% giá trị hợp đồng hoặc dự toán. Bồi thường, hỗ trợ, tái định cư: làm thủ tục thanh toán, thu hồi trong 30 ngày kể từ ngày tạm ứng</td><td>Điều 9 khoản 5</td></tr>
+        <tr><td>Tạm ứng quá hạn</td><td>Hợp đồng: quá hạn sau 03 tháng kể từ thời điểm phải thu hồi hết. Công việc không qua hợp đồng: quá 06 tháng chủ đầu tư phải hoàn trả; sau thêm 03 tháng cơ quan thanh toán được trích tài khoản của chủ đầu tư để nộp ngân sách</td><td>Điều 9 khoản 6 điểm d</td></tr>
+        <tr><td>Báo cáo tạm ứng</td><td>Chủ đầu tư lập báo cáo tình hình tạm ứng và thu hồi (Mẫu 08.a/SDTƯ) trước ngày 05 tháng đầu quý sau; đơn vị bồi thường, hỗ trợ, tái định cư trước ngày 03. Kho bạc báo cáo trước 10/7 và 28/02</td><td>Điều 9 khoản 6 điểm b, c</td></tr>
+        <tr><td>Hạn tạm ứng</td><td>Đến hết 31/12 năm kế hoạch; riêng bồi thường, hỗ trợ, tái định cư đến hết 31/01 năm sau</td><td>Điều 12 khoản 1</td></tr>
+        <tr><td>Hạn thanh toán khối lượng</td><td>Khối lượng nghiệm thu đến hết 31/12; thời hạn thanh toán đến hết 31/01 năm sau. Nếu kéo dài giải ngân thì theo quyết định của cấp có thẩm quyền</td><td>Điều 12 khoản 2, 3</td></tr>
+        <tr><td>Thời gian cơ quan thanh toán xử lý</td><td>02 ngày làm việc kể từ khi nhận đủ hồ sơ; tạm ứng 01 ngày làm việc</td><td>Điều 12 khoản 4</td></tr>
+      </tbody></table></div>
+
+    <h3>2. Quyết toán theo niên độ</h3>
+    <ul>
+      <li>Khóa sổ kế toán và lập báo cáo quyết toán khi kết thúc năm ngân sách; thời hạn chỉnh lý quyết toán kết thúc hết 31/01 năm sau (Điều 26).</li>
+      <li>Vốn do UBND cấp tỉnh quản lý: chủ đầu tư lập báo cáo gửi sở, ban; sở, ban xét duyệt, đối chiếu với cơ quan thanh toán và gửi cơ quan tài chính; UBND cấp tỉnh quy định thời hạn từng khâu. Cơ quan thanh toán cấp khu vực báo cáo trước 15/4 năm sau (Điều 28 khoản 2 điểm a).</li>
+      <li>Vốn do UBND cấp xã quản lý: Sở Tài chính trình UBND cấp tỉnh quy định trình tự, thời hạn; cơ quan thanh toán gửi báo cáo cho UBND cấp xã trước 01/3 năm sau (điểm b).</li>
+      <li>Áp dụng từ quyết toán niên độ ngân sách năm 2025 (Điều 54 khoản 2).</li>
+    </ul>
+
+    <h3>3. Quyết toán dự án hoàn thành</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Công đoạn</th><th>Quan trọng quốc gia, nhóm A</th><th>Nhóm B</th><th>Nhóm C</th></tr></thead>
+      <tbody>
+        <tr><td>Chủ đầu tư lập hồ sơ trình thẩm tra</td><td>09 tháng</td><td>06 tháng</td><td>04 tháng</td></tr>
+        <tr><td>Thẩm tra quyết toán</td><td>08 tháng</td><td>05 tháng</td><td>04 tháng</td></tr>
+        <tr><td>Phê duyệt quyết toán</td><td>01 tháng</td><td>20 ngày</td><td>15 ngày</td></tr>
+      </tbody></table></div>
+    <p class="note">Điều 46. Thời gian lập hồ sơ tính từ ngày ký biên bản nghiệm thu hoàn thành, bàn giao đưa vào khai thác, sử dụng (hoặc ngày văn bản cho phép dừng dự án có hiệu lực) đến ngày nộp đủ hồ sơ cho cơ quan chủ trì thẩm tra. Thẩm tra tính từ khi cơ quan chủ trì nhận đủ hồ sơ đến khi trình người phê duyệt. Phê duyệt tính từ khi người phê duyệt nhận đủ hồ sơ đến ngày ban hành quyết định. Văn bản dùng đơn vị tháng và ngày, không ghi ngày làm việc.</p>
+    <ul>
+      <li><b>Thẩm quyền phê duyệt (Điều 34 khoản 1):</b> với dự án quan trọng quốc gia và dự án do Thủ tướng quyết định đầu tư, Chủ tịch UBND cấp tỉnh hoặc cấp xã phê duyệt phần vốn thuộc cơ quan mình quản lý; với các dự án khác, người quyết định đầu tư là người phê duyệt quyết toán, và có thể phân cấp hoặc ủy quyền theo pháp luật. Quyết định 3321/QĐ-UBND của TP.HCM loại trừ việc phê duyệt quyết toán dự án hoàn thành vốn ngân sách Thành phố khỏi phạm vi ủy quyền quyết định đầu tư (theo bài báo SGGP).</li>
+      <li><b>Cơ quan chủ trì thẩm tra (khoản 2):</b> Sở Tài chính đối với dự án vốn ngân sách do UBND Thành phố quản lý; phòng chuyên môn về tài chính, hoặc công chức chuyên môn nếu cấp xã không có phòng, đối với vốn ngân sách cấp xã. Khi cần, thành lập Tổ thẩm tra quyết toán.</li>
+      <li><b>Kiểm toán (khoản 3):</b> dự án quan trọng quốc gia và nhóm A phải kiểm toán báo cáo quyết toán trước khi trình thẩm tra, trừ dự án bí mật nhà nước. Dự án còn lại do người quyết định đầu tư quyết định có thuê kiểm toán độc lập hay không. Nếu Kiểm toán nhà nước hoặc thanh tra đã kiểm toán, thanh tra đủ nội dung theo Điều 36 thì không phải thuê kiểm toán độc lập.</li>
+      <li><b>Sau phê duyệt:</b> cơ quan cấp trên của chủ đầu tư chỉ đạo xử lý tồn tại, hoàn thành công nợ, tất toán tài khoản dự án trong 06 tháng kể từ ngày có quyết định phê duyệt quyết toán (Điều 52 khoản 2). Công khai danh sách dự án chậm lập báo cáo quyết toán (khoản 1).</li>
+      <li><b>Báo cáo tình hình quyết toán trong năm:</b> cơ quan chủ trì thẩm tra và UBND cấp xã gửi trước 20/01; UBND cấp tỉnh gửi Bộ Tài chính chậm nhất 28/02 (Điều 47 khoản 2).</li>
+    </ul>
+
+    <h3>4. Theo dõi, kiểm tra, đánh giá</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Nội dung</th><th>Chủ thể và thời hạn</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Theo dõi, kiểm tra kế hoạch đầu tư công</td><td>UBND cấp tỉnh tổ chức, hướng dẫn các sở, ban, ngành và UBND cấp xã theo dõi tình hình thực hiện và giải ngân; Bộ Tài chính hướng dẫn, tổng hợp</td><td>NĐ 85/2025 Điều 52 khoản 1</td></tr>
+        <tr><td>Đánh giá kế hoạch trung hạn</td><td>Đánh giá giữa kỳ vào năm thứ ba; đánh giá cả giai đoạn vào năm cuối của kỳ kế hoạch</td><td>NĐ 85/2025 Điều 52 khoản 2 điểm b</td></tr>
+        <tr><td>Đánh giá kế hoạch hằng năm</td><td>Tháng 9 hằng năm và trước 31/3 năm sau</td><td>NĐ 85/2025 Điều 52 khoản 2 điểm b</td></tr>
+        <tr><td>Kiểm tra quản lý, thanh toán, quyết toán</td><td>Cơ quan tài chính các cấp hướng dẫn, kiểm tra cơ quan thanh toán, chủ đầu tư, nhà thầu; cơ quan cấp trên của chủ đầu tư kiểm tra, đôn đốc</td><td>NĐ 254/2025 Điều 50 khoản 3; Điều 52 khoản 1</td></tr>
+        <tr><td>Trách nhiệm</td><td>Người đứng đầu Bộ, cơ quan trung ương và địa phương, Chủ tịch UBND cấp xã, chủ chương trình, chủ đầu tư chịu trách nhiệm về hậu quả do không theo dõi, đánh giá, kiểm tra hoặc không báo cáo</td><td>Luật 58/2024 Điều 100 khoản 1 (sửa bởi Luật 90/2025)</td></tr>
+      </tbody></table></div>
+    <div class="box warn">⚠️ <b>Chưa đọc.</b> Giám sát, đánh giá đầu tư từng dự án và giám sát của cộng đồng được kết quả tìm kiếm gắn với Nghị định 19/2026/NĐ-CP (ban hành 14/01/2026, giao Sở Tài chính làm đầu mối ở địa phương). Văn bản này không có trong kho regai và mình chưa đọc nội dung. Điều 48, 49 Nghị định 254/2025 (kiểm tra, xử lý vi phạm) mới xem tiêu đề. Nếu cần, mình tra tiếp ở bước sau.</div>
+    <p class="note">Nguồn: Nghị định 254/2025/NĐ-CP đọc nguyên văn các Điều 4, 8, 9, 12, 26, 28, 34, 46, 47, 50, 52, 54 trong kho regai; Điều 52 Nghị định 85/2025 qua hethongphapluat.com (tóm tắt).</p>
+  </section>
+
+  <section class="tab" id="t8">
+    <h2>VIII. Cơ chế phối hợp</h2>
+    <p>Phần này gom các quy định trải rải rác ở các tab trước thành một bản đồ phối hợp: ai làm gì, gửi cho ai, trong bao lâu. Chỉ ghi những mốc đã đọc từ văn bản.</p>
+
+    <h3>1. Vai trò các bên tại TP.HCM</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Bên</th><th>Vai trò trong chu trình</th></tr></thead>
+      <tbody>
+        <tr><td>HĐND Thành phố</td><td>Quyết định chủ trương dự án nhóm A và chương trình đầu tư công vốn ngân sách địa phương; quyết định kế hoạch trung hạn; xem xét kế hoạch hằng năm tại kỳ họp cuối năm; quyết định gia hạn bố trí vốn lần hai trở đi</td></tr>
+        <tr><td>UBND Thành phố, Chủ tịch UBND</td><td>Giao đơn vị lập hồ sơ; thành lập Hội đồng thẩm định; quyết định chủ trương dự án nhóm B, C; quyết định đầu tư; giao kế hoạch; điều chỉnh kế hoạch trong tổng vốn đã được HĐND quyết định; quyết định gia hạn và kéo dài giải ngân lần đầu</td></tr>
+        <tr><td>Sở Tài chính</td><td>Nhận quyết định chủ trương và quyết định đầu tư để theo dõi; chủ trì thẩm tra quyết toán dự án hoàn thành vốn ngân sách Thành phố; báo cáo tình hình quyết toán. Nghị định 85/2025 gọi chung “Sở Tài chính và cơ quan chuyên môn về đầu tư”; phân công cụ thể theo quyết định tổ chức của Thành phố</td></tr>
+        <tr><td>Sở chuyên ngành xây dựng và Sở quản lý ngành</td><td>Được ủy quyền quyết định đầu tư theo lĩnh vực (Quyết định 3321/QĐ-UBND); thẩm định dự án có cấu phần xây dựng theo pháp luật về xây dựng</td></tr>
+        <tr><td>UBND xã, phường, đặc khu</td><td>Quyết định chủ trương và đầu tư dự án nhóm B, C cấp mình; được giao quyết định chủ trương dự án trải trên nhiều xã; tổ chức thẩm tra quyết toán dự án cấp xã</td></tr>
+        <tr><td>Chủ đầu tư, ban quản lý dự án</td><td>Lập báo cáo; đề nghị tạm ứng, thanh toán và chịu trách nhiệm về bảng thông tin hợp đồng; thu hồi tạm ứng; lập hồ sơ quyết toán</td></tr>
+        <tr><td>Kho bạc Nhà nước (cơ quan thanh toán)</td><td>Kiểm soát và giải ngân; thu hồi tạm ứng quá hạn; báo cáo tình hình tạm ứng; đối chiếu số liệu quyết toán niên độ</td></tr>
+        <tr><td>Bộ Tài chính</td><td>Nhận kế hoạch tổng hợp, báo cáo quyết toán; hướng dẫn và kiểm tra; tổng hợp đánh giá kế hoạch báo cáo Thủ tướng</td></tr>
+      </tbody></table></div>
+
+    <h3>2. Luồng hồ sơ và thời hạn phối hợp</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Việc</th><th>Bên gửi</th><th>Bên nhận</th><th>Thời hạn</th></tr></thead>
+      <tbody>
+        <tr><td>Ý kiến thẩm định nguồn vốn</td><td>Cơ quan được giao thẩm định nguồn vốn</td><td>Cơ quan chủ trì thẩm định chủ trương</td><td>Trong thời gian thẩm định chủ trương: 30 ngày làm việc (nhóm A), 20 ngày làm việc (nhóm B, C)</td></tr>
+        <tr><td>Quyết định chủ trương</td><td>Cơ quan quyết định</td><td>Sở Tài chính và cơ quan chuyên môn về đầu tư</td><td>03 ngày làm việc</td></tr>
+        <tr><td>Quyết định đầu tư</td><td>Người quyết định đầu tư</td><td>Sở Tài chính và cơ quan chuyên môn quản lý đầu tư</td><td>05 ngày làm việc</td></tr>
+        <tr><td>Hồ sơ thanh toán chưa đủ</td><td>Cơ quan thanh toán</td><td>Chủ đầu tư</td><td>02 ngày làm việc để thông báo lý do, gửi một lần</td></tr>
+        <tr><td>Báo cáo tạm ứng, thu hồi tạm ứng</td><td>Chủ đầu tư</td><td>Cơ quan thanh toán, cơ quan cấp trên, cơ quan tài chính</td><td>Trước ngày 05 tháng đầu quý sau</td></tr>
+        <tr><td>Quyết toán niên độ vốn cấp xã</td><td>Cơ quan thanh toán</td><td>UBND cấp xã</td><td>Trước 01/3 năm sau</td></tr>
+        <tr><td>Số liệu quyết toán niên độ</td><td>Cơ quan thanh toán khu vực</td><td>Cơ quan tài chính cấp tỉnh</td><td>Trước 15/4 năm sau</td></tr>
+        <tr><td>Báo cáo quyết toán dự án hoàn thành trong năm</td><td>Cơ quan chủ trì thẩm tra, UBND cấp xã</td><td>Cơ quan tổng hợp của UBND Thành phố, rồi Bộ Tài chính</td><td>Trước 20/01; Thành phố gửi Bộ Tài chính chậm nhất 28/02</td></tr>
+        <tr><td>Điều chỉnh kế hoạch vốn ngân sách địa phương</td><td>UBND Thành phố</td><td>HĐND Thành phố</td><td>Báo cáo tại kỳ họp gần nhất; điều chỉnh trước 15/12 (NĐ 85/2025 Điều 50 mới)</td></tr>
+        <tr><td>Điều chỉnh vốn bổ sung có mục tiêu từ ngân sách trung ương</td><td>UBND Thành phố</td><td>Bộ Tài chính; HĐND Thành phố</td><td>03 ngày làm việc báo cáo Bộ Tài chính; báo cáo HĐND tại kỳ họp gần nhất (Điều 50 khoản 5)</td></tr>
+      </tbody></table></div>
+
+    <h3>3. Quy tắc vận hành và rủi ro thường gặp</h3>
+    <div class="grid2">
+      <div class="box ok"><b>🧩 Quy tắc vận hành</b>
+        <ul>
+          <li>Thẩm định nguồn vốn là một phần của thẩm định chủ trương, không tách thành bước riêng sau cùng.</li>
+          <li>Vốn địa phương phải có nghị quyết HĐND bố trí vốn làm cơ sở thẩm định khi dự án do cơ quan trung ương thực hiện hoặc cấp tỉnh thực hiện bằng vốn cấp xã.</li>
+          <li>Thay đổi mục tiêu, địa điểm hoặc vượt mức vốn đầu tư công thì điều chỉnh chủ trương trước, rồi mới điều chỉnh dự án.</li>
+          <li>Hồ sơ thanh toán chỉ gửi một lần thông báo thiếu sót, nên rà soát đủ mẫu biểu trước khi nộp.</li>
+        </ul></div>
+      <div class="box warn"><b>⚠️ Rủi ro</b>
+        <ul>
+          <li>Quyết định đầu tư vượt mục tiêu, địa điểm hoặc mức vốn trong chủ trương là hành vi bị nghiêm cấm.</li>
+          <li>Vượt thời gian bố trí vốn (06, 04, 03 năm) mà chưa có quyết định gia hạn sẽ phải kiểm điểm và trình HĐND từ lần gia hạn thứ hai.</li>
+          <li>Tạm ứng quá hạn bị cơ quan thanh toán trích từ tài khoản chủ đầu tư để nộp ngân sách.</li>
+          <li>Chậm lập báo cáo quyết toán bị công khai danh sách dự án.</li>
+        </ul></div>
+    </div>
+    <p class="note">Mọi mốc thời hạn trong bảng đã nêu ở tab IV, V, VI, VII kèm căn cứ. Cần đối chiếu văn bản gốc trước khi dùng trong văn bản trình ký.</p>
+  </section>
+  <section class="tab" id="t9">
+    <h2>IX. Checklist theo Sở</h2>
+    <p>Danh sách việc cần làm của từng bên trong chu trình đầu tư công vốn ngân sách địa phương. Tích vào ô để theo dõi tiến độ; trạng thái chỉ lưu trên trình duyệt của bạn. Mỗi mục ghi căn cứ ở cuối dòng.</p>
+    <div class="box warn">⚠️ <b>Tên Sở.</b> Kết quả tra cứu chưa xác nhận được cơ cấu các Sở hiện hành của TP.HCM (có nguồn nói về việc sáp nhập Sở Kế hoạch và Đầu tư với Sở Tài chính nhưng chưa xác nhận). Checklist gọi theo chức năng. Tên Sở nêu trong văn bản đã đọc: Sở Tài chính (thẩm tra quyết toán, Nghị định 254/2025 Điều 34), Sở Xây dựng, Sở Công Thương, Sở Nông nghiệp và Môi trường, Sở Văn hóa và Thể thao (Quyết định 3321/QĐ-UBND). Hãy đối chiếu quyết định phân công mới nhất của UBND Thành phố trước khi giao việc.</div>
+    <div class="ckbar"><span id="ckprog"></span> <button type="button" id="ckreset">Đặt lại</button> <button type="button" onclick="window.print()">In</button></div>
+    <div id="ck"></div>
+  </section>
+
+  <section class="tab" id="t10">
+    <h2>X. Tra cứu thời hạn</h2>
+    <h3>1. Tính ngày hết hạn</h3>
+    <div class="calc">
+      <label>Thời hạn theo quy định
+        <select id="tp"></select></label>
+      <div class="row3">
+        <label>Số lượng (sửa được)<input type="number" id="tn" min="0" step="1"></label>
+        <label>Đơn vị
+          <select id="tu">
+            <option value="wd">ngày làm việc</option>
+            <option value="d">ngày (lịch)</option>
+            <option value="m">tháng</option>
+          </select></label>
+        <label>Ngày bắt đầu (ngày nhận đủ hồ sơ hợp lệ)<input type="date" id="ts"></label>
+      </div>
+      <label>Ngày nghỉ bổ sung (dd/mm/yyyy, cách nhau bằng dấu phẩy hoặc xuống dòng): Tết Âm lịch, Giỗ Tổ, ngày nghỉ bù, ngày liền kề Quốc khánh theo thông báo chính thức
+        <textarea id="th" rows="2" placeholder="Ví dụ: 16/02/2027, 17/02/2027"></textarea></label>
+      <div id="tr" class="res">Chọn thời hạn và ngày bắt đầu để xem kết quả.</div>
+      <small>Quy ước của công cụ: không tính ngày nhận hồ sơ; ngày làm việc loại trừ thứ Bảy, Chủ nhật, các ngày lễ cố định theo dương lịch (01/01, 30/04, 01/05, 02/09) và ngày bạn nhập thêm; thời hạn tính bằng ngày lịch hoặc tháng không tự dời khi ngày cuối rơi vào ngày nghỉ, công cụ chỉ cảnh báo. Quy ước này là giả định của công cụ, cần đối chiếu cách tính thời hạn mà cơ quan áp dụng.</small>
+    </div>
+
+    <h3>2. Đếm số ngày làm việc giữa hai ngày</h3>
+    <div class="calc">
+      <div class="row3">
+        <label>Từ ngày (không tính)<input type="date" id="ca"></label>
+        <label>Đến ngày (có tính)<input type="date" id="cb"></label>
+        <div id="cr2" class="res">Chọn hai ngày.</div>
+      </div>
+    </div>
+
+    <h3>3. Các mốc cố định hằng năm</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Mốc</th><th>Việc</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>10/01</td><td>Báo cáo Bộ Tài chính kết quả phân bổ chi tiết vốn kế hoạch năm</td><td>NĐ 85/2025 Điều 48.1</td></tr>
+        <tr><td>20/01</td><td>Cơ quan thẩm tra quyết toán và UBND cấp xã gửi báo cáo tình hình quyết toán dự án hoàn thành</td><td>NĐ 254/2025 Điều 47.2</td></tr>
+        <tr><td>31/01</td><td>Hạn giải ngân vốn kế hoạch năm trước; hạn thanh toán khối lượng đã nghiệm thu; hết thời hạn chỉnh lý quyết toán</td><td>Luật 58/2024 Điều 72.1; NĐ 254/2025 Điều 12, 26</td></tr>
+        <tr><td>28/02</td><td>UBND Thành phố gửi Bộ Tài chính báo cáo quyết toán dự án hoàn thành trong năm; Kho bạc báo cáo tạm ứng cả năm</td><td>NĐ 254/2025 Điều 47.2, 9.6</td></tr>
+        <tr><td>01/03</td><td>Cơ quan thanh toán gửi báo cáo quyết toán niên độ cho UBND cấp xã</td><td>NĐ 254/2025 Điều 28.2.b</td></tr>
+        <tr><td>10/03</td><td>Năm đầu kỳ kế hoạch trung hạn mới: HĐND phê duyệt kế hoạch</td><td>NĐ 85/2025 Điều 43.10</td></tr>
+        <tr><td>31/03</td><td>Đánh giá kế hoạch đầu tư công hằng năm của năm trước (Bộ Tài chính báo cáo Thủ tướng)</td><td>NĐ 85/2025 Điều 52.2.b</td></tr>
+        <tr><td>15/04</td><td>Cơ quan thanh toán khu vực báo cáo số liệu quyết toán niên độ</td><td>NĐ 254/2025 Điều 28.2.a.v</td></tr>
+        <tr><td>15/05</td><td>Thủ tướng quy định về lập kế hoạch kinh tế - xã hội và dự toán năm sau</td><td>NĐ 85/2025 Điều 44.1</td></tr>
+        <tr><td>10/07</td><td>Nộp nhu cầu vốn kế hoạch năm sau; Kho bạc báo cáo tạm ứng 6 tháng</td><td>NĐ 85/2025 Điều 44.4 (sửa); NĐ 254/2025 Điều 9.6</td></tr>
+        <tr><td>31/07, 30/08</td><td>Năm thứ năm kỳ trước: HĐND cho ý kiến kế hoạch trung hạn; gửi Bộ Tài chính</td><td>NĐ 85/2025 Điều 43.7</td></tr>
+        <tr><td>10/08</td><td>Bộ Tài chính báo cáo Thủ tướng phương án vốn ngân sách trung ương, sau đó thông báo vốn dự kiến</td><td>NĐ 85/2025 Điều 44.5 (sửa)</td></tr>
+        <tr><td>01/09</td><td>Gửi kế hoạch hằng năm tổng hợp cho Bộ Tài chính</td><td>NĐ 85/2025 Điều 44.7 (sửa)</td></tr>
+        <tr><td>30/09</td><td>Vốn bổ sung sau ngày này được giải ngân đến hết 31/12 năm sau</td><td>Luật 58/2024 Điều 72.1 (sửa)</td></tr>
+        <tr><td>15/12</td><td>Thủ tướng giao kế hoạch; hạn đề xuất và quyết định điều chỉnh kế hoạch năm</td><td>NĐ 85/2025 Điều 44.9, 50 (sửa)</td></tr>
+        <tr><td>31/12</td><td>Hạn tạm ứng; hạn nghiệm thu để thanh toán; phân bổ chi tiết vốn kế hoạch năm sau</td><td>NĐ 254/2025 Điều 12; NĐ 85/2025 Điều 48.1</td></tr>
+      </tbody></table></div>
+    <p class="note">Các mốc ghi “(sửa)” theo bản tóm tắt Nghị định 275/2025/NĐ-CP, cần đối chiếu toàn văn. Chưa đưa vào đây thời hạn ngày làm việc hoặc tháng, vì đã có trong danh sách chọn ở mục 1.</p>
+  </section>
+
+  <section class="tab" id="t11">
+    <h2>XI. Bản đồ sản phẩm tư vấn</h2>
+    <p>Các tab XI đến XVI dành cho đơn vị tư vấn lập dự án, khảo sát, thiết kế và dự toán. Bản đồ dưới đây ghép từng giai đoạn của chu trình đầu tư công (tab IV đến VII) với sản phẩm mà tư vấn phải giao, bên nhận và bên thẩm định.</p>
+    <div class="box warn">⚠️ <b>Khung pháp luật xây dựng đã đổi từ 01/7/2026.</b> Luật Xây dựng 135/2025/QH15 và năm nghị định hướng dẫn có hiệu lực từ 01/7/2026:
+      <ul>
+        <li>Nghị định 217/2026/NĐ-CP (ký 19/6/2026): quản lý hoạt động xây dựng, thay Nghị định 175/2024/NĐ-CP.</li>
+        <li>Nghị định 206/2026/NĐ-CP (ký 15/6/2026): quản lý chi phí đầu tư xây dựng, thay Nghị định 10/2021/NĐ-CP.</li>
+        <li>Nghị định 207/2026/NĐ-CP (ký 15/6/2026): quản lý chất lượng, thi công, bảo trì, thay Nghị định 06/2021/NĐ-CP.</li>
+        <li>Nghị định 210/2026/NĐ-CP: hợp đồng xây dựng, thay Nghị định 37/2015/NĐ-CP và Nghị định 50/2021/NĐ-CP.</li>
+        <li>Nghị định 212/2026/NĐ-CP (ký 17/6/2026): điều kiện năng lực hoạt động xây dựng.</li>
+      </ul>
+      Các nghị định này đọc qua trang qlda.gxd.vn (bản đăng lại của bên thứ ba, nhiều trang bị cắt) nên chưa phải bản Công báo. Phần nào chưa đọc được đã ghi rõ ở từng tab.</div>
+    <div class="tw"><table>
+      <thead><tr><th>Giai đoạn</th><th>Sản phẩm tư vấn</th><th>Đầu vào và bên nhận</th><th>Thẩm định và thời hạn</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>1. Chuẩn bị chủ trương</td><td>Báo cáo nghiên cứu tiền khả thi (nhóm A) hoặc báo cáo đề xuất chủ trương (nhóm B, C)</td><td>Nhận nhiệm vụ do Chủ tịch UBND giao cho đơn vị lập; giao chủ đầu tư hoặc đơn vị lập hồ sơ trình thẩm định</td><td>Hội đồng thẩm định hoặc đơn vị chức năng: 30 ngày làm việc (nhóm A), 20 ngày làm việc (nhóm B, C); bổ sung hồ sơ theo yêu cầu trong 05 ngày làm việc</td><td>Luật 58/2024 Điều 34, 35; NĐ 85/2025 Điều 11</td></tr>
+        <tr><td>2. Lập dự án</td><td>Báo cáo nghiên cứu khả thi gồm thuyết minh và thiết kế cơ sở (hoặc thiết kế FEED, thiết kế kỹ thuật nếu người quyết định đầu tư cho phép); báo cáo kinh tế - kỹ thuật với dự án nhỏ</td><td>Chủ trương đầu tư đã được duyệt, nhiệm vụ thiết kế, quy hoạch làm căn cứ lập dự án</td><td>Người quyết định đầu tư giao cơ quan chuyên môn thẩm định; công trình lớn hoặc thuộc diện thẩm định phòng cháy chữa cháy phải có thẩm tra thiết kế. Dự án không có cấu phần xây dựng: 30 / 20 ngày làm việc (nhóm A / B, C). Dự án có cấu phần xây dựng: báo cáo nghiên cứu khả thi tối đa 25 / 20 ngày làm việc (nhóm A), 20 / 16 (nhóm B), 15 / 12 (nhóm C), tùy có công trình cấp I trở lên hay không; dự án quan trọng quốc gia 60 ngày</td><td>Luật XD 135/2025 Điều 24, 26, 27; NĐ 85/2025 Điều 21, 22; NĐ 217/2026 Điều 37</td></tr>
+        <tr><td>3. Quyết định đầu tư</td><td>Hồ sơ đã hoàn thiện theo báo cáo thẩm định</td><td>Người quyết định đầu tư theo tab II</td><td>Nhóm A tối đa 07 ngày làm việc; nhóm B, C tối đa 05 ngày làm việc. Gửi quyết định cho cơ quan tài chính trong 05 ngày làm việc</td><td>NĐ 85/2025 Điều 24</td></tr>
+        <tr><td>4. Khảo sát, thiết kế triển khai, dự toán</td><td>Báo cáo khảo sát, thiết kế triển khai sau thiết kế cơ sở, dự toán</td><td>Nhiệm vụ thiết kế, nhiệm vụ khảo sát, quyết định đầu tư; giao chủ đầu tư</td><td>Chủ đầu tư thẩm định, kiểm soát và phê duyệt; công trình thuộc Điều 26 khoản 5 phải được thẩm tra thiết kế trước, do tư vấn thẩm tra mà chủ đầu tư chọn. Dự toán thẩm định cùng thiết kế triển khai</td><td>Luật XD 135/2025 Điều 29, 30; NĐ 217/2026 Điều 41, 50; NĐ 206/2026 Điều 16</td></tr>
+        <tr><td>5. Thi công</td><td>Giám sát tác giả; xử lý bất hợp lý của thiết kế; tham gia nghiệm thu</td><td>Hợp đồng tư vấn, nhật ký thi công, đề nghị của chủ đầu tư</td><td>Theo hợp đồng và Điều 62</td><td>Luật XD 135/2025 Điều 62</td></tr>
+        <tr><td>6. Điều chỉnh</td><td>Hồ sơ điều chỉnh thiết kế, điều chỉnh dự án, điều chỉnh chủ trương (nếu đổi mục tiêu, địa điểm hoặc vượt mức vốn)</td><td>Yêu cầu của chủ đầu tư hoặc phát sinh thực tế</td><td>Điều chỉnh chủ trương: 10 / 07 / 05 ngày làm việc (chương trình / nhóm A / nhóm B, C)</td><td>Luật XD Điều 31; Luật 58/2024 Điều 46; NĐ 85/2025 Điều 14</td></tr>
+        <tr><td>7. Thanh toán hợp đồng</td><td>Hồ sơ nghiệm thu khối lượng, bảng xác định giá trị khối lượng hoàn thành</td><td>Chủ đầu tư lập hồ sơ gửi Kho bạc</td><td>Chủ đầu tư thanh toán cho tư vấn tối đa 14 ngày làm việc kể từ khi nhận đủ hồ sơ hợp lệ; Kho bạc xử lý hồ sơ của chủ đầu tư trong 02 ngày làm việc; hạn thanh toán khối lượng 31/01 năm sau</td><td>NĐ 210/2026 Điều 28; NĐ 254/2025 Điều 8, 12 (xem tab XII)</td></tr>
+        <tr><td>8. Quyết toán</td><td>Quyết toán hợp đồng (A - B), hồ sơ phục vụ thẩm tra, giải trình</td><td>Chủ đầu tư; cơ quan chủ trì thẩm tra</td><td>Quyết toán hợp đồng tư vấn: lập hồ sơ tối đa 60 ngày (hợp đồng lớn, phức tạp tối đa 120 ngày) từ khi nghiệm thu toàn bộ công việc; thanh lý tối đa 45 ngày (tối đa 90 ngày với hợp đồng lớn). Quyết toán dự án: chủ đầu tư lập hồ sơ 09 / 06 / 04 tháng; thẩm tra 08 / 05 / 04 tháng; phê duyệt 01 tháng / 20 / 15 ngày</td><td>NĐ 210/2026 Điều 30, 31; NĐ 254/2025 Điều 46 (xem tab XIII)</td></tr>
+      </tbody></table></div>
+
+    <h3>Checklist của đơn vị tư vấn</h3>
+    <div class="ckbar"><span id="ckprog2"></span> <button type="button" id="ckreset2">Đặt lại</button></div>
+    <div id="ck2"></div>
+  </section>
+
+  <section class="tab" id="t12">
+    <h2>XII. Hợp đồng và thanh toán tư vấn</h2>
+    <h3>1. Giá gói thầu và hợp đồng</h3>
+    <ul>
+      <li>Giá gói thầu tư vấn lập theo nội dung và phạm vi công việc, số lượng chuyên gia, thời gian thực hiện, năng lực và kinh nghiệm chuyên gia, mức lương chuyên gia theo quy định (nếu có). Có thể cập nhật trong 28 ngày trước ngày mở thầu (NĐ 214/2025 Điều 18 khoản 1, 2).</li>
+      <li>Hợp đồng phải ghi mức tạm ứng, thời điểm tạm ứng, bảo lãnh tạm ứng, thu hồi tạm ứng, trách nhiệm sử dụng tiền tạm ứng và thu giá trị bảo lãnh khi sử dụng sai mục đích (NĐ 214/2025 Điều 118 khoản 2).</li>
+      <li>Thanh toán căn cứ giá hợp đồng và điều khoản thanh toán trong hợp đồng; không căn cứ dự toán, định mức, đơn giá hay hóa đơn tài chính của các yếu tố đầu vào của nhà thầu (Điều 119 khoản 1, 2).</li>
+      <li>Hợp đồng tư vấn khảo sát, thiết kế là hợp đồng xây dựng nên còn chịu Nghị định 210/2026/NĐ-CP (hiệu lực 01/7/2026, thay Nghị định 37/2015/NĐ-CP và Nghị định 50/2021/NĐ-CP). Hợp đồng đã ký trước 01/7/2026 của dự án đầu tư công, PPP tiếp tục theo quy định cũ, trừ trường hợp nêu ở khoản 7 Điều 95 Luật Xây dựng; hồ sơ mời thầu đã phát hành thì thông báo cho nhà thầu để sửa; đã đóng thầu thì các bên thỏa thuận áp dụng khi hoàn thiện hợp đồng (Nghị định 210/2026 Điều 33).</li>
+    </ul>
+    <div class="tw"><table>
+      <thead><tr><th>Nội dung hợp đồng (các mức tạm ứng áp dụng cho hợp đồng xây dựng tại dự án đầu tư công, PPP)</th><th>Quy định (Nghị định 210/2026/NĐ-CP)</th><th>Điều</th></tr></thead>
+      <tbody>
+        <tr><td>Mức tạm ứng tối đa</td><td>Không vượt 30% giá hợp đồng tại thời điểm giao kết, kể cả dự phòng. Mức cao hơn phải được người quyết định đầu tư cho phép</td><td>12.3.g</td></tr>
+        <tr><td>Mức tạm ứng tối thiểu, hợp đồng tư vấn</td><td>15% khi hợp đồng trên 10 tỷ đồng; 20% khi hợp đồng đến 10 tỷ đồng</td><td>12.3.h</td></tr>
+        <tr><td>Tạm ứng vượt mức tối thiểu (dự án đầu tư công, PPP)</td><td>Phần giá hợp đồng vượt mức tối thiểu không được điều chỉnh giá kể từ thời điểm tạm ứng</td><td>12.3.l</td></tr>
+        <tr><td>Bảo lãnh tạm ứng và thu hồi</td><td>Bắt buộc khi tạm ứng trên 01 tỷ đồng; thu hồi hết khi thanh toán cộng dồn đạt 80% giá hợp đồng (khớp Nghị định 254/2025)</td><td>12.3.c, 12.3.m</td></tr>
+        <tr><td>Bảo đảm thực hiện hợp đồng</td><td>Từ 2% đến 10% giá hợp đồng; mức cao hơn 10% theo pháp luật đấu thầu</td><td>13.2.đ</td></tr>
+        <tr><td>Thời hạn thanh toán của bên giao thầu</td><td>Tối đa 14 ngày làm việc kể từ khi nhận đủ hồ sơ hợp lệ; lãi chậm trả theo thỏa thuận, nếu không thì theo lãi suất quá hạn của ngân hàng nơi bên nhận thầu mở tài khoản</td><td>28.4.l, 28.5</td></tr>
+        <tr><td>Chậm thanh toán</td><td>Bên nhận thầu được tạm dừng khi chưa được thanh toán quá 28 ngày kể từ hạn; bên giao thầu chưa thanh toán quá 56 ngày là căn cứ chấm dứt hợp đồng, trừ khi có thỏa thuận khác</td><td>26.2.a, 27.2.đ</td></tr>
+        <tr><td>Trả lời kiến nghị, đề xuất</td><td>Dự án đầu tư công, PPP: bên nhận trả lời bằng văn bản trong không quá 07 ngày làm việc</td><td>4.4.b, 21.4, 22.4.b</td></tr>
+        <tr><td>Điều chỉnh giá</td><td>Khối lượng thực tế tăng hoặc giảm trên 20% và làm giá hợp đồng đổi trên 0,25%, đơn giá trên 1% thì xác định đơn giá mới; điều chỉnh giá không cần ký văn bản sửa đổi hợp đồng</td><td>24.2</td></tr>
+        <tr><td>Điều chỉnh thời gian</td><td>Dự án đầu tư công, PPP: điều chỉnh làm vượt thời gian thực hiện dự án thì chủ đầu tư báo cáo người quyết định đầu tư trước khi các bên thỏa thuận</td><td>25.2</td></tr>
+        <tr><td>Hình thức giá phù hợp tư vấn</td><td>Hợp đồng theo thời gian thường dùng cho dịch vụ tư vấn; theo tỷ lệ phần trăm thường dùng cho tư vấn và bảo hiểm</td><td>11.3</td></tr>
+        <tr><td>Bảo hiểm</td><td>Bảo hiểm bắt buộc theo Điều 10 Luật Xây dựng (Điều 10 chưa đọc)</td><td>20</td></tr>
+      </tbody></table></div>
+    <div class="box ok">📌 <b>Hai thời hạn 14 ngày và 02 ngày là hai quan hệ khác nhau.</b> 14 ngày làm việc là thời hạn chủ đầu tư thanh toán cho đơn vị tư vấn (Nghị định 210/2026). 02 ngày làm việc là thời hạn Kho bạc chuyển vốn sau khi nhận hồ sơ của chủ đầu tư (Nghị định 254/2025). Hồ sơ nghiệm thu của tư vấn đến chậm thì cả hai mốc đều lùi.</div>
+
+    <h3>2. Tạm ứng vốn đầu tư công cho hợp đồng</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Nội dung</th><th>Quy định</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Điều kiện tạm ứng</td><td>Hợp đồng có hiệu lực; chủ đầu tư nhận bảo lãnh tạm ứng của nhà thầu nếu thuộc diện phải có</td><td>NĐ 254/2025 Điều 9.1.a</td></tr>
+        <tr><td>Bảo lãnh tạm ứng</td><td>Bắt buộc khi giá trị tạm ứng của hợp đồng lớn hơn 01 tỷ đồng. Giá trị bảo lãnh giảm tương ứng khi thu hồi tạm ứng; hiệu lực kéo dài đến khi thu hồi hết tạm ứng</td><td>Điều 9.2</td></tr>
+        <tr><td>Giới hạn</td><td>Không vượt mức tạm ứng ghi trong hợp đồng, không vượt kế hoạch vốn hằng năm của dự án, không vượt mức tối đa theo pháp luật xây dựng (với hợp đồng xây dựng)</td><td>Điều 9.1.a (iii), 9.4</td></tr>
+        <tr><td>Thu hồi</td><td>Qua các lần thanh toán khối lượng hoàn thành, thu hồi hết khi giá trị giải ngân đạt 80% giá trị hợp đồng</td><td>Điều 9.5.a</td></tr>
+        <tr><td>Quá hạn</td><td>Quá hạn sau 03 tháng kể từ thời điểm phải thu hồi hết theo hợp đồng; chủ đầu tư chủ trì thu hồi, có thể yêu cầu tổ chức tín dụng thực hiện bảo lãnh hoàn trả</td><td>Điều 9.6.d (i)</td></tr>
+        <tr><td>Hạn tạm ứng</td><td>Đến hết 31/12 năm kế hoạch</td><td>Điều 12.1</td></tr>
+        <tr><td>Thời gian xử lý</td><td>Kho bạc thanh toán tạm ứng trong 01 ngày làm việc kể từ khi nhận đủ hồ sơ</td><td>Điều 12.4</td></tr>
+      </tbody></table></div>
+    <div class="calc">
+      <b>Tính nhanh tạm ứng hợp đồng</b>
+      <div class="row3">
+        <label>Giá trị hợp đồng (triệu đồng)<input type="number" id="hv" min="0" step="1" placeholder="Ví dụ: 4500"></label>
+        <label>Tỷ lệ tạm ứng theo hợp đồng (%)<input type="number" id="hp" min="0" max="100" step="0.5" placeholder="Ví dụ: 20"></label>
+        <div id="hr" class="res">Nhập giá trị hợp đồng và tỷ lệ tạm ứng.</div>
+      </div>
+      <small>Tỷ lệ tạm ứng do bạn nhập từ hợp đồng. Công cụ áp dụng ngưỡng bảo lãnh 01 tỷ đồng, mức thu hồi hết ở 80% (Nghị định 254/2025 và Nghị định 210/2026), mức tối đa 30% và mức tối thiểu hợp đồng tư vấn 15% hoặc 20% (Nghị định 210/2026 Điều 12.3). Điều 12.3 áp dụng cho tạm ứng hợp đồng xây dựng tại dự án đầu tư công, PPP; hợp đồng của dự án khác do các bên thỏa thuận theo pháp luật.</small>
+    </div>
+
+    <h3>3. Thanh toán khối lượng hoàn thành</h3>
+    <ul>
+      <li>Chủ đầu tư lập đề nghị và Bảng tổng hợp thông tin hợp đồng (Mẫu 02.a/TT), chịu trách nhiệm về nội dung (Điều 10.1.a). Hồ sơ mỗi lần thanh toán gồm giấy đề nghị thanh toán vốn (04.a/TT), giấy rút vốn (05.a/TT), giấy đề nghị thu hồi tạm ứng (04.b/TT) khi có thu hồi, bảng xác định giá trị khối lượng công việc hoàn thành (03.a/TT) (Điều 8.3.a).</li>
+      <li>Có thể tạm giữ một khoản hoặc một tỷ lệ so với khối lượng hoàn thành để phục vụ quyết toán, nếu hai bên thỏa thuận cụ thể trong hợp đồng. Khoản tạm giữ chuyển vào tài khoản tiền gửi của chủ đầu tư tại Kho bạc (Điều 10.1.b).</li>
+      <li>Khối lượng nghiệm thu đến hết 31/12 được thanh toán đến hết 31/01 năm sau; Kho bạc xử lý trong 02 ngày làm việc; hồ sơ chưa đủ thì Kho bạc có văn bản nêu lý do trong 02 ngày làm việc, gửi một lần (Điều 12.2, 12.4; Điều 8.9).</li>
+      <li>Hết năm ngân sách, chủ đầu tư lập bảng đối chiếu số liệu giải ngân gửi Kho bạc trước 10/02 năm sau (Điều 53.1.đ). Nhà thầu cần cung cấp biên bản nghiệm thu và khối lượng để chủ đầu tư kịp mốc này.</li>
+    </ul>
+
+    <h3>4. Sau khi quyết toán được phê duyệt</h3>
+    <ul>
+      <li>Quyết toán thấp hơn số đã thanh toán: chủ đầu tư thu hồi số thừa để nộp ngân sách trong 03 tháng kể từ khi duyệt quyết toán. Quyết toán cao hơn: thanh toán tiếp theo giá trị quyết toán khi có kế hoạch vốn (Điều 53.1.h).</li>
+      <li>Nhà thầu hoàn trả đầy đủ, kịp thời số vốn đã giải ngân sai chế độ (Điều 53.2.b).</li>
+      <li>Cơ quan cấp trên của chủ đầu tư chỉ đạo xử lý tồn tại, hoàn thành công nợ, tất toán tài khoản dự án trong 06 tháng kể từ quyết định phê duyệt quyết toán (Điều 52.2).</li>
+    </ul>
+    <p class="note">Nguồn: Nghị định 254/2025/NĐ-CP đọc nguyên văn Điều 8, 9, 10, 12, 52, 53 trong kho regai; Nghị định 214/2025/NĐ-CP đọc nguyên văn Điều 18, 118, 119 trong kho regai (kho ghi cả hai nghị định “hết hiệu lực một phần”, chưa xác định phần nào). Nghị định 210/2026/NĐ-CP đọc qua qlda.gxd.vn (trang cắt ở khoảng Điều 34, chưa thấy quy định về tranh chấp). Nghị định 349/2026/NĐ-CP (09/9/2026) sửa Điều 18 khoản 2 điểm d Nghị định 214/2025 về báo giá khi lập giá gói thầu: nhận báo giá thông thường 03 ngày làm việc thay vì 05 ngày.</p>
+  </section>
+
+  <section class="tab" id="t13">
+    <h2>XIII. Hồ sơ phục vụ quyết toán và thanh tra</h2>
+    <h3>1. Thời hạn</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Công đoạn</th><th>Quan trọng quốc gia, nhóm A</th><th>Nhóm B</th><th>Nhóm C</th></tr></thead>
+      <tbody>
+        <tr><td>Chủ đầu tư lập hồ sơ quyết toán</td><td>09 tháng</td><td>06 tháng</td><td>04 tháng</td></tr>
+        <tr><td>Thẩm tra</td><td>08 tháng</td><td>05 tháng</td><td>04 tháng</td></tr>
+        <tr><td>Phê duyệt</td><td>01 tháng</td><td>20 ngày</td><td>15 ngày</td></tr>
+      </tbody></table></div>
+    <p class="note">NĐ 254/2025 Điều 46. Thời gian lập hồ sơ tính từ ngày ký biên bản nghiệm thu hoàn thành, bàn giao đưa vào khai thác, sử dụng. Tư vấn cần giao biên bản nghiệm thu, hồ sơ hoàn công và quyết toán hợp đồng sớm để chủ đầu tư không vượt thời hạn này; chủ đầu tư chậm sẽ bị công khai danh sách (Điều 52.1).</p>
+
+    <h3>2. Hồ sơ trình thẩm tra (Điều 33)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Tài liệu</th><th>Phần do tư vấn hỗ trợ hoặc cung cấp</th></tr></thead>
+      <tbody>
+        <tr><td>Tờ trình đề nghị phê duyệt quyết toán của chủ đầu tư; nêu rõ nội dung thống nhất, không thống nhất với kiểm toán độc lập và việc chấp hành kết luận của thanh tra, Kiểm toán nhà nước</td><td>Giải trình các nội dung liên quan sản phẩm tư vấn</td></tr>
+        <tr><td>Mẫu biểu báo cáo quyết toán (khoản 2 Điều 32)</td><td>Số liệu hợp đồng tư vấn</td></tr>
+        <tr><td>Văn bản pháp lý có liên quan</td><td>Quyết định phê duyệt kết quả lựa chọn nhà thầu, hợp đồng, quyết định phê duyệt thiết kế và dự toán</td></tr>
+        <tr><td>Hồ sơ quyết toán từng hợp đồng: hợp đồng và phụ lục; biên bản nghiệm thu khối lượng theo từng giai đoạn thanh toán; biên bản nghiệm thu toàn bộ hợp đồng; bảng quyết toán A - B (Mẫu 03.c/QT); biên bản thanh lý hợp đồng; tài liệu khác theo hợp đồng</td><td>Toàn bộ nhóm này là hồ sơ của hợp đồng tư vấn</td></tr>
+        <tr><td>Biên bản nghiệm thu đưa vào sử dụng (nếu có)</td><td>Tư vấn thiết kế tham gia nghiệm thu theo hợp đồng</td></tr>
+        <tr><td>Báo cáo kiểm toán độc lập; báo cáo kiểm toán, kết luận thanh tra, biên bản kiểm tra của Kiểm toán nhà nước, thanh tra, kiểm tra (nếu có)</td><td>Giải trình khối lượng, đơn giá khi bị đề nghị</td></tr>
+      </tbody></table></div>
+    <p class="note">Hồ sơ gửi dưới dạng bản chính, sao y hoặc công chứng, chứng thực; được gửi điện tử thay cho bản giấy (Điều 33). Dự án quy hoạch, chuẩn bị đầu tư và dự án dừng chưa có khối lượng thi công có danh mục hồ sơ rút gọn (khoản 2).</p>
+
+    <h3>3. Nội dung thẩm tra (Điều 36)</h3>
+    <ol>
+      <li>Hồ sơ pháp lý.</li>
+      <li>Vốn đầu tư của dự án.</li>
+      <li>Chi phí đầu tư.</li>
+      <li>Chi phí đầu tư không tính vào giá trị tài sản.</li>
+      <li>Giá trị tài sản hình thành.</li>
+      <li>Tình hình công nợ, vật tư, thiết bị tồn đọng.</li>
+      <li>Việc chấp hành của chủ đầu tư và đơn vị liên quan đối với kết luận, kết quả điều tra của cơ quan pháp luật và cơ quan khác.</li>
+      <li>Nhận xét việc chấp hành quy định về đầu tư công, xây dựng, đấu thầu; quản lý chi phí; trách nhiệm từng cấp; giá trị đề nghị phê duyệt quyết toán.</li>
+    </ol>
+    <p>Cơ quan chủ trì thẩm tra không chịu trách nhiệm về tính chính xác của khối lượng đã nghiệm thu, đơn giá dự toán đã duyệt, đơn giá trúng thầu và đơn giá trong hợp đồng (Điều 50 khoản 7). Chủ đầu tư chịu trách nhiệm về các nội dung này (Điều 53.1.g), vì vậy hồ sơ nghiệm thu và dự toán của tư vấn là chứng cứ chính.</p>
+
+    <h3>4. Kiểm toán và chi phí</h3>
+    <ul>
+      <li>Dự án quan trọng quốc gia và nhóm A phải kiểm toán báo cáo quyết toán trước khi trình thẩm tra (trừ dự án bí mật nhà nước). Các dự án còn lại do người quyết định đầu tư quyết định có thuê kiểm toán độc lập hay không (Điều 34.3.a).</li>
+      <li>Kiểm toán nhà nước hoặc thanh tra đã kiểm toán, thanh tra đủ nội dung theo Điều 36 thì không phải thuê kiểm toán độc lập (Điều 34.3.c).</li>
+      <li>Chi phí kiểm toán độc lập, chi phí thẩm tra và phê duyệt quyết toán nằm trong “chi phí khác” của tổng mức đầu tư. Tư vấn lập dự toán nên dự trù khoản này (Điều 45).</li>
+    </ul>
+
+    <h3>5. Nhiệm vụ của nhà thầu (Điều 53 khoản 2)</h3>
+    <ul>
+      <li>Lập hồ sơ quyết toán hợp đồng khi hoàn thành công việc; chịu trách nhiệm về số liệu và tính pháp lý của tài liệu.</li>
+      <li>Phối hợp chủ đầu tư xử lý dứt điểm tồn tại theo hợp đồng; hoàn trả vốn đã giải ngân sai chế độ.</li>
+      <li>Chấp hành quyết định phê duyệt quyết toán.</li>
+    </ul>
+    <h3>6. Quyết toán và thanh lý hợp đồng tư vấn (Nghị định 210/2026 Điều 30, 31)</h3>
+    <ul>
+      <li>Hồ sơ quyết toán hợp đồng lập trong tối đa 60 ngày kể từ khi hoàn thành và nghiệm thu toàn bộ công việc. Hợp đồng quy mô lớn, phức tạp có thể kéo dài, tối đa 120 ngày (Điều 30 khoản 3).</li>
+      <li>Hồ sơ gồm biên bản nghiệm thu toàn bộ công việc, bảng tính quyết toán A - B, hồ sơ hoàn công và nhật ký thi công (với hợp đồng thi công) và các tài liệu khác theo thỏa thuận (Điều 30 khoản 2).</li>
+      <li>Dự án đầu tư công, PPP: các bên có thể thỏa thuận để hợp đồng tự hết hiệu lực hoặc lập biên bản thanh lý, tối đa 45 ngày kể từ khi hoàn thành nghĩa vụ hoặc chấm dứt hợp đồng; hợp đồng lớn, phức tạp tối đa 90 ngày (Điều 31 khoản 3). Hợp đồng bị chấm dứt: thanh lý không quá 56 ngày kể từ ngày thông báo chấm dứt, trừ khi thỏa thuận khác (Điều 27 khoản 7).</li>
+    </ul>
+
+    <h3>7. Hồ sơ hoàn thành công trình (Nghị định 207/2026 Điều 28)</h3>
+    <ul>
+      <li>Chủ đầu tư lập hồ sơ hoàn thành công trình theo danh mục tại Phụ lục VII sau khi nghiệm thu hoàn thành, chịu trách nhiệm về tính chính xác, trung thực; nhà thầu chịu trách nhiệm với phần hồ sơ do mình lập (khoản 1).</li>
+      <li>Hồ sơ lập bằng tiếng Việt; chủ đầu tư lưu một bộ bản gốc và bản sao điện tử; tài liệu thuộc danh mục phải cập nhật lên cơ sở dữ liệu quốc gia (khoản 2, 4). Phụ lục VII nhóm II (khảo sát và thiết kế) gồm: nhiệm vụ khảo sát, phương án kỹ thuật, báo cáo kết quả khảo sát và văn bản phê duyệt (nếu có); kết quả thẩm tra, thẩm định thiết kế; quyết định phê duyệt thiết kế kèm hồ sơ thiết kế có danh mục bản vẽ và chỉ dẫn kỹ thuật; văn bản thông báo chấp thuận nghiệm thu thiết kế. Nhóm III có danh mục thay đổi thiết kế trong thi công và văn bản phê duyệt, bản vẽ hoàn công. Phụ lục không nêu bên nào lập từng loại hồ sơ.</li>
+      <li>Lưu trữ (Luật Xây dựng 135/2025 Điều 42): chủ đầu tư lưu hồ sơ thẩm định, văn bản của cơ quan có thẩm quyền và hồ sơ hoàn thành công trình; nhà thầu lưu hồ sơ công việc mình thực hiện; hồ sơ phục vụ quản lý, sử dụng công trình lưu tối thiểu bằng thời hạn sử dụng công trình; việc lập và lưu trữ theo pháp luật về lưu trữ. Điều 42 không ghi số năm đối với hồ sơ của nhà thầu tư vấn.</li>
+    </ul>
+    <div class="box warn">⚠️ Chế độ trách nhiệm khi bị kiểm toán sau quyết toán và mức xử phạt chưa được tra cứu. Điều 48, 49 Nghị định 254/2025 (kiểm tra, xử lý vi phạm) mới xem tiêu đề. Nghị định 210/2026 và 207/2026 đọc qua qlda.gxd.vn; Phụ lục VII của Nghị định 207/2026 đọc được nhưng không nêu bên nào lập từng hồ sơ.</div>
+  </section>
+
+  <section class="tab" id="t14">
+    <h2>XIV. Thiết kế và thẩm định xây dựng</h2>
+    <div class="box warn">⚠️ <b>Hiệu lực.</b> Luật Xây dựng 135/2025/QH15 (10/12/2025) có hiệu lực từ 01/7/2026, trừ một số điều có hiệu lực từ 01/01/2026 (theo tin tổng hợp). Luật đọc từng điều trên hethongphapluat.com; Nghị định 217/2026, 206/2026, 207/2026 đọc qua qlda.gxd.vn (trang bị cắt, chưa phải Công báo). Quy định chuyển tiếp nằm ở mục 5.</div>
+
+    <h3>1. Báo cáo nghiên cứu khả thi (Điều 24)</h3>
+    <ul>
+      <li>Gồm phần thuyết minh và thiết kế xây dựng.</li>
+      <li>Thuyết minh gồm: lý do đầu tư, mục tiêu, địa điểm, diện tích đất, quy mô, công suất; các yếu tố bảo đảm khả thi và hiệu quả; tổng mức đầu tư, nguồn vốn, hình thức đầu tư; đánh giá tác động về thu hồi đất, giải phóng mặt bằng, tái định cư, an toàn xây dựng, phòng cháy chữa cháy, môi trường; chủ đầu tư, hình thức quản lý dự án, thời gian thực hiện, phân kỳ, dự án thành phần.</li>
+      <li>Thiết kế trong báo cáo là thiết kế cơ sở. Tùy yêu cầu dự án, người quyết định đầu tư có thể cho dùng thiết kế FEED hoặc thiết kế kỹ thuật thay thiết kế cơ sở.</li>
+    </ul>
+
+    <h3>2. Thẩm định báo cáo nghiên cứu khả thi và báo cáo kinh tế - kỹ thuật</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Nội dung</th><th>Quy định</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Bắt buộc thẩm định</td><td>Báo cáo nghiên cứu khả thi và báo cáo kinh tế - kỹ thuật phải được thẩm định làm cơ sở phê duyệt dự án hoặc quyết định đầu tư</td><td>Điều 26.1</td></tr>
+        <tr><td>Dự án đầu tư công: cơ quan thẩm định</td><td>Người quyết định đầu tư giao cơ quan chuyên môn hoặc tổ chức trực thuộc có chuyên môn phù hợp</td><td>Điều 26.3</td></tr>
+        <tr><td>Nội dung thẩm định</td><td>Phù hợp chủ trương đầu tư; tính khả thi, hiệu quả và tổng mức đầu tư; thiết kế phù hợp nhiệm vụ thiết kế; thiết kế công nghệ; thủ tục môi trường; hình thức quản lý dự án; riêng báo cáo kinh tế - kỹ thuật thêm đánh giá bản vẽ thi công về an toàn, bảo vệ công trình lân cận, phòng cháy chữa cháy</td><td>Điều 26.3</td></tr>
+        <tr><td>Thẩm tra thiết kế</td><td>Bắt buộc với công trình ảnh hưởng lớn đến an toàn, lợi ích cộng đồng hoặc quy mô lớn, kỹ thuật phức tạp; và với công trình thuộc diện thẩm định thiết kế phòng cháy chữa cháy. Thẩm tra làm cơ sở cho thẩm định</td><td>Điều 26.5</td></tr>
+        <tr><td>Cơ quan chuyên môn về xây dựng</td><td>Dự án đầu tư công phải được thẩm định tại cơ quan chuyên môn về xây dựng, trừ dự án chỉ cần báo cáo kinh tế - kỹ thuật. Nội dung: thiết kế phù hợp quy hoạch làm căn cứ lập dự án; đấu nối hạ tầng kỹ thuật; tuân thủ quy chuẩn, tiêu chuẩn, an toàn xây dựng, giải pháp phòng cháy chữa cháy; tuân thủ quản lý chi phí đầu tư xây dựng (dự án đầu tư công, PPP)</td><td>Điều 27.1, 27.2, 27.4</td></tr>
+        <tr><td>Dự án quan trọng quốc gia hoặc Quốc hội quyết định chủ trương</td><td>Bộ hoặc UBND cấp tỉnh thành lập Hội đồng thẩm định</td><td>Điều 27.3</td></tr>
+        <tr><td>Thời hạn thẩm định báo cáo nghiên cứu khả thi</td><td>Tính từ ngày nhận đủ hồ sơ hợp lệ: dự án quan trọng quốc gia tối đa 60 ngày; nhóm A tối đa 25 ngày làm việc nếu có công trình cấp I trở lên, 20 ngày làm việc với dự án còn lại; nhóm B 20 và 16 ngày làm việc; nhóm C 15 và 12 ngày làm việc. Gia hạn một lần, không quá mức tương ứng</td><td>NĐ 217/2026 Điều 37</td></tr>
+        <tr><td>Trình tự thẩm định</td><td>Trong 05 ngày làm việc sau tiếp nhận, cơ quan chuyên môn xem xét và yêu cầu bổ sung hồ sơ một lần; có thể tạm dừng thẩm định một lần; cơ quan chuẩn bị dự án có 20 ngày làm việc để bổ sung, quá hạn thì dừng thẩm định; Hội đồng thẩm định được thành lập trong 07 ngày làm việc kể từ khi tiếp nhận hồ sơ</td><td>NĐ 217/2026 Điều 36.3 đến 36.5, 34.2</td></tr>
+        <tr><td>Cơ quan chuyên môn tại Thành phố</td><td>Cơ quan chuyên môn về xây dựng thuộc UBND cấp tỉnh thẩm định các dự án còn lại trên địa bàn; cơ quan chuyên môn thuộc UBND cấp xã thẩm định dự án do UBND cấp xã quyết định đầu tư. Nghị định ghi theo chức năng, không nêu tên Sở</td><td>NĐ 217/2026 Điều 32.4, 32.5</td></tr>
+        <tr><td>Hồ sơ trình thẩm định</td><td>Tờ trình theo Mẫu số 01 Phụ lục I; báo cáo nghiên cứu khả thi; hồ sơ khảo sát đã phê duyệt; văn bản chủ trương đầu tư hoặc tương đương; văn bản chấp thuận quy hoạch làm căn cứ; văn bản đấu nối hạ tầng; tài liệu pháp lý khác; báo cáo kết quả thẩm tra thiết kế (Mẫu số 02 Phụ lục I) nếu có</td><td>NĐ 217/2026 Điều 35.1, 35.2</td></tr>
+        <tr><td>Thời hạn thẩm định tổng mức đầu tư, dự toán</td><td>Điều 7 và 16 không nêu số ngày; thẩm quyền theo Luật Xây dựng và nghị định quản lý hoạt động xây dựng. Tổng mức đầu tư: cơ quan chủ trì thuộc người quyết định đầu tư kiểm tra hồ sơ (Điều 7.2). Dự toán: chủ đầu tư thẩm định cùng thiết kế triển khai (Điều 16.1, 16.3); thẩm tra là tùy chọn của chủ đầu tư (Điều 16.8); dự án có thiết kế FEED hoặc kỹ thuật đã chọn nhà thầu EPC, EC, EP hoặc thi công thì không thẩm định dự toán ở bước triển khai (Điều 16.11)</td><td>NĐ 206/2026 Điều 7, 16</td></tr>
+      </tbody></table></div>
+
+    <h3>3. Thiết kế triển khai sau khi dự án được phê duyệt</h3>
+    <ul>
+      <li>Chủ đầu tư thẩm định, kiểm soát và phê duyệt thiết kế triển khai sau khi dự án được phê duyệt (Điều 29.1). Công trình thuộc Điều 26 khoản 5 phải được thẩm tra trước làm cơ sở cho chủ đầu tư (Điều 29.3).</li>
+      <li>Với dự án đầu tư công, chủ đầu tư thẩm định: thiết kế đáp ứng nhiệm vụ thiết kế; thiết kế triển khai phù hợp thiết kế trong báo cáo nghiên cứu khả thi; tuân thủ quy chuẩn, tiêu chuẩn và quy định về vật liệu xây dựng; an toàn chịu lực, bảo vệ công trình lân cận, phòng cháy chữa cháy, và với công trình công nghệ thì dây chuyền, thiết bị hợp lý; khối lượng chủ yếu của dự toán khớp khối lượng thiết kế, giá trị dự toán khớp tổng mức đầu tư; tổ chức khảo sát, thiết kế, lập dự toán đáp ứng điều kiện năng lực (Điều 30.1).</li>
+      <li>Chủ đầu tư phải đáp ứng yêu cầu về phòng cháy chữa cháy, cứu nạn cứu hộ, bảo vệ môi trường, quốc phòng, an ninh (Điều 29.4).</li>
+    </ul>
+
+    <h3>4. Khảo sát, thiết kế và chi phí tư vấn (các nghị định hướng dẫn)</h3>
+    <ul>
+      <li><b>Khảo sát:</b> Nghị định 217/2026 có mục khảo sát từ Điều 10 đến 15; chủ đầu tư kiểm tra hoặc thuê tư vấn thẩm tra phương án kỹ thuật khảo sát (Điều 12.3) và có thể thuê tư vấn kiểm tra báo cáo kết quả khảo sát (Điều 15.1). Báo cáo kết quả khảo sát có 7 nội dung (Điều 14).</li>
+      <li><b>Thiết kế:</b> mục thiết kế từ Điều 16 đến 25: thiết kế sơ bộ, cơ sở, FEED, kỹ thuật, bản vẽ thi công (Điều 19 đến 23); hồ sơ thiết kế điện tử (Điều 18.5). Nhà thầu thẩm tra xem xét, kiểm tính an toàn kết cấu và chịu trách nhiệm về phần việc của mình (Điều 22.2.c, Điều 25.1).</li>
+      <li><b>Nội dung báo cáo nghiên cứu khả thi dự án đầu tư công:</b> 15 điểm tại Điều 29.1; báo cáo kinh tế - kỹ thuật 16 điểm tại Điều 30.1 (danh sách rút gọn ngay dưới, đọc qua trang đăng lại nên cần đối chiếu nguyên văn).</li>
+      <li><b>Chủ đầu tư dự án đầu tư công:</b> người quyết định đầu tư giao Ban quản lý dự án trực thuộc; nếu không có hoặc không đủ khả năng, giao cơ quan, tổ chức khác có cá nhân quản lý vốn đầu tư công và cá nhân chuyên môn phù hợp, hoặc đã từng làm chủ đầu tư dự án đầu tư công (Điều 6).</li>
+      <li><b>Chi phí tư vấn:</b> xác định theo định mức tỷ lệ phần trăm, lập dự toán theo phạm vi và khối lượng công việc, hoặc ước tính. Gồm chi phí nhân công, ứng dụng khoa học công nghệ, quản lý của tổ chức tư vấn, thu nhập chịu thuế tính trước, thuế giá trị gia tăng, dự phòng. Chi phí đã phê duyệt là mức tối đa, chỉ điều chỉnh khi thay đổi phạm vi, điều kiện hoặc tiến độ (Nghị định 206/2026 Điều 26). Định mức cụ thể nằm ở thông tư của Bộ Xây dựng (Thông tư 36/2026/TT-BXD, Thông tư 38/2026/TT-BXD theo kết quả tìm kiếm, chưa đọc).</li>
+      <li><b>Thay đổi thiết kế khi lập thiết kế triển khai (Điều 16):</b> thiết kế bước sau phải phù hợp bước trước; chủ đầu tư có thể thay đổi một số nội dung, trừ các trường hợp loại trừ như thay đổi quy mô đầu tư ghi trong quyết định phê duyệt dự án (khoản 6). Trước khi phê duyệt hoặc kiểm soát thiết kế, chủ đầu tư báo cáo bằng văn bản cho người quyết định đầu tư nếu thay đổi thông số, chỉ tiêu đã duyệt mà không thuộc trường hợp điều chỉnh dự án, hoặc thay đổi giải pháp vật liệu cho kết cấu chính, yếu tố ảnh hưởng an toàn của công trình ảnh hưởng lớn đến an toàn, lợi ích cộng đồng (khoản 7). Người quyết định đầu tư không đồng ý thì có ý kiến bằng văn bản trong 05 ngày làm việc kể từ khi nhận đủ hồ sơ; quá hạn không có ý kiến thì chủ đầu tư quyết định phê duyệt thiết kế (khoản 8).</li>
+      <li><b>Thẩm tra tổng mức đầu tư:</b> do tổ chức tư vấn có năng lực thực hiện trước khi thẩm định, kiểm tra danh mục khoản mục, sự phù hợp với loại thiết kế, khối lượng và công cụ xác định giá (Nghị định 206/2026 Điều 8).</li>
+    </ul>
+
+    <details class="ckg"><summary>Nội dung báo cáo nghiên cứu khả thi dự án đầu tư công (Nghị định 217/2026 Điều 29.1)</summary>
+      <ul>
+        <li>Sự cần thiết, mục tiêu, quy mô công suất, sự phù hợp với chủ trương đầu tư.</li>
+        <li>Địa điểm, diện tích, chức năng sử dụng đất, sự phù hợp quy hoạch.</li>
+        <li>Phân tích yếu tố bảo đảm thực hiện: kinh tế - kỹ thuật, tài nguyên, lao động, công nghệ, quản lý.</li>
+        <li>Phương án phân chia dự án thành phần, dự án thành phần độc lập, phân kỳ đầu tư.</li>
+        <li>Đánh giá tác động môi trường và bảo vệ môi trường.</li>
+        <li>Phương án tổng thể bồi thường, hỗ trợ, tái định cư (nếu có).</li>
+        <li>Thời gian thực hiện và các mốc chính.</li>
+        <li>Tổng mức đầu tư xây dựng theo quy định về quản lý chi phí.</li>
+        <li>Nguồn vốn, khả năng thu hồi vốn, phân tích tài chính, rủi ro, chi phí khai thác và bảo trì.</li>
+        <li>Hiệu quả kinh tế - xã hội, quốc phòng, an ninh.</li>
+        <li>Phương án đào tạo, chuyển giao công nghệ, vận hành, duy tu, bảo trì (nếu có).</li>
+        <li>Kiến nghị cơ chế phối hợp, chính sách ưu đãi, hỗ trợ.</li>
+        <li>Nội dung cần thiết khác.</li>
+        <li>Lập thiết kế FEED hoặc thiết kế kỹ thuật và lựa chọn nhà thầu ngay sau phê duyệt: kế hoạch lựa chọn nhà thầu, phân chia gói thầu.</li>
+        <li>Dự án đô thị: nội dung phát triển đô thị tăng trưởng xanh; hạ tầng, khu đô thị, nhà ở đô thị: thích ứng biến đổi khí hậu.</li>
+      </ul>
+    </details>
+    <details class="ckg"><summary>Nội dung báo cáo kinh tế - kỹ thuật (Nghị định 217/2026 Điều 30.1)</summary>
+      <ul>
+        <li>Sự cần thiết, mục tiêu, quy mô công suất, sự phù hợp chủ trương đầu tư (nếu có).</li>
+        <li>Địa điểm xây dựng, diện tích đất, sự phù hợp quy hoạch.</li>
+        <li>Hình thức đầu tư: đầu tư công, đối tác công tư hoặc đầu tư kinh doanh.</li>
+        <li>Phân tích yếu tố bảo đảm thực hiện dự án.</li>
+        <li>Phương án giải phóng mặt bằng (nếu có).</li>
+        <li>Cấp công trình của dự án.</li>
+        <li>Phương án phòng cháy chữa cháy và đánh giá sự phù hợp của thiết kế (nếu có).</li>
+        <li>Đánh giá tác động môi trường.</li>
+        <li>Thời gian thực hiện, các mốc chính, hình thức quản lý dự án.</li>
+        <li>Giải pháp thi công và phương án bảo đảm an toàn trong xây dựng.</li>
+        <li>Tổng mức đầu tư xây dựng.</li>
+        <li>Nguồn vốn, khả năng và phương thức huy động vốn (nếu có).</li>
+        <li>Hiệu quả kinh tế - xã hội, quốc phòng, an ninh, khả năng thu hồi vốn (nếu có).</li>
+        <li>Đào tạo, chuyển giao công nghệ, vận hành, bảo trì, khả năng đáp ứng nguồn vốn bảo trì (nếu có).</li>
+        <li>Kiến nghị cơ chế phối hợp, chính sách ưu đãi, hỗ trợ.</li>
+        <li>Nội dung cần thiết khác.</li>
+      </ul>
+    </details>
+
+    <h3>5. Chuyển tiếp cho dự án phê duyệt trước 01/7/2026</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Tình trạng hồ sơ trước 01/7/2026</th><th>Áp dụng</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Dự án, thiết kế đã được phê duyệt</td><td>Không phải phê duyệt lại; các hoạt động chưa thực hiện áp dụng Luật Xây dựng 2025</td><td>Luật XD 135/2025 Điều 95.1</td></tr>
+        <tr><td>Đã có thông báo kết quả thẩm định thiết kế cơ sở hoặc báo cáo nghiên cứu khả thi (kể cả theo giai đoạn)</td><td>Không thẩm định lại; các giai đoạn còn lại và điều chỉnh theo Nghị định 217/2026</td><td>NĐ 217/2026 Điều 76.1</td></tr>
+        <tr><td>Đã trình thẩm định báo cáo nghiên cứu khả thi (hoặc báo cáo điều chỉnh), đủ điều kiện, chưa có thông báo kết quả</td><td>Tiếp tục theo Nghị định 175/2024; nếu không đủ điều kiện hoặc kết quả chưa đủ để trình phê duyệt thì theo Nghị định 217/2026</td><td>NĐ 217/2026 Điều 76.2</td></tr>
+        <tr><td>Thiết kế triển khai đã thẩm định và phê duyệt</td><td>Các bước tiếp theo, kể cả điều chỉnh thiết kế, theo Nghị định 217/2026; điều chỉnh thiết kế đã thẩm định theo luật cũ không phải thẩm định lại tại cơ quan chuyên môn</td><td>NĐ 217/2026 Điều 76.3; Luật XD Điều 95.2</td></tr>
+        <tr><td>Đã có thông báo thẩm định thiết kế triển khai nhưng chưa phê duyệt</td><td>Phê duyệt và bước tiếp theo theo Nghị định 217/2026</td><td>NĐ 217/2026 Điều 76.4</td></tr>
+        <tr><td>Đã trình thẩm định thiết kế triển khai, chưa có thông báo kết quả</td><td>Cơ quan chuyên môn dừng thẩm định, trả hồ sơ; chủ đầu tư tự thẩm định sau khi dự án được phê duyệt</td><td>NĐ 217/2026 Điều 76.5</td></tr>
+        <tr><td>Tổng mức đầu tư đã phê duyệt</td><td>Không phê duyệt lại; hoạt động chưa thực hiện theo Nghị định 206/2026</td><td>NĐ 206/2026 Điều 36.1</td></tr>
+        <tr><td>Tổng mức đầu tư đã trình thẩm định, chưa có kết quả</td><td>Cơ quan chuyên môn thẩm định theo Nghị định 206/2026; chủ đầu tư cập nhật rồi trình phê duyệt</td><td>NĐ 206/2026 Điều 36.3</td></tr>
+        <tr><td>Dự toán đã phê duyệt; dự toán đã trình thẩm định chưa có kết quả</td><td>Dự toán đã duyệt không phải duyệt lại. Dự toán chưa có kết quả: cơ quan chuyên môn dừng thẩm định, trả hồ sơ, chủ đầu tư thẩm định và phê duyệt</td><td>NĐ 206/2026 Điều 36.2, 36.5</td></tr>
+        <tr><td>Hợp đồng xây dựng đã ký</td><td>Thực hiện theo hợp đồng và pháp luật tại thời điểm ký, trừ bất khả kháng hoặc hoàn cảnh thay đổi cơ bản; hợp đồng đang thương thảo, chưa ký có thể thỏa thuận áp dụng luật mới</td><td>Luật XD Điều 95.7; NĐ 210/2026 Điều 33; NĐ 206/2026 Điều 36.6</td></tr>
+        <tr><td>Định mức, giá xây dựng, giá nhân công, giá ca máy đã công bố</td><td>Tiếp tục áp dụng hoặc tham khảo đến khi được cập nhật</td><td>NĐ 206/2026 Điều 36.7</td></tr>
+        <tr><td>Công trình khởi công trước 01/7/2026 không thuộc diện kiểm tra nghiệm thu theo nghị định mới</td><td>Không kiểm tra nghiệm thu; chủ đầu tư tự nghiệm thu theo Nghị định 207/2026</td><td>NĐ 207/2026 Điều 53.3; Luật XD Điều 95.8</td></tr>
+        <tr><td>Ban quản lý dự án đã thành lập; hình thức quản lý dự án đã áp dụng</td><td>Không phải thành lập lại hoặc chuyển đổi</td><td>NĐ 217/2026 Điều 76.17, 76.18; Luật XD Điều 95.6</td></tr>
+        <tr><td>Dự án từ 02 xã, phường trở lên đã được cấp huyện thẩm định; nhiệm vụ cấp huyện</td><td>Các giai đoạn còn lại thuộc cơ quan chuyên môn cấp tỉnh; thẩm quyền cấp huyện chuyển về cấp xã</td><td>NĐ 217/2026 Điều 76.8, 76.9</td></tr>
+      </tbody></table></div>
+    <p class="note">Điều 76 Nghị định 217/2026 còn 23 khoản; bảng trên chọn các khoản liên quan đến tư vấn lập dự án, thiết kế, dự toán. Điều 76 khoản 2 và 5 đã đọc lại: khoản 2 áp dụng cho dự án đã trình thẩm định báo cáo nghiên cứu khả thi (hoặc báo cáo điều chỉnh), đủ điều kiện thẩm định nhưng chưa có thông báo kết quả, và tiếp tục theo Nghị định 175/2024 (nếu không đủ điều kiện hoặc kết quả chưa đủ để trình phê duyệt thì theo Nghị định 217/2026); khoản 5 áp dụng cho thiết kế triển khai hoặc thiết kế điều chỉnh đã trình thẩm định mà chưa có thông báo kết quả, và cơ quan chuyên môn dừng thẩm định, chủ đầu tư tự thẩm định. Hai khoản này khác đối tượng nên không mâu thuẫn. Chưa xác nhận có nghị định sửa Nghị định 217/2026: tệp 91-vbhn-bxd trên cổng Chính phủ chưa điền số hiệu và ngày, ghi sai năm ký của Nghị định 217 (2025), và liệt kê Nghị định 347/2026 nhưng mô tả nghị định này sửa một nghị định khác, nên coi là chưa xác minh.</p>
+    <p class="note">Nguồn: Luật Xây dựng 135/2025/QH15 Điều 24, 26, 27, 29, 30, 95 đọc qua hethongphapluat.com; Nghị định 217/2026, 206/2026, 207/2026 đọc qua qlda.gxd.vn (bản đăng lại, trang dài bị cắt từng đoạn).</p>
+  </section>
+
+  <section class="tab" id="t15">
+    <h2>XV. Đấu thầu tư vấn và năng lực</h2>
+    <p>Gói thầu tư vấn lập dự án, khảo sát, thiết kế chịu Luật Đấu thầu 22/2023/QH15 (sửa đổi bởi Luật 90/2025/QH15) và Nghị định 214/2025/NĐ-CP (ngày hiệu lực 04/8/2025, kho dữ liệu ghi “hết hiệu lực một phần”).</p>
+    <div class="box warn">⚠️ <b>Nghị định 214/2025 đã được sửa nhiều lần.</b> Văn bản hợp nhất 36/2026/VBHN-NĐ-BTC và Nghị định 349/2026/NĐ-CP (ký 09/9/2026, hiệu lực từ ngày ký) ghi Nghị định 214/2025 đã được sửa bởi Nghị định 165/2026 và 170/2026 (cùng ký 15/5/2026, hiệu lực 01/7/2026). Trích yếu của hai nghị định này trong văn bản hợp nhất lại nhắc Luật Phòng bệnh và Luật thi hành án hình sự, nên số hiệu có thể bị ghi nhầm; mình chưa đọc nội dung nên chưa biết chúng sửa gì về tư vấn. Nghị định 349/2026 sửa Điều 18 (báo giá), Điều 78 (chỉ định thầu, nâng hạn mức tư vấn từ 800 triệu lên 3 tỷ đồng), Điều 80 và Điều 140. Chuyển tiếp: gói thầu đã phát hành hồ sơ theo quy định cũ tiếp tục theo quy định cũ; gói thầu đã phê duyệt kế hoạch nhưng chưa phát hành hồ sơ và không phù hợp nghị định mới thì điều chỉnh kế hoạch. Nội dung Điều 61 và 78 trích dưới đây là nguyên văn trong kho regai, chưa tính các sửa đổi của Nghị định 165/2026 và 170/2026.</div>
+
+    <h3>1. Quy trình lựa chọn nhà thầu tư vấn (NĐ 214/2025 Điều 61)</h3>
+    <ol class="steps">
+      <li>Chuẩn bị: lựa chọn danh sách ngắn (nếu cần), lập hồ sơ mời thầu, thẩm định (nếu có) và phê duyệt.</li>
+      <li>Tổ chức lựa chọn: mời thầu; phát hành, sửa đổi, làm rõ hồ sơ mời thầu; nộp hồ sơ dự thầu; mở hồ sơ đề xuất về kỹ thuật.</li>
+      <li>Đánh giá hồ sơ đề xuất về kỹ thuật: kiểm tra tính hợp lệ, đánh giá chi tiết, trình và phê duyệt danh sách nhà thầu đạt kỹ thuật.</li>
+      <li>Mở và đánh giá hồ sơ đề xuất về tài chính của nhà thầu đạt kỹ thuật; xếp hạng; trình kết quả. Với phương pháp dựa trên kỹ thuật, mở hồ sơ tài chính của nhà thầu xếp thứ nhất.</li>
+      <li>Thương thảo hợp đồng.</li>
+      <li>Thẩm định, phê duyệt, công khai kết quả; giải thích lý do không trúng thầu nếu nhà thầu yêu cầu.</li>
+      <li>Hoàn thiện, ký kết và quản lý thực hiện hợp đồng. Với các hoạt động đấu thầu thực hiện trước theo Điều 42 Luật Đấu thầu, hợp đồng chỉ ký sau khi dự án được phê duyệt đầu tư (Điều 61 khoản 8).</li>
+    </ol>
+
+    <h3>2. Các trường hợp chỉ định thầu liên quan đến tư vấn (Điều 78)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Trường hợp</th><th>Điều kiện</th></tr></thead>
+      <tbody>
+        <tr><td>Gói thầu tư vấn thuộc dự án có giá không quá ngưỡng</td><td>Giá gói thầu dịch vụ tư vấn thuộc dự án không quá 3 tỷ đồng (khoản 4; Nghị định 349/2026/NĐ-CP ký 09/9/2026 nâng từ 800 triệu đồng; bản hợp nhất 36/2026/VBHN-NĐ-BTC cũng ghi 3 tỷ đồng cho tư vấn, nhưng ghi 5 tỷ đồng cho phi tư vấn, hàng hóa, xây lắp trong khi tóm tắt Nghị định 349 ghi 3 tỷ đồng, nên mức của các loại gói thầu đó cần đối chiếu)</td></tr>
+        <tr><td>Gói thầu đã mời thầu nhưng không có nhà thầu đáp ứng</td><td>Đã đăng thông báo mời thầu, mời quan tâm hoặc sơ tuyển mà không có nhà thầu nộp hồ sơ, tất cả hồ sơ không đáp ứng, hoặc không nhà thầu nào đáp ứng điều kiện thực hiện (khoản 2 điểm e1, do Nghị định 349/2026 bổ sung)</td></tr>
+        <tr><td>Tư vấn lập báo cáo nghiên cứu khả thi, khảo sát, thiết kế xây dựng cho tác giả phương án kiến trúc trúng tuyển</td><td>Tác giả có đủ điều kiện năng lực theo pháp luật xây dựng (khoản 5 điểm h)</td></tr>
+        <tr><td>Tư vấn, thi công di dời hạ tầng kỹ thuật phục vụ giải phóng mặt bằng, tái định cư; tư vấn rà phá bom mìn</td><td>Khoản 5 điểm c</td></tr>
+        <tr><td>Tư vấn lập nhiệm vụ và quy hoạch có tính chất kỹ thuật, chuyên ngành</td><td>Khoản 5 điểm e</td></tr>
+        <tr><td>Gói thầu thuộc dự án đầu tư công khẩn cấp</td><td>Khoản 1 điểm k</td></tr>
+        <tr><td>Gói thầu thuộc dự án đầu tư công đặc biệt</td><td>Khoản 2 điểm c</td></tr>
+        <tr><td>Dự án quan trọng quốc gia</td><td>Theo nghị quyết của Quốc hội khi quyết định chủ trương (khoản 7)</td></tr>
+      </tbody></table></div>
+    <p class="note">Các điểm trên lấy từ nguyên văn Điều 78. Còn nhiều trường hợp chung khác (khẩn cấp, đẩy nhanh tiến độ, chiến lược, bí mật nhà nước) áp dụng cho mọi loại gói thầu; xem Điều 78 để đủ danh mục.</p>
+
+    <h3>3. Tư vấn cá nhân và tổ chuyên gia</h3>
+    <p>Nghị định 214/2025 có các điều riêng về lựa chọn tư vấn cá nhân (Điều 73 đến 77) và điều kiện năng lực của tổ chuyên gia, tổ thẩm định (Điều 21). Mình mới xem tiêu đề, chưa đọc nội dung.</p>
+
+    <h3>4. Năng lực của đơn vị tư vấn</h3>
+    <ul>
+      <li>Khi chủ đầu tư thẩm định thiết kế, một nội dung kiểm tra là tổ chức khảo sát, thiết kế, lập dự toán có đáp ứng điều kiện năng lực theo Luật Xây dựng và luật liên quan hay không (Luật XD 135/2025 Điều 30.1.e).</li>
+      <li><b>Tổ chức:</b> theo Điều 88 Luật Xây dựng 2025, tổ chức tham gia hoạt động xây dựng tự công khai thông tin năng lực trên trang thông tin điện tử của Bộ Xây dựng, thông tin này để chủ đầu tư tham khảo khi lựa chọn nhà thầu; chủ đầu tư chịu trách nhiệm về việc lựa chọn (khoản 5, 6). Bộ Xây dựng cho biết luật bỏ chứng chỉ năng lực của doanh nghiệp (nguồn báo chí, chưa thấy điều luật nêu thẳng). Nghị định 212/2026 Điều 41: nội dung công khai gồm tên, địa chỉ, người đại diện, mã số doanh nghiệp, năng lực từ hệ thống thông tin, hạng và lĩnh vực theo chứng chỉ năng lực đã cấp (nếu có); người đại diện chịu trách nhiệm về tính chính xác. Mã định danh năng lực của tổ chức là mã số doanh nghiệp (Điều 19.4).</li>
+      <li><b>Cá nhân:</b> chủ nhiệm, chủ trì thiết kế, giám sát thi công, quản lý chi phí phải có chứng chỉ hành nghề tương ứng, chia hạng I, II, III (Điều 88 khoản 1); cá nhân hành nghề độc lập trong khảo sát, thiết kế và thẩm tra thiết kế, giám sát thi công, xác định và thẩm tra chi phí phải có chứng chỉ (Điều 90).</li>
+      <li>Điều kiện năng lực hoạt động xây dựng thuộc Nghị định 212/2026/NĐ-CP (ký 17/6/2026, hiệu lực 01/7/2026). Phần đã đọc (Điều 1 đến 49) không có điều kiện năng lực theo hạng cho tổ chức; điều kiện của tổ chức chỉ thấy ở dạng tự công khai (Điều 41). Điều 50 đến 58 (trách nhiệm, chuyển tiếp) mới xem tóm tắt.</li>
+    </ul>
+    <h3>Chứng chỉ hành nghề cá nhân (Nghị định 212/2026)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Nội dung</th><th>Quy định</th><th>Điều</th></tr></thead>
+      <tbody>
+        <tr><td>Lĩnh vực</td><td>Khảo sát xây dựng; lập quy hoạch đô thị và nông thôn; thiết kế xây dựng; giám sát thi công xây dựng. Phạm vi hoạt động theo Phụ lục II</td><td>28</td></tr>
+        <tr><td>Hiệu lực chứng chỉ</td><td>Cấp mới có hiệu lực 10 năm; cấp lại giữ thời hạn của chứng chỉ trước</td><td>27.5</td></tr>
+        <tr><td>Không cần chứng chỉ</td><td>Một số công việc, ví dụ thiết kế sơ bộ trong báo cáo nghiên cứu tiền khả thi</td><td>27.3</td></tr>
+        <tr><td>Kinh nghiệm theo hạng</td><td>Hạng I: 07 năm trở lên; hạng II: 04 năm trở lên (trình độ đại học); hạng III: 02 năm (đại học) hoặc 03 năm (cao đẳng). Kinh nghiệm tính trong 10 năm gần nhất</td><td>33</td></tr>
+        <tr><td>Thiết kế, hạng I</td><td>Cần 01 công trình cấp I trở lên hoặc 02 công trình cấp II</td><td>36</td></tr>
+        <tr><td>Khảo sát, hạng I</td><td>Làm chủ nhiệm, ví dụ 01 dự án nhóm A trở lên hoặc 01 công trình cấp I trở lên</td><td>34</td></tr>
+        <tr><td>Thời hạn cấp</td><td>Cấp mới 06 ngày làm việc; cấp lại 05 ngày làm việc; cấp chuyển đổi 11 ngày làm việc. UBND cấp tỉnh cấp chứng chỉ</td><td>30.2, 31</td></tr>
+        <tr><td>Tổ chức</td><td>Tổ chức tự công khai thông tin năng lực trên csdlhdxd.gov.vn; người đại diện theo pháp luật chịu trách nhiệm về tính chính xác</td><td>41</td></tr>
+        <tr><td>Chuyển tiếp</td><td>Hồ sơ đã nộp trước ngày có hiệu lực xét theo Nghị định 175/2024; chứng chỉ cấp theo Luật Xây dựng 2014 dùng đến khi hết hạn; Nghị định 111/2024 hết hiệu lực</td><td>Chương VI</td></tr>
+      </tbody></table></div>
+
+    <h3>5. Gợi ý chuẩn bị hồ sơ dự thầu (gợi ý thực hành, không phải quy định)</h3>
+    <ul>
+      <li>Rà soát hồ sơ mời thầu về nhân sự chủ chốt, kinh nghiệm hợp đồng tương tự, năng lực tài chính, thời hạn hiệu lực hồ sơ.</li>
+      <li>Đối chiếu giá dự thầu với cách chủ đầu tư lập giá gói thầu (số chuyên gia, thời gian, mức lương) ở mục Điều 18 Nghị định 214/2025.</li>
+      <li>Kiểm tra tiến độ trong đề xuất khớp mốc thẩm định và quyết định nêu ở tab IV.</li>
+      <li>Mẫu hồ sơ mời thầu, hồ sơ yêu cầu và báo cáo đánh giá dịch vụ tư vấn (Mẫu 6A, 14D, 1D, 2C), cùng Thông tư 134/2026/TT-BTC mới thay Thông tư 80/2025: xem tab XVIII mục 8.</li>
+    </ul>
+  </section>
+
+  <section class="tab" id="t16">
+    <h2>XVI. Giám sát tác giả và điều chỉnh thiết kế</h2>
+    <h3>1. Giám sát tác giả (Luật XD 135/2025 Điều 62)</h3>
+    <div class="grid2">
+      <div class="box ok"><b>Quyền của nhà thầu thiết kế</b>
+        <ul>
+          <li>Yêu cầu chủ đầu tư và nhà thầu thi công thực hiện đúng thiết kế (khoản 1 điểm b).</li>
+          <li>Từ chối yêu cầu thay đổi thiết kế của chủ đầu tư nếu không phù hợp pháp luật, quy chuẩn, tiêu chuẩn áp dụng (điểm c).</li>
+          <li>Từ chối nghiệm thu hạng mục hoặc công trình thi công không đúng thiết kế (điểm d).</li>
+        </ul></div>
+      <div class="box warn"><b>Nghĩa vụ</b>
+        <ul>
+          <li>Cử người đủ năng lực giám sát tác giả theo hợp đồng; người này chịu trách nhiệm pháp lý và bồi thường thiệt hại do mình gây ra (khoản 2 điểm b).</li>
+          <li>Tham gia nghiệm thu theo hợp đồng với chủ đầu tư (điểm c).</li>
+          <li>Xem xét, xử lý theo đề nghị của chủ đầu tư những bất hợp lý của thiết kế (điểm d).</li>
+          <li>Phát hiện thi công sai thiết kế đã duyệt thì kịp thời thông báo cho chủ đầu tư và kiến nghị biện pháp xử lý (điểm đ).</li>
+        </ul></div>
+    </div>
+    <p class="note">Điểm a khoản 1 và điểm a khoản 2 dẫn chiếu Điều 35 chưa đọc.</p>
+    <h3>Hướng dẫn chi tiết (Nghị định 207/2026/NĐ-CP Điều 21)</h3>
+    <ul>
+      <li>Nhà thầu lập thiết kế thực hiện giám sát tác giả theo hợp đồng; khi hạng mục hoàn thành thi công phải lập báo cáo đánh giá việc thực hiện (khoản 1).</li>
+      <li>Nội dung giám sát tác giả (khoản 2): giải thích hồ sơ thiết kế khi có yêu cầu; phối hợp xử lý vướng mắc và điều chỉnh thiết kế theo thực tế; thông báo cho chủ đầu tư khi thi công sai thiết kế; tham gia nghiệm thu. Nếu hạng mục chưa đủ điều kiện nghiệm thu thì có ý kiến bằng văn bản gửi chủ đầu tư (điểm d).</li>
+      <li>Nghị định không có quy định riêng về nhật ký giám sát tác giả. Nhật ký thi công và bản vẽ hoàn công do nhà thầu thi công lập (Điều 15 khoản 13).</li>
+      <li>Chủ đầu tư nghiệm thu không làm giảm trách nhiệm của nhà thầu đối với phần việc của mình (Điều 4 khoản 3).</li>
+      <li>Chi phí giám sát tác giả xác định như chi phí tư vấn: định mức tỷ lệ hoặc lập dự toán, là mức tối đa (Nghị định 206/2026 Điều 26). Định mức cụ thể ở thông tư của Bộ Xây dựng, chưa đọc.</li>
+    </ul>
+
+    <h3>2. Điều chỉnh thiết kế</h3>
+    <ul>
+      <li>Điều chỉnh thiết kế triển khai sau khi dự án được phê duyệt trong hai trường hợp: điều chỉnh dự án đầu tư xây dựng kéo theo điều chỉnh thiết kế; hoặc trong quá trình thi công cần điều chỉnh để bảo đảm chất lượng công trình, hiệu quả và yêu cầu sử dụng (Luật XD Điều 31.1).</li>
+      <li>Chủ đầu tư quyết định điều chỉnh; việc điều chỉnh phải được thẩm định và phê duyệt theo Điều 29 (Điều 31.2). Chính phủ quy định chi tiết (Điều 31.3).</li>
+      <li>Nghị định 217/2026 Điều 70.1.d: việc điều chỉnh thiết kế triển khai sau khi dự án được phê duyệt có thể làm song song với thi công. Điều 71.3.b: chủ đầu tư tự quyết định dùng thiết kế đã thẩm tra làm cơ sở thi công; nhà thầu tư vấn thiết kế cập nhật thiết kế điều chỉnh và trình chủ đầu tư xác nhận.</li>
+      <li>Điều 16.7, 16.8: khi lập thiết kế triển khai, nếu thay đổi thông số, chỉ tiêu đã duyệt mà không thuộc trường hợp điều chỉnh dự án, hoặc thay đổi vật liệu kết cấu chính và yếu tố an toàn của công trình ảnh hưởng lớn đến an toàn cộng đồng, chủ đầu tư báo cáo bằng văn bản cho người quyết định đầu tư. Người này không đồng ý thì có ý kiến bằng văn bản trong 05 ngày làm việc kể từ khi nhận đủ hồ sơ; quá hạn không có ý kiến thì chủ đầu tư quyết định phê duyệt thiết kế. Tư vấn thiết kế nên lập sẵn bảng so sánh thông số cũ, mới để chủ đầu tư đính kèm báo cáo (gợi ý của người soạn).</li>
+      <li>Thiết kế điều chỉnh đã thẩm định theo luật cũ không phải thẩm định lại tại cơ quan chuyên môn về xây dựng (Luật XD Điều 95.2).</li>
+    </ul>
+
+    <h3>3. Khi thay đổi thiết kế có kéo theo điều chỉnh chủ trương không?</h3>
+    <ol class="tree">
+      <li><b>Thay đổi có làm đổi mục tiêu, địa điểm hoặc vượt mức vốn đầu tư công so với chủ trương đầu tư không?</b>
+        <br><span class="yes">Có</span>: phải điều chỉnh chủ trương trước, rồi mới điều chỉnh dự án (Luật 58/2024 Điều 46 khoản 5, sửa đổi; Điều 37 khoản 2). Thời hạn quyết định điều chỉnh chủ trương: 10 / 07 / 05 ngày làm việc (chương trình / nhóm A / nhóm B, C). Xem tab IV và VI.
+        <br><span class="no">Không</span>: xuống câu tiếp.</li>
+      <li><b>Thay đổi có thuộc trường hợp điều chỉnh dự án theo Luật 58/2024 Điều 46 khoản 2 không</b> (điều chỉnh quy hoạch ảnh hưởng, bất khả kháng, thiên tai, yếu tố hiệu quả cao hơn được thẩm định, chỉ số giá lớn hơn dự phòng trượt giá)?
+        <br><span class="yes">Có</span>: cấp quyết định đầu tư quyết định điều chỉnh sau khi dự án được thẩm định, kiểm tra, đánh giá (Điều 46 khoản 3, 4).
+        <br><span class="no">Không</span>: chủ đầu tư quyết định điều chỉnh thiết kế, thẩm định và phê duyệt theo Điều 29 Luật Xây dựng.</li>
+    </ol>
+    <div class="box warn">⚠️ Quyết định đầu tư hoặc điều chỉnh quyết định đầu tư không đúng mục tiêu, địa điểm, vượt mức vốn trong chủ trương là hành vi bị nghiêm cấm (Luật 58/2024 Điều 17 khoản 2, sửa đổi). Khi chủ đầu tư yêu cầu thay đổi thiết kế làm vượt các mức này, tư vấn nên đề nghị bằng văn bản điều chỉnh chủ trương trước và lưu văn bản đó trong hồ sơ giám sát tác giả (gợi ý của người soạn; Nghị định 207/2026 không quy định riêng về nhật ký giám sát tác giả).</div>
+    <p class="note">Nguồn: Luật XD 135/2025 Điều 31, 62 đọc qua hethongphapluat.com; Nghị định 207/2026 Điều 21 và Nghị định 217/2026 Điều 16, 70, 71 đọc qua qlda.gxd.vn; Luật 58/2024 Điều 17, 37, 46 theo Luật 90/2025 (đọc nguyên văn trong kho regai) và hethongphapluat.com. Dòng cảnh báo cuối là gợi ý thực hành của người soạn.</p>
+  </section>
+
+  <section class="tab" id="t17">
+    <h2>XVII. Checklist tư vấn thiết kế</h2>
+    <p>Danh sách việc cần làm của đơn vị tư vấn lập dự án, khảo sát, thiết kế và dự toán, theo thứ tự thực hiện. Tích để theo dõi tiến độ (lưu trên trình duyệt của bạn); mỗi dòng ghi căn cứ. Khác với checklist ở tab XI, danh sách này chi tiết theo từng bước kỹ thuật.</p>
+    <div class="box warn">⚠️ Các căn cứ pháp luật xây dựng áp dụng từ 01/7/2026 (Luật Xây dựng 135/2025/QH15 và Nghị định 217, 206, 207, 210, 212/2026). Dự án đã phê duyệt hoặc hồ sơ đã trình trước ngày này theo bảng chuyển tiếp ở tab XIV. Điều khoản ghi “chưa đọc” là phần mình chưa kiểm tra nguyên văn.</div>
+    <div class="ckbar"><span id="ckprog3"></span> <button type="button" id="ckreset3">Đặt lại</button> <button type="button" onclick="window.print()">In</button></div>
+    <div id="ck3"></div>
+  </section>
+
+  <section class="tab" id="t18">
+    <h2>XVIII. Mẫu văn bản tư vấn</h2>
+    <p>Danh mục các mẫu văn bản, biểu mẫu do nghị định, thông tư và quyết định của Bộ quy định, liên quan đến công việc của đơn vị tư vấn từ chủ trương đến quyết toán. Trang chỉ liệt kê số mẫu, tên mẫu và nơi quy định; nội dung từng mẫu lấy từ văn bản gốc. Đường dẫn bên dưới là trang đăng lại của bên thứ ba lấy từ kết quả tìm kiếm.</p>
+    <div class="box warn">⚠️ <b>Chưa có bản gốc.</b> Mình không tải được file Word, PDF của các mẫu; tên mẫu đọc từ trang đăng lại hoặc bài tổng hợp. Cần tải mẫu từ Công báo, Cổng thông tin điện tử Chính phủ hoặc trang của Bộ Xây dựng, Bộ Tài chính trước khi dùng.</div>
+
+    <h3>1. Mẫu hợp đồng tư vấn (Quyết định 1040/QĐ-BXD của Bộ Xây dựng)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Phụ lục</th><th>Mẫu hợp đồng</th><th>Ghi chú</th></tr></thead>
+      <tbody>
+        <tr><td>I</td><td>Tư vấn lập báo cáo nghiên cứu khả thi</td><td rowspan="7">Hiệu lực từ 01/7/2026. Nguồn ghi ngày ký 26/6/2026, riêng trang của Bộ Xây dựng ghi 16/6/2026, cần đối chiếu. Khi áp dụng, các bên điều chỉnh cho phù hợp gói thầu, dự án và pháp luật tại thời điểm giao kết. Loại hợp đồng tư vấn chưa có mẫu thì vận dụng các mẫu hiện có</td></tr>
+        <tr><td>II</td><td>Tư vấn thiết kế xây dựng</td></tr>
+        <tr><td>III</td><td>Tư vấn quản lý dự án</td></tr>
+        <tr><td>IV</td><td>Tư vấn giám sát thi công</td></tr>
+        <tr><td>V</td><td>Tư vấn khảo sát xây dựng</td></tr>
+        <tr><td>VI</td><td>Thi công xây dựng công trình</td></tr>
+        <tr><td>VII</td><td>EPC</td></tr>
+      </tbody></table></div>
+    <p class="note">Căn cứ: Nghị định 210/2026 Điều 34 khoản 2 giao Bộ Xây dựng công bố mẫu hợp đồng. Nguồn: kết quả tìm kiếm về Quyết định 1040/QĐ-BXD (<a href="https://qlda.gxd.vn/van-ban/hop-dong/quyet-dinh-1040-qd-bxd.html" target="_blank" rel="noopener">qlda.gxd.vn</a>, <a href="https://moc.gov.vn/vn/tin-tuc/1177/95125/cong-bo-mau-hop-dong-xay-dung.aspx" target="_blank" rel="noopener">moc.gov.vn</a>), chưa mở kiểm tra từng trang.</p>
+
+    <h3>2. Mẫu trong thẩm định dự án và thiết kế (Nghị định 217/2026/NĐ-CP, Phụ lục I)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Mẫu số</th><th>Tên mẫu</th><th>Bên lập thường gặp</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>Tờ trình thẩm định (Điều 35.1 dẫn Mẫu 01 Phụ lục I; tên đầy đủ chưa đọc được)</td><td>Chủ đầu tư, tư vấn soạn hộ</td></tr>
+        <tr><td>02</td><td>Báo cáo kết quả thẩm tra thiết kế xây dựng trong báo cáo nghiên cứu khả thi</td><td>Tư vấn thẩm tra</td></tr>
+        <tr><td>03</td><td>Thông báo kết quả thẩm định báo cáo nghiên cứu khả thi của cơ quan chuyên môn về xây dựng</td><td>Cơ quan chuyên môn</td></tr>
+        <tr><td>04</td><td>Văn bản đề nghị thẩm định báo cáo kinh tế - kỹ thuật</td><td>Chủ đầu tư, tư vấn soạn hộ</td></tr>
+        <tr><td>05</td><td>Văn bản đề nghị thẩm định báo cáo nghiên cứu khả thi</td><td>Chủ đầu tư, tư vấn soạn hộ</td></tr>
+        <tr><td>06</td><td>Thông báo kết quả thẩm định báo cáo kinh tế - kỹ thuật của cơ quan hoặc đơn vị được người quyết định đầu tư giao (tham khảo)</td><td>Cơ quan thẩm định</td></tr>
+        <tr><td>07</td><td>Thông báo kết quả thẩm định báo cáo nghiên cứu khả thi của cơ quan hoặc đơn vị được người quyết định đầu tư giao (tham khảo)</td><td>Cơ quan thẩm định</td></tr>
+        <tr><td>08</td><td>Thông báo kết quả thẩm định báo cáo nghiên cứu khả thi khi cơ quan thẩm định đồng thời là cơ quan chuyên môn (tham khảo)</td><td>Cơ quan thẩm định</td></tr>
+        <tr><td>09</td><td>Quyết định phê duyệt dự án yêu cầu lập báo cáo nghiên cứu khả thi</td><td>Người quyết định đầu tư</td></tr>
+        <tr><td>10</td><td>Quyết định phê duyệt dự án chỉ cần lập báo cáo kinh tế - kỹ thuật</td><td>Người quyết định đầu tư</td></tr>
+        <tr><td>11</td><td>Báo cáo kết quả thẩm tra thiết kế xây dựng triển khai sau khi dự án được phê duyệt</td><td>Tư vấn thẩm tra</td></tr>
+        <tr><td>12</td><td>Thông báo kết quả thẩm định thiết kế xây dựng triển khai sau khi dự án được phê duyệt</td><td>Cơ quan thẩm định</td></tr>
+        <tr><td>13</td><td>Quyết định phê duyệt thiết kế xây dựng triển khai sau khi dự án được phê duyệt</td><td>Chủ đầu tư</td></tr>
+        <tr><td>14</td><td>Mẫu dấu thẩm định, thẩm tra, phê duyệt thiết kế xây dựng</td><td>Tư vấn thiết kế và thẩm tra, chủ đầu tư</td></tr>
+        <tr><td>15</td><td>Phiếu thông báo bổ sung, hoàn thiện hồ sơ</td><td>Cơ quan thẩm định</td></tr>
+        <tr><td>16</td><td>Phiếu thông báo tạm dừng thẩm định</td><td>Cơ quan thẩm định</td></tr>
+        <tr><td>17</td><td>Quyết định ban hành Lệnh xây dựng công trình khẩn cấp</td><td>Người có thẩm quyền</td></tr>
+      </tbody></table></div>
+    <p class="note">Phụ lục II Nghị định 217/2026 có 06 mẫu cấp giấy phép xây dựng: đơn đề nghị cấp mới (01), đơn đề nghị điều chỉnh, gia hạn, cấp lại (02), giấy phép xây dựng mới, điều chỉnh, gia hạn (03), giấy phép sửa chữa, cải tạo, di dời (04), giấy phép có thời hạn (05), mẫu dấu của cơ quan cấp phép (06). Phụ lục III và IV là bảng phân loại, không phải mẫu. Nghị định 217 có đưa mẫu nhiệm vụ khảo sát hay nhiệm vụ thiết kế hay không thì phần đã đọc (Mẫu 02 đến 17) không thấy; Mẫu 01 chưa đọc được tên đầy đủ. Nguồn: <a href="https://qlda.gxd.vn/van-ban/qlda/nghi-dinh-217-2026.html" target="_blank" rel="noopener">qlda.gxd.vn</a>.</p>
+
+    <h3>3. Mẫu trong thi công, giám sát, nghiệm thu (Nghị định 207/2026/NĐ-CP)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Phụ lục</th><th>Nội dung</th><th>Loại</th></tr></thead>
+      <tbody>
+        <tr><td>IIa</td><td>Nhật ký thi công xây dựng công trình</td><td>Mẫu</td></tr>
+        <tr><td>IIb</td><td>Bản vẽ hoàn công, kèm Mẫu số 1 và 2 của dấu bản vẽ hoàn công</td><td>Mẫu</td></tr>
+        <tr><td>IVa</td><td>Báo cáo định kỳ về công tác giám sát thi công xây dựng công trình, hạng mục</td><td>Mẫu</td></tr>
+        <tr><td>IVb</td><td>Báo cáo hoàn thành công tác giám sát thi công xây dựng gói thầu, giai đoạn, hạng mục, công trình</td><td>Mẫu</td></tr>
+        <tr><td>V</td><td>Thông báo khởi công xây dựng hạng mục công trình, công trình</td><td>Mẫu</td></tr>
+        <tr><td>VI</td><td>Báo cáo hoàn thành thi công xây dựng hạng mục công trình, công trình</td><td>Mẫu</td></tr>
+        <tr><td>VII</td><td>Danh mục hồ sơ hoàn thành công trình (nhóm II là khảo sát và thiết kế)</td><td>Danh mục</td></tr>
+        <tr><td>VIII</td><td>Thông báo kết quả kiểm tra công tác nghiệm thu hoàn thành</td><td>Mẫu</td></tr>
+        <tr><td>IX</td><td>Danh mục công trình quy mô lớn, kỹ thuật phức tạp</td><td>Danh mục</td></tr>
+        <tr><td>X</td><td>Danh mục hồ sơ phục vụ quản lý, sử dụng công trình</td><td>Danh mục</td></tr>
+        <tr><td>XIa, XIb</td><td>Báo cáo và thông báo ý kiến về kéo dài thời hạn sử dụng công trình</td><td>Mẫu</td></tr>
+      </tbody></table></div>
+    <p class="note">Nghị định 207/2026 không có mẫu riêng cho giám sát tác giả và biên bản nghiệm thu công việc; biên bản nghiệm thu chỉ có trong danh mục hồ sơ (Phụ lục VII, X). Nguồn: <a href="https://qlda.gxd.vn/van-ban/chat-luong/nghi-dinh-207-2026.html" target="_blank" rel="noopener">qlda.gxd.vn</a>. Phần Phụ lục sau XIa chưa đọc hết. Thông tư 32/2026/TT-BXD hướng dẫn Nghị định 207 (theo kết quả tìm kiếm) chưa đọc.</p>
+
+    <h3>4. Mẫu trong thanh toán và tạm ứng vốn (Nghị định 254/2025/NĐ-CP)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Mẫu số</th><th>Tên mẫu</th><th>Điều</th></tr></thead>
+      <tbody>
+        <tr><td>02.a/TT</td><td>Bảng tổng hợp thông tin hợp đồng</td><td>8.1.d, 20.1</td></tr>
+        <tr><td>02.b/TT</td><td>Bảng tổng hợp thông tin dự toán (công việc không qua hợp đồng)</td><td>8.1.đ</td></tr>
+        <tr><td>02.c/TT</td><td>Bảng tổng hợp thông tin bồi thường, hỗ trợ, tái định cư</td><td>8.1.e</td></tr>
+        <tr><td>03.a/TT</td><td>Bảng xác định giá trị khối lượng công việc hoàn thành</td><td>8.3, 9.5</td></tr>
+        <tr><td>03.b/TT</td><td>Bảng kê giá trị khối lượng công việc bồi thường, hỗ trợ, tái định cư đã thực hiện</td><td>8.3.b</td></tr>
+        <tr><td>03.c/QT</td><td>Bảng tính giá trị quyết toán hợp đồng giữa chủ đầu tư và nhà thầu (quyết toán A - B)</td><td>33.1.d</td></tr>
+        <tr><td>04.a/TT</td><td>Giấy đề nghị thanh toán vốn</td><td>8.2, 8.3</td></tr>
+        <tr><td>04.b/TT</td><td>Giấy đề nghị thu hồi vốn tạm ứng</td><td>8.3</td></tr>
+        <tr><td>04.c/TT</td><td>Giấy đề nghị thu hồi vốn ứng trước</td><td>8.7.b</td></tr>
+        <tr><td>04.d/TT</td><td>Giấy rút dự toán (nhiệm vụ khoa học, công nghệ, đổi mới sáng tạo, chuyển đổi số)</td><td>8.8</td></tr>
+        <tr><td>05.a/TT</td><td>Giấy rút vốn</td><td>8.2.b</td></tr>
+        <tr><td>05.b, c, d, e/TT</td><td>Ủy nhiệm chi</td><td>8.5</td></tr>
+        <tr><td>08.a/SDTƯ</td><td>Báo cáo tình hình tạm ứng và thu hồi tạm ứng của chủ đầu tư, đơn vị bồi thường</td><td>9.6.b</td></tr>
+        <tr><td>08.b/SDTƯ</td><td>Báo cáo tình hình tạm ứng của Kho bạc Nhà nước khu vực</td><td>9.6.c</td></tr>
+        <tr><td>09/QLDA</td><td>Bảng phân bổ chi phí quản lý dự án</td><td>8.6, 9.5.c</td></tr>
+      </tbody></table></div>
+    <p class="note">Nghị định 254 còn các mẫu cho dự án ở nước ngoài (04.a.nn/TT, 04.b.nn/TT, 01.nn/PB, 06/TT, 07/TT) không liệt kê ở đây. Dự toán thu, chi quản lý dự án hằng năm dùng Mẫu 01/QĐ-QLDA và 02/QĐ-QLDA của Thông tư 70/2024/TT-BTC (Điều 8.1.đ). Nguồn: Nghị định 254/2025 đọc nguyên văn các Điều 8, 9, 19, 20, 33 trong kho regai; phụ lục mẫu của nghị định chưa đọc.</p>
+
+    <h3>5. Mẫu biểu quyết toán (Thông tư 91/2025/TT-BTC, hiệu lực từ 26/9/2025)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Mẫu số</th><th>Tên mẫu</th></tr></thead>
+      <tbody>
+        <tr><td>01/QTNĐ đến 05/QTNĐ</td><td>Quyết toán theo niên độ: báo cáo quyết toán của bộ, chủ đầu tư; báo cáo dự án quan trọng quốc gia; báo cáo chi tiết của cơ quan thanh toán; thông báo xét duyệt của cơ quan cấp trên; văn bản kiểm tra của cơ quan tài chính</td></tr>
+        <tr><td>01/QTDA</td><td>Báo cáo tổng hợp quyết toán vốn đầu tư dự án hoàn thành</td></tr>
+        <tr><td>02/QTDA</td><td>Danh mục văn bản</td></tr>
+        <tr><td>03/QTDA</td><td>Bảng đối chiếu số liệu</td></tr>
+        <tr><td>04/QTDA</td><td>Chi tiết chi phí đầu tư đề nghị quyết toán</td></tr>
+        <tr><td>05/QTDA</td><td>Chi tiết tài sản hình thành là kết quả của quá trình thực hiện dự án</td></tr>
+        <tr><td>06/QTDA</td><td>Chi tiết giá trị vật tư, vật liệu, thiết bị tồn đọng</td></tr>
+        <tr><td>07/QTDA</td><td>Tình hình công nợ của dự án</td></tr>
+        <tr><td>08/QTDA</td><td>Báo cáo quyết toán dự án quy hoạch, chuẩn bị đầu tư, dự án dừng chưa có khối lượng thi công</td></tr>
+        <tr><td>09/QTDA</td><td>Báo cáo kết quả phê duyệt tổng quyết toán dự án quan trọng quốc gia, nhóm A</td></tr>
+        <tr><td>10/QTDA</td><td>Quyết định phê duyệt quyết toán vốn đầu tư dự án hoàn thành</td></tr>
+        <tr><td>11/QTDA</td><td>Báo cáo tình hình quyết toán vốn đầu tư công dự án hoàn thành hằng năm</td></tr>
+        <tr><td>12/QTDA</td><td>Phiếu giao nhận hồ sơ quyết toán vốn đầu tư dự án hoàn thành</td></tr>
+      </tbody></table></div>
+    <p class="note">Nghị định 254/2025 Điều 32 khoản 2 giao Bộ Tài chính ban hành hệ thống mẫu biểu này. Thông tư 91/2025 thay Thông tư 96/2021/TT-BTC; hồ sơ dự án hoàn thành đã nộp trước ngày hiệu lực không phải lập lại. Nguồn: danh sách 17 mẫu trên <a href="https://luatvietnam.vn/linh-vuc-khac/thong-tu-91-2025-tt-btc-danh-sach-17-bieu-mau-trong-cong-tac-quyet-toan-883-104477-article.html" target="_blank" rel="noopener">luatvietnam.vn</a> (bài tổng hợp, chưa đối chiếu văn bản gốc).</p>
+
+    <h3>6. Mẫu báo cáo giám sát, đánh giá đầu tư (Thông tư 44/2026/TT-BTC)</h3>
+    <ul>
+      <li><b>Dự án đầu tư công (Điều 4 khoản 2):</b> Mẫu 02 đánh giá ban đầu; 03 báo cáo định kỳ 6 tháng, cả năm; 04 đánh giá giữa kỳ hoặc giai đoạn; 05 báo cáo trước khi điều chỉnh dự án; 06 đánh giá đột xuất; 07 kết thúc đầu tư; 08 khai thác, vận hành (cả năm); 09 đánh giá tác động; 10 báo cáo tổng hợp trong năm. Mẫu 01 là báo cáo tổng thể đầu tư cả năm.</li>
+      <li><b>Dự án PPP:</b> Mẫu 11, 12; dự án theo Luật Đầu tư: Mẫu 13 đến 18; giám sát đầu tư của cộng đồng: Mẫu 19.</li>
+      <li>Chủ đầu tư cập nhật thông tin lên hệ thống trong 07 ngày làm việc sau khi được quyết định đầu tư, sau điều chỉnh, phê duyệt thiết kế và dự toán, kết quả chọn nhà thầu, hợp đồng, phê duyệt quyết toán; cập nhật tình hình thực hiện và giải ngân vào ngày 25 hằng tháng (Điều 5). Tư vấn cung cấp số liệu thiết kế, dự toán, nghiệm thu để chủ đầu tư kịp các mốc này.</li>
+      <li>Thông tư có hiệu lực từ 22/4/2026, thay Thông tư 05/2023/TT-BKHĐT (kho regai, đọc Điều 4, 5).</li>
+    </ul>
+
+    <h3>7. Hồ sơ chủ trương đầu tư: khung nội dung, chưa có mẫu số</h3>
+    <div class="box warn">⚠️ <b>Chưa tìm thấy mẫu số cho hồ sơ chủ trương.</b> Mục lục Nghị định 85/2025 trên hethongphapluat.com chỉ có Chương 1 đến 7 và Điều 1 đến 56, không liệt kê phụ lục mẫu. Nghị định 275/2025 sửa “Phụ lục I, Mục V, Phần A khoản 2” của Nghị định 85, nên Nghị định 85 có ít nhất Phụ lục I (liên quan danh mục ngành, lĩnh vực; tên chưa xác nhận). Một bài viết nói biểu mẫu báo cáo đề xuất chủ trương ban hành kèm Nghị định 85, nhưng mình không tìm được số mẫu hay thông tư hướng dẫn mẫu. File PDF Nghị định 85 trên vnuf.edu.vn là bản nén, mình không đọc được chữ. Cần mở Công báo số 667 + 668 (24/4/2025) để xem phụ lục.</div>
+    <div class="tw"><table>
+      <thead><tr><th>Tài liệu</th><th>Nội dung quy định ở đâu</th></tr></thead>
+      <tbody>
+        <tr><td>Báo cáo đề xuất chủ trương đầu tư dự án nhóm B, C</td><td>Luật 58/2024 Điều 35: tám nhóm nội dung (xem bên dưới)</td></tr>
+        <tr><td>Báo cáo nghiên cứu tiền khả thi dự án nhóm A</td><td>Luật 58/2024 Điều 34; dự án có cấu phần xây dựng lập theo pháp luật xây dựng</td></tr>
+        <tr><td>Báo cáo đề xuất chủ trương chương trình đầu tư công</td><td>Luật 58/2024 Điều 33: tám nhóm nội dung</td></tr>
+        <tr><td>Tờ trình và hồ sơ trình thẩm định</td><td>NĐ 85/2025 Điều 11 khoản 1: tờ trình, báo cáo, tài liệu liên quan; gửi dạng điện tử</td></tr>
+        <tr><td>Hồ sơ trình cấp có thẩm quyền quyết định chủ trương</td><td>NĐ 85/2025 Điều 12 khoản 1: tờ trình và báo cáo đã hoàn thiện theo thẩm định; báo cáo thẩm định</td></tr>
+        <tr><td>Hồ sơ điều chỉnh chủ trương</td><td>NĐ 85/2025 Điều 14: tờ trình nêu lý do và nội dung điều chỉnh, quyết định chủ trương hiện hành, báo cáo đã điều chỉnh, báo cáo thẩm định</td></tr>
+        <tr><td>Quyết định chủ trương</td><td>Nội dung gồm mục tiêu, quy mô, tổng mức đầu tư, cơ cấu nguồn vốn, địa điểm, thời gian thực hiện, dự kiến kế hoạch bố trí vốn (Luật 58/2024 Điều 25 và 28, theo bản tóm tắt)</td></tr>
+      </tbody></table></div>
+    <details class="ckg"><summary>Tám nhóm nội dung báo cáo đề xuất chủ trương đầu tư dự án nhóm B, C (Luật 58/2024 Điều 35)</summary>
+      <ul>
+        <li>Sự cần thiết đầu tư và sự phù hợp với quy hoạch.</li>
+        <li>Mục tiêu, quy mô, địa điểm và phạm vi.</li>
+        <li>Tổng mức đầu tư, cơ cấu nguồn vốn và khả năng cân đối.</li>
+        <li>Tiến độ và kế hoạch bố trí vốn.</li>
+        <li>Chi phí thực hiện và chi phí vận hành.</li>
+        <li>Đánh giá sơ bộ tác động môi trường, xã hội và hiệu quả.</li>
+        <li>Phân chia dự án thành phần, nếu có.</li>
+        <li>Giải pháp tổ chức thực hiện.</li>
+      </ul>
+      <p class="note" style="padding:0 14px 10px">Danh sách rút gọn từ bản đăng trên caselaw.vn (tóm tắt); cần đối chiếu nguyên văn Điều 35.</p>
+    </details>
+
+    <h3>8. Mẫu hồ sơ đấu thầu dịch vụ tư vấn</h3>
+    <div class="box warn">⚠️ <b>Khung mẫu đấu thầu vừa đổi.</b> Thông tư 134/2026/TT-BTC (hiệu lực 09/9/2026, 7 điều, 23 mẫu, 10 phụ lục) thay Thông tư 80/2025/TT-BTC và sửa một số mẫu của Thông tư 79/2025/TT-BTC. Thông tin về Thông tư 134 đọc từ bài của dauthau.asia và baodauthau.vn, chưa có văn bản gốc; một nguồn ghi căn cứ ban hành là Nghị định 349/2026, nguồn khác ghi Nghị định 274/2026, nên cần đối chiếu.</div>
+    <div class="tw"><table>
+      <thead><tr><th>Văn bản</th><th>Mẫu liên quan tư vấn</th><th>Dùng khi</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="9">Thông tư 79/2025/TT-BTC (04/8/2025): mẫu hồ sơ đấu thầu qua mạng trên Hệ thống mạng đấu thầu quốc gia</td><td>Mẫu 6A: E-HSMT dịch vụ tư vấn, đấu thầu rộng rãi hoặc hạn chế, một giai đoạn hai túi hồ sơ</td><td rowspan="9">Đấu thầu qua mạng</td></tr>
+        <tr><td>Mẫu 6B: E-HSMQT dịch vụ tư vấn (mời quan tâm)</td></tr>
+        <tr><td>Mẫu 6C: biểu mẫu cho tư vấn cá nhân</td></tr>
+        <tr><td>Mẫu 14D: báo cáo đánh giá E-HSDT gói dịch vụ tư vấn, một giai đoạn hai túi hồ sơ</td></tr>
+        <tr><td>Mẫu 01A, 01B: tờ trình, quyết định phê duyệt kế hoạch tổng thể lựa chọn nhà thầu; Mẫu 02A, 02B: tờ trình, quyết định phê duyệt kế hoạch lựa chọn nhà thầu</td></tr>
+        <tr><td>Phụ lục 1A, 1B: tờ trình và quyết định phê duyệt E-HSMT; Phụ lục 2: quyết định phê duyệt danh sách ngắn</td></tr>
+        <tr><td>Phụ lục 3: quyết định phê duyệt danh sách nhà thầu đáp ứng yêu cầu kỹ thuật (một giai đoạn hai túi)</td></tr>
+        <tr><td>Phụ lục 4A: biên bản đối chiếu tài liệu; Phụ lục 4C: biên bản thương thảo hợp đồng dịch vụ tư vấn</td></tr>
+        <tr><td>Phụ lục 5: quyết định phê duyệt kết quả lựa chọn nhà thầu; Phụ lục 6: bản cam kết</td></tr>
+        <tr><td rowspan="4">Thông tư 80/2025/TT-BTC (08/8/2025), nay do Thông tư 134/2026/TT-BTC thay thế: hồ sơ yêu cầu chỉ định thầu và báo cáo đánh giá, thẩm định</td><td>Mẫu 1D: hồ sơ yêu cầu gói thầu dịch vụ tư vấn, chỉ định thầu thông thường theo Điều 79 Nghị định 214/2025</td><td rowspan="4">Chỉ định thầu và đấu thầu không qua mạng</td></tr>
+        <tr><td>Mẫu 2C: báo cáo đánh giá hồ sơ dự thầu gói thầu dịch vụ tư vấn, đấu thầu rộng rãi hoặc hạn chế không qua mạng</td></tr>
+        <tr><td>Mẫu 3A: báo cáo thẩm định hồ sơ mời thầu; 3B: thẩm định danh sách nhà thầu đạt kỹ thuật; 3C: thẩm định kết quả lựa chọn nhà thầu</td></tr>
+        <tr><td>Phụ lục 1, 2A, 2B, 2C: biên bản đóng thầu, mở thầu, mở hồ sơ đề xuất kỹ thuật; Phụ lục 7: bản cam kết của thành viên tham gia thẩm định</td></tr>
+        <tr><td rowspan="2">Thông tư 134/2026/TT-BTC (hiệu lực 09/9/2026)</td><td>Bổ sung Mẫu 1E (EP), 1G (EC), 1H (PC), 1I (EPC) cho gói thầu hỗn hợp; Mẫu 5.1 báo cáo kết quả giám sát hoạt động đấu thầu, Mẫu 5.2 báo cáo cập nhật thông tin lựa chọn nhà thầu; Phụ lục 8 hướng dẫn chỉ định thầu quốc tế và gói thầu bí mật nhà nước. Nguồn không nêu Thông tư 134 sửa Mẫu 1D, nên mẫu tư vấn cần tải từ Thông tư 134 để xác nhận</td><td>Chỉ định thầu, báo cáo</td></tr>
+        <tr><td>Sửa các mẫu Chương VI của Thông tư 79/2025 (mẫu 04A và các mẫu 3A, 3B, 4B, 5A, 5B, 7A đến 12B), trong đó có nội dung bảo lãnh dự thầu (bổ sung giấy chứng nhận bảo hiểm bảo lãnh). Mẫu tư vấn 6A, 6B, 6C không nằm trong danh sách sửa theo nguồn đã đọc</td><td>Đấu thầu qua mạng</td></tr>
+      </tbody></table></div>
+    <p class="note">Thông tư 79/2025 đọc qua <a href="https://dauthau.gxd.vn/van-ban/dau-thau/thong-tu-79-2025-TT-BTC.html" target="_blank" rel="noopener">dauthau.gxd.vn</a> (trang bị cắt ở Điều 35) và bài tổng hợp trên luatvietnam.vn; Thông tư 80/2025 qua <a href="https://dauthau.gxd.vn/van-ban/dau-thau/thong-tu-80-2025-TT-BTC.html" target="_blank" rel="noopener">dauthau.gxd.vn</a>; Thông tư 134/2026 qua <a href="https://dauthau.asia/news/thong-tin-ho-tro/hot-thong-tu-134-2026-tt-btc-ban-hanh-thay-the-thong-tu-80-2025-tt-btc-2022.html" target="_blank" rel="noopener">dauthau.asia</a> và <a href="https://baodauthau.vn/ban-hanh-thong-tu-1342026tt-btc-so-hoa-quy-trinh-thu-tuc-chi-dinh-thau-post207080.html" target="_blank" rel="noopener">baodauthau.vn</a>. Kho regai không có ba thông tư này. Nội dung chi tiết của từng mẫu chưa đọc; mẫu hồ sơ dự thầu (đơn dự thầu, biểu mẫu nhà thầu) nằm bên trong E-HSMT hoặc hồ sơ yêu cầu do chủ đầu tư phát hành và tải từ Hệ thống mạng đấu thầu quốc gia.</p>
+
+    <h3>9. Mẫu bảo lãnh</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Loại bảo lãnh</th><th>Mẫu thư bảo lãnh</th><th>Yêu cầu về nội dung</th></tr></thead>
+      <tbody>
+        <tr><td>Bảo lãnh tạm ứng hợp đồng</td><td>Không có mẫu số trong Nghị định 254/2025, Nghị định 210/2026 và các mẫu Thông tư 79, 80 đã đọc. Một câu hỏi lên cổng Bộ Tài chính nhắc “mẫu số 10” nhưng Bộ trả lời bằng cách dẫn Nghị định 254, không gắn mẫu</td><td>Bắt buộc khi tạm ứng trên 01 tỷ đồng; giá trị tương đương tiền tạm ứng, giảm theo số đã thu hồi; hiệu lực kéo dài đến khi thu hồi hết, ghi trong hợp đồng và trong văn bản bảo lãnh; chủ đầu tư gửi cơ quan thanh toán trước khi tạm ứng (NĐ 254/2025 Điều 9.2; NĐ 210/2026 Điều 12.3.c, d)</td></tr>
+        <tr><td>Bảo đảm thực hiện hợp đồng</td><td>Không có mẫu số trong phần đã đọc</td><td>2% đến 10% giá hợp đồng; ưu tiên bảo lãnh; liên danh mỗi thành viên nộp theo phần việc của mình trừ khi thỏa thuận để nhà thầu đứng đầu nộp (NĐ 210/2026 Điều 13.2)</td></tr>
+        <tr><td>Bảo đảm dự thầu</td><td>Mẫu thư bảo lãnh dự thầu nằm trong biểu mẫu của E-HSMT hoặc hồ sơ mời thầu (Chương VI của Thông tư 79); Thông tư 134/2026 sửa các mẫu này. Chưa xác nhận bảo đảm dự thầu có bắt buộc với gói thầu tư vấn hay không</td><td>Theo bài tổng hợp về Luật Đấu thầu 2023 Điều 14: đặt cọc, thư bảo lãnh của tổ chức tín dụng hoặc giấy chứng nhận bảo hiểm bảo lãnh; hiệu lực bằng hiệu lực hồ sơ dự thầu cộng 30 ngày (chưa đọc nguyên văn Điều 14)</td></tr>
+      </tbody></table></div>
+    <ul>
+      <li>Thư bảo lãnh do tổ chức tín dụng phát hành theo mẫu của bên đó; đơn vị tư vấn cần đối chiếu nội dung thư với yêu cầu trong hợp đồng và hồ sơ mời thầu trước khi nộp (gợi ý của người soạn).</li>
+      <li>Mẫu bảo lãnh cũ thường được nhắc tới (Thông tư 09/2021/TT-BKHĐT, Phụ lục VII; Thông tư 22/2024/TT-BKHĐT) đã không còn là mẫu hiện hành của Thông tư 79/2025; chỉ dùng tham khảo.</li>
+    </ul>
+
+    <h3>10. Mẫu chưa có hoặc chưa tra được</h3>
+    <ul>
+      <li><b>Mẫu nhiệm vụ khảo sát, nhiệm vụ thiết kế, báo cáo kết quả khảo sát:</b> báo cáo kết quả khảo sát có 7 nội dung tại Nghị định 217/2026 Điều 14, chưa thấy mẫu số kèm theo trong các Mẫu 02 đến 17 đã đọc.</li>
+      <li><b>Mẫu biên bản nghiệm thu, nhật ký giám sát tác giả:</b> không có mẫu riêng trong các nghị định đã đọc.</li>
+      <li><b>Nội dung từng mẫu đấu thầu:</b> chỉ biết số mẫu và tên mẫu của Thông tư 79/2025, 80/2025 và 134/2026; chưa đọc cấu trúc, tiêu chí đánh giá của Mẫu 6A, 1D, 14D, 2C. Phụ lục 8 và 23 mẫu của Thông tư 134 chưa liệt kê đầy đủ.</li>
+      <li><b>Mẫu hồ sơ dự thầu của nhà thầu:</b> do chủ đầu tư phát hành kèm E-HSMT hoặc hồ sơ yêu cầu; không có mẫu độc lập trong thông tư.</li>
+    </ul>
+  </section>
+
+  <section class="tab" id="t19">
+    <h2>XIX. Khảo sát xây dựng</h2>
+    <p>Phần dành cho đơn vị tư vấn khảo sát và tư vấn thiết kế. Nội dung đọc trực tiếp từ nguyên văn đã nhúng trong trang (bấm vào trích dẫn để xem). Áp dụng từ 01/7/2026; dự án chuyển tiếp xem tab XIV.</p>
+    <h3>1. Khảo sát gồm những gì, yêu cầu gì</h3>
+    <ul>
+      <li>Năm loại: khảo sát địa hình; địa chất công trình, địa chất thủy văn; thủy văn; hiện trạng công trình; công việc khảo sát khác (Luật Xây dựng 135/2025 Điều 21).</li>
+      <li>Nhiệm vụ khảo sát và phương án kỹ thuật phải phù hợp loại, cấp công trình, loại hình khảo sát, bước thiết kế; phương án đáp ứng nhiệm vụ và tuân thủ quy chuẩn, tiêu chuẩn; khảo sát phải theo phương án, an toàn, bảo vệ môi trường, được kiểm tra, giám sát, nghiệm thu; kết quả lập thành báo cáo trung thực, khách quan và được phê duyệt (Luật Xây dựng 135/2025 Điều 22).</li>
+    </ul>
+    <h3>2. Trình tự bốn bước (Nghị định 217/2026 Điều 10)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Bước</th><th>Ai làm</th><th>Nội dung chính</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>1. Nhiệm vụ khảo sát</td><td>Chủ đầu tư hoặc cơ quan chuẩn bị dự án lập hoặc thuê, giao; phê duyệt bằng văn bản hoặc trực tiếp tại nhiệm vụ</td><td>Mục đích; phạm vi; yêu cầu áp dụng tiêu chuẩn, quy chuẩn; sơ bộ khối lượng, dự toán (nếu có); thời gian</td><td>Nghị định 217/2026 Điều 11 khoản 2, 3, 4</td></tr>
+        <tr><td>2. Phương án kỹ thuật</td><td>Nhà thầu khảo sát lập; chủ đầu tư kiểm tra hoặc thuê thẩm tra và phê duyệt</td><td>Cơ sở lập; thành phần, khối lượng; phương pháp, thiết bị, phòng thí nghiệm; quy chuẩn, tiêu chuẩn; tổ chức và kiểm soát chất lượng; tiến độ; an toàn, môi trường, phục hồi hiện trạng</td><td>Nghị định 217/2026 Điều 12 khoản 1, 2, 3</td></tr>
+        <tr><td>3. Thực hiện khảo sát</td><td>Nhà thầu khảo sát; chủ đầu tư tự giám sát hoặc thuê</td><td>Đủ người, chủ nhiệm khảo sát đủ năng lực; kiểm tra nhân lực, thiết bị, vị trí, khối lượng, quy trình, lưu mẫu và số liệu, an toàn; chủ đầu tư được đình chỉ nếu sai phương án hoặc hợp đồng</td><td>Nghị định 217/2026 Điều 13 khoản 1, 2, 3</td></tr>
+        <tr><td>4. Báo cáo kết quả</td><td>Nhà thầu lập; chủ đầu tư phê duyệt</td><td>Căn cứ; vị trí và điều kiện tự nhiên; tiêu chuẩn, phương pháp; khối lượng và kết quả sau thí nghiệm; phân tích, đề xuất cho thiết kế, thi công; kết luận, kiến nghị; phụ lục</td><td>Nghị định 217/2026 Điều 14, 15</td></tr>
+      </tbody></table></div>
+    <h3>3. Những điểm tư vấn dễ vướng</h3>
+    <ul>
+      <li><b>Sửa nhiệm vụ khảo sát</b> khi có yếu tố khác thường ảnh hưởng giải pháp thiết kế, khi đổi nhiệm vụ thiết kế, khi tư vấn thiết kế thấy nhiệm vụ hoặc báo cáo khảo sát không đáp ứng, hoặc khi thi công gặp địa chất khác thường (Nghị định 217/2026 Điều 11 khoản 5). Nhà thầu khảo sát có nghĩa vụ đề xuất bổ sung khi phát hiện yếu tố ảnh hưởng trực tiếp đến thiết kế (Luật Xây dựng 135/2025 Điều 37 khoản 2 điểm b).</li>
+      <li><b>Kiểm tra báo cáo khảo sát:</b> chủ đầu tư được yêu cầu tư vấn thiết kế kiểm tra báo cáo khi tư vấn thiết kế độc lập với nhà thầu khảo sát, hoặc thuê tư vấn kiểm tra làm cơ sở phê duyệt (Nghị định 217/2026 Điều 15 khoản 1).</li>
+      <li><b>Trách nhiệm:</b> nhà thầu khảo sát chịu trách nhiệm toàn diện về chất lượng khảo sát; việc chủ đầu tư phê duyệt không làm giảm trách nhiệm này (Nghị định 217/2026 Điều 15 khoản 2). Nhà thầu phụ chịu trách nhiệm trước nhà thầu chính và pháp luật; bồi thường khi làm sai nhiệm vụ hoặc dùng tiêu chuẩn không phù hợp (Luật Xây dựng 135/2025 Điều 37 khoản 2).</li>
+      <li><b>Bước thiết kế sau</b> phải xem lại nhiệm vụ và kết quả khảo sát bước trước và các khảo sát liên quan đã có (Nghị định 217/2026 Điều 11 khoản 6).</li>
+      <li><b>Lưu trữ:</b> báo cáo kết quả khảo sát là thành phần hồ sơ hoàn thành công trình (Nghị định 217/2026 Điều 15 khoản 3); danh mục hồ sơ hoàn thành có nhiệm vụ, phương án kỹ thuật, báo cáo và văn bản phê duyệt khảo sát (Nghị định 207/2026 Phụ lục VII mục II).</li>
+      <li><b>Hồ sơ trình thẩm định báo cáo nghiên cứu khả thi</b> phải có hồ sơ khảo sát xây dựng được phê duyệt (Nghị định 217/2026 Điều 35 khoản 2 điểm g); các mẫu tờ trình ghi tên nhà thầu khảo sát (Nghị định 217/2026 Phụ lục I, Mẫu số 01).</li>
+    </ul>
+    <h3>4. Năng lực người làm khảo sát</h3>
+    <ul>
+      <li>Chứng chỉ hành nghề khảo sát gồm khảo sát địa hình và khảo sát địa chất công trình (Nghị định 212/2026 Điều 28 khoản 1 điểm a).</li>
+      <li>Kinh nghiệm để được cấp, theo Nghị định 212/2026 Điều 34: <b>hạng I</b> địa hình: làm chủ nhiệm 01 dự án nhóm A trở lên, hoặc 02 dự án nhóm B, hoặc 01 công trình cấp I trở lên, hoặc 02 công trình cấp II; địa chất: chủ nhiệm 01 công trình cấp I trở lên hoặc 02 công trình cấp II. <b>Hạng II</b> địa hình: 01 dự án nhóm B, hoặc 02 nhóm C, hoặc 01 công trình cấp II, hoặc 02 cấp III; địa chất: 01 công trình cấp II hoặc 02 cấp III. <b>Hạng III</b>: đã tham gia khảo sát 01 dự án từ nhóm C trở lên, hoặc 01 công trình từ cấp III trở lên, hoặc 02 công trình cấp IV. Đây là điều kiện kinh nghiệm; điều kiện chung ở Nghị định 212/2026 Điều 33, phạm vi hoạt động ở Phụ lục II.</li>
+    </ul>
+    <h3>5. Chi phí khảo sát</h3>
+    <ul>
+      <li>Chi phí khảo sát xây dựng, thí nghiệm chuyên ngành xác định bằng dự toán theo Thông tư 36/2026/TT-BXD Phụ lục V (Thông tư 36/2026/TT-BXD Điều 14 khoản 1 điểm c).</li>
+      <li>Chi phí lập nhiệm vụ khảo sát bằng 3% dự toán chi phí khảo sát tương ứng; chi phí giám sát khảo sát theo định mức tỷ lệ của Bộ trưởng Bộ Xây dựng; chi phí lập phương án kỹ thuật và lập báo cáo kết quả khảo sát tính theo Bảng 5.3 (Thông tư 36/2026/TT-BXD Phụ lục V); dự phòng tối đa 10%; nhà tạm để ở và điều hành tính 2% khi phù hợp (cùng phụ lục). Cần đọc phụ lục để lấy đúng cột tỷ lệ.</li>
+      <li>Chi phí tư vấn nói chung: Nghị định 206/2026 Điều 26; đơn giá nhân công, ca máy theo Thông tư 37/2026/TT-BXD.</li>
+    </ul>
+    <h3>6. Hợp đồng khảo sát</h3>
+    <p>Mẫu hợp đồng tư vấn khảo sát xây dựng là Phụ lục V của Quyết định 1040/QĐ-BXD (xem tab XVIII). Nội dung và khối lượng công việc của hợp đồng: Nghị định 210/2026 Điều 8.</p>
+    <p class="note">Tiêu chuẩn kỹ thuật khảo sát (TCVN về khảo sát địa kỹ thuật, trắc địa…) không có trong thư viện của trang; cần tra riêng. Nguồn các điều trên là bản đăng lại của bên thứ ba, cần đối chiếu Công báo.</p>
+    <h3>Checklist khảo sát (chấm điểm 100)</h3>
+    <div class="ckbar"><span id="ckprog4"></span> <button type="button" id="ckreset4">Đặt lại</button> <button type="button" onclick="window.print()">In</button></div>
+    <div id="ck4"></div>
+  </section>
+
+  <section class="tab" id="t20">
+    <h2>XX. Phòng cháy, chữa cháy trong thiết kế</h2>
+    <p>Phần dành cho tư vấn thiết kế. Căn cứ: Luật PCCC 55/2024 (đọc theo văn bản hợp nhất 58/VBHN-VPQH), Nghị định 105/2025 và Nghị định 347/2026 (hiệu lực 15/9/2026). Danh mục, mẫu biểu và quy chuẩn xem nguyên văn trong tab Văn bản.</p>
+    <div class="box warn">⚠️ <b>Thay đổi mới.</b> Nghị định 347/2026 Điều 12 đến 19 sửa các Điều 6, 7, 9, 11, 12, 13, 14 của Nghị định 105/2025 và Điều 39 bãi bỏ Điều 74 của Nghị định 217/2026 (điều này từng sửa Điều 6 Nghị định 105). Phần nguyên văn Nghị định 105/2025 trong trang là bản gốc; đọc cùng Nghị định 347/2026.</div>
+    <h3>1. Giải pháp PCCC phải có từ khi lập dự án, thiết kế</h3>
+    <ul>
+      <li>Khi lập, điều chỉnh dự án, thiết kế, cải tạo, đổi công năng phải có giải pháp, thiết kế PCCC về: khoảng cách PCCC; đường, bãi đỗ, khoảng trống cho chữa cháy, cứu nạn; thoát nạn; dự kiến bậc chịu lửa, ngăn cháy, chống cháy lan; chống khói; hệ thống điện phục vụ PCCC; phương tiện, hệ thống PCCC (Luật PCCC 55/2024 Điều 16 khoản 1).</li>
+      <li>Quy hoạch đô thị, khu dân cư, cụm công nghiệp phải có nội dung PCCC tương ứng cấp quy hoạch và chỉ được phê duyệt khi bảo đảm (Luật PCCC 55/2024 Điều 15; Nghị định 105/2025 Điều 5).</li>
+    </ul>
+    <h3>2. Ai thẩm định thiết kế PCCC</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Cơ quan</th><th>Nội dung thẩm định</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Cơ quan chuyên môn về xây dựng</td><td>Khoảng cách, đường và bãi đỗ, thoát nạn, bậc chịu lửa và ngăn cháy, chống khói (điểm a đến đ khoản 1 Điều 16); với công trình thuộc Phụ lục III, tích hợp trong thẩm định báo cáo nghiên cứu khả thi và trả kết quả theo thời hạn của pháp luật xây dựng</td><td>Luật PCCC 55/2024 Điều 17 khoản 1 điểm b; Nghị định 105/2025 Điều 6 (sửa bởi Nghị định 347/2026 Điều 12)</td></tr>
+        <tr><td>Cơ quan Công an</td><td>Hệ thống điện phục vụ PCCC và phương tiện, hệ thống PCCC (điểm e, g khoản 1 Điều 16): báo cháy, chữa cháy, chiếu sáng sự cố và chỉ dẫn thoát nạn, điện PCCC, hút khói, cửa và màn ngăn cháy… đối với báo cáo kinh tế - kỹ thuật và thiết kế triển khai sau khi dự án được phê duyệt thuộc diện</td><td>Luật PCCC 55/2024 Điều 17 khoản 1 điểm d; Nghị định 105/2025 Điều 9 khoản 2</td></tr>
+        <tr><td>Người quyết định đầu tư, chủ đầu tư, chủ sở hữu</td><td>Tự thẩm định phần không thuộc cơ quan chuyên môn về xây dựng; kết quả theo Mẫu PC13</td><td>Luật PCCC 55/2024 Điều 17 khoản 1 điểm a, đ; Nghị định 105/2025 Điều 8 khoản 1</td></tr>
+      </tbody></table></div>
+    <ul>
+      <li>Công trình thuộc diện thẩm định nêu ở Nghị định 105/2025 Phụ lục III (ví dụ nhà chung cư cao từ 7 tầng hoặc sàn từ 3.000 m2; trường mầm non từ 150 cháu hoặc sàn từ 2.000 m2; bệnh viện cao từ 5 tầng hoặc sàn từ 2.000 m2; trung tâm thương mại từ 2.000 m2; nhà để xe kín từ 2.000 m2; hầm đường ô tô dài từ 1.000 m; hạ tầng kỹ thuật khu đô thị, khu công nghiệp…). Dự án có một công trình thuộc diện thì các công trình khác có yêu cầu PCCC trong dự án cũng phải thẩm định (ghi chú Phụ lục III). Đọc đầy đủ danh mục và ngưỡng trong Phụ lục III.</li>
+      <li><b>Hồ sơ gửi Công an</b> có xác nhận của chủ đầu tư và đơn vị tư vấn thiết kế; gồm đề nghị theo Mẫu PC11, giấy tờ đất hoặc văn bản chủ trương đầu tư, hồ sơ thiết kế thể hiện điểm e, g khoản 1 Điều 16 (Nghị định 105/2025 Điều 9 khoản 4, sửa điểm a bởi Nghị định 347/2026 Điều 14, bỏ yêu cầu văn bản thẩm định của chủ đầu tư).</li>
+      <li><b>Thời hạn Công an thẩm định:</b> không quá 10 ngày với công trình thuộc dự án quan trọng quốc gia hoặc nhóm A; không quá 06 ngày làm việc với công trình còn lại, kể từ khi nhận đủ hồ sơ hợp lệ (Nghị định 105/2025 Điều 9 khoản 6). Kết quả: văn bản Mẫu PC12 và đóng dấu Mẫu PC14.</li>
+      <li><b>Không được thi công</b> công trình thuộc diện thẩm định khi chưa có văn bản thẩm định thiết kế PCCC của cơ quan quản lý chuyên ngành (Luật PCCC 55/2024 Điều 17 khoản 3).</li>
+      <li><b>Điều chỉnh thiết kế</b> làm đổi yêu cầu PCCC phải điều chỉnh và thẩm định lại (Luật PCCC 55/2024 Điều 17 khoản 2); với hệ thống: đổi nguyên lý báo cháy, nguyên lý hoặc chất chữa cháy, thông số bơm chữa cháy, hoặc thay thế, bổ sung hệ thống báo cháy, chữa cháy (Nghị định 105/2025 Điều 9 khoản 3).</li>
+    </ul>
+    <h3>3. Trách nhiệm của đơn vị tư vấn thiết kế</h3>
+    <ul>
+      <li>Sản phẩm thiết kế phải đúng tiêu chuẩn, quy chuẩn PCCC và chịu trách nhiệm về chất lượng; thực hiện giám sát tác giả trong thi công (Nghị định 105/2025 Điều 12 khoản 4).</li>
+      <li>Nội dung PCCC trong báo cáo nghiên cứu khả thi: danh mục tiêu chuẩn, quy chuẩn; loại, cấp công trình; bảng tổng hợp kết quả tính toán các tiêu chí; phương án bậc chịu lửa, ngăn cháy, thoát khói; bản vẽ tổng mặt bằng, mặt bằng, mặt đứng, mặt cắt, sơ đồ nguyên lý hệ thống PCCC; thuyết minh (Nghị định 105/2025 Điều 6 khoản 3 điểm a). Trong thiết kế triển khai: thêm kết quả tính toán chi tiết ngăn cháy, chống cháy lan và bảng tính (điểm b).</li>
+      <li>Quy chuẩn kỹ thuật: QCVN 06:2022/BXD (Thông tư 06/2022/TT-BXD) và Sửa đổi 1:2023 (Thông tư 09/2023/TT-BXD, hiệu lực 01/12/2023).</li>
+    </ul>
+    <h3>4. Nghiệm thu PCCC</h3>
+    <ul>
+      <li>Chủ đầu tư nghiệm thu từng phần, từng giai đoạn, từng hệ thống và hoàn thành; bộ phận bị che khuất nghiệm thu trước khi thi công tiếp; chịu trách nhiệm về kết quả (Luật PCCC 55/2024 Điều 18 khoản 1, 2, 3). Văn bản nghiệm thu theo Mẫu PC18.</li>
+      <li>Công trình thuộc diện thẩm định phải được cơ quan quản lý chuyên ngành kiểm tra công tác nghiệm thu, và chỉ được đưa vào sử dụng sau khi được chấp thuận (Luật PCCC 55/2024 Điều 18 khoản 4, 5).</li>
+      <li>Công an kiểm tra trong 05 ngày làm việc kể từ khi đủ hồ sơ hợp lệ, rồi ban hành văn bản chấp thuận (Mẫu PC17) trong 05 ngày làm việc kể từ khi thông qua biên bản (Nghị định 105/2025 Điều 10 khoản 3). Hồ sơ nghiệm thu gồm bản vẽ hoàn công hệ thống PCCC và điện PCCC, biên bản nghiệm thu, tài liệu vận hành, bảo dưỡng (Nghị định 105/2025 Điều 8 khoản 3).</li>
+      <li>Nghị định 347/2026 Điều 16: chủ đầu tư khai báo trên cơ sở dữ liệu PCCC và truyền tin báo cháy trước khi đưa công trình vào hoạt động.</li>
+    </ul>
+    <h3>5. Vật liệu, cấu kiện ngăn cháy</h3>
+    <p>Thiết kế dùng vật liệu, cấu kiện ngăn cháy cần giấy phép lưu thông; thẩm quyền cấp ở địa phương giao cho cơ quan chuyên môn về xây dựng (Thông tư 63/2025/TT-BXD Điều 2), theo Nghị định 105/2025 Điều 23 (sửa bởi Nghị định 347/2026 Điều 21, hiệu lực riêng một số khoản).</p>
+    <p class="note">Xử phạt vi phạm PCCC thuộc Nghị định 106/2025 (sửa bởi Nghị định 69/2026); Nghị định 106/2025 chưa có toàn văn trong trang. Nguồn là bản đăng lại của bên thứ ba.</p>
+    <h3>Checklist PCCC (chấm điểm 100)</h3>
+    <div class="ckbar"><span id="ckprog5"></span> <button type="button" id="ckreset5">Đặt lại</button> <button type="button" onclick="window.print()">In</button></div>
+    <div id="ck5"></div>
+  </section>
+
+  <section class="tab" id="t21">
+    <h2>XXI. Đánh giá tác động môi trường (ĐTM)</h2>
+    <p>Phần dành cho tư vấn lập dự án và tư vấn lập báo cáo ĐTM. Căn cứ: Luật BVMT 72/2020 (bản hợp nhất 15/VBHN-VPQH), Luật 146/2025/QH15 (hiệu lực 01/01/2026), Nghị định 08/2022, 05/2025, 48/2026 và Thông tư 02/2022, 09/2026/TT-BNNMT.</p>
+    <div class="box warn">⚠️ Bản Luật BVMT và Nghị định 08/2022 nhúng trong trang chưa gồm sửa đổi sau đó. Phải đọc cùng Luật 146/2025 Điều 1, Nghị định 05/2025, Nghị định 48/2026. Danh mục loại dự án theo nhóm (phụ lục Nghị định 08/2022, 48/2026) chưa có trong dữ liệu nguồn nên trang chưa nhúng; tra phụ lục tại nguồn.</div>
+    <h3>1. Dự án có phải làm ĐTM không</h3>
+    <ul>
+      <li>Phân nhóm I, II, III, IV theo tiêu chí môi trường: quy mô, công suất, loại hình; diện tích sử dụng đất, mặt nước, biển; yếu tố nhạy cảm (Luật BVMT 72/2020 Điều 28; điểm c khoản 1 được sửa bởi Luật 146/2025 Điều 1 khoản 3).</li>
+      <li>Phải làm ĐTM: dự án nhóm I và nhóm II thuộc các điểm c, d, đ, e khoản 4 Điều 28 (Luật BVMT 72/2020 Điều 30 khoản 1). Không phải làm khi là dự án đầu tư công khẩn cấp, hoặc theo luật, nghị quyết của Quốc hội (Luật 146/2025 Điều 1 khoản 4).</li>
+      <li>Dự án nhóm I phải đánh giá sơ bộ tác động môi trường ở giai đoạn tiền khả thi hoặc đề xuất chủ trương đầu tư (Luật BVMT 72/2020 Điều 29).</li>
+    </ul>
+    <h3>2. Làm ĐTM cùng lúc với lập báo cáo nghiên cứu khả thi</h3>
+    <ul>
+      <li>ĐTM do chủ dự án tổ chức, thực hiện đồng thời với quá trình lập báo cáo nghiên cứu khả thi; mỗi dự án một báo cáo (Luật 146/2025 Điều 1 khoản 5).</li>
+      <li>Dự án xây dựng phải thẩm định báo cáo nghiên cứu khả thi: được trình đồng thời hồ sơ thẩm định ĐTM, nhưng phải có quyết định phê duyệt kết quả thẩm định ĐTM trước khi phê duyệt dự án, quyết định đầu tư (Luật 146/2025 Điều 1 khoản 6, Điều 34 mới khoản 2). Dự án phân kỳ hoặc chia dự án thành phần: Nghị định 48/2026 Điều 9 (Điều 27a mới).</li>
+      <li>Nội dung báo cáo và tham vấn: Luật BVMT 72/2020 Điều 32, 33; Thông tư 02/2022 Điều 12.</li>
+    </ul>
+    <h3>3. Ai thẩm định</h3>
+    <ul>
+      <li>Bộ Nông nghiệp và Môi trường thẩm định nhóm I và một số nhóm II ở nhiều tỉnh hoặc vùng biển chưa xác định, thuộc các trường hợp nêu; Chủ tịch UBND cấp tỉnh thẩm định dự án trên địa bàn trừ trường hợp của Bộ, Bộ Quốc phòng, Bộ Công an (Luật 146/2025 Điều 1 khoản 7, Điều 35 mới khoản 1, 2, 3).</li>
+      <li>Phân cấp thêm: Chủ tịch UBND cấp tỉnh thẩm định cả dự án đầu tư công không thuộc thẩm quyền quyết định chủ trương của Quốc hội, Thủ tướng (trừ dự án tái chế, xử lý chất thải rắn), dự án thủy điện không thuộc thẩm quyền của Quốc hội, Thủ tướng, và dự án khai thác dầu thô, khí tự nhiên (Nghị định 48/2026 Điều 7, sửa khoản 1 Điều 26a).</li>
+      <li>Dự án nằm trên từ hai tỉnh trở lên: xác định thẩm quyền theo Nghị định 48/2026 Điều 9 (Điều 27b mới).</li>
+    </ul>
+    <h3>4. Thời hạn và hình thức thẩm định (Thông tư 02/2022, sửa bởi Thông tư 09/2026/TT-BNNMT Điều 4 đến 7)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Việc</th><th>Thời hạn</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Tổ chức thẩm định nhóm I</td><td>Không quá 30 ngày kể từ khi nhận đủ hồ sơ hợp lệ</td><td>Thông tư 09/2026 Điều 4 (Điều 13a mới khoản 2 điểm a)</td></tr>
+        <tr><td>Nhóm II (điểm c, d, đ, e khoản 4 Điều 28)</td><td>Không quá 20 ngày</td><td>Thông tư 09/2026 Điều 4 (điểm b)</td></tr>
+        <tr><td>Thẩm định bằng lấy ý kiến chuyên gia (đầu tư công đặc biệt)</td><td>Không quá 10 ngày; chuyên gia gửi nhận xét trong 03 ngày</td><td>Thông tư 09/2026 Điều 4, Điều 6</td></tr>
+        <tr><td>Phê duyệt kết quả khi thông qua không cần sửa</td><td>07 ngày kể từ phiên họp hoặc khi kết thúc lấy ý kiến</td><td>Thông tư 09/2026 Điều 7 (Điều 13d khoản 1)</td></tr>
+        <tr><td>Thông qua có điều kiện: chủ dự án gửi lại báo cáo đã sửa</td><td>Trong 12 tháng; quá hạn phải thẩm định lại. Cơ quan phê duyệt trong 15 ngày kể từ khi nhận báo cáo sửa</td><td>Thông tư 09/2026 Điều 7 (khoản 2, 3)</td></tr>
+      </tbody></table></div>
+    <ul>
+      <li>Hình thức hội đồng thẩm định: phiên họp hợp lệ khi có từ 2/3 thành viên, có chủ tịch hoặc phó chủ tịch được ủy quyền, ủy viên thư ký, ít nhất 01 ủy viên phản biện, có đại diện chủ dự án và đã nộp phí; chuyên gia tham gia lập ĐTM không được tham gia hội đồng của dự án đó (Thông tư 09/2026 Điều 5, Điều 13b).</li>
+      <li>Lấy ý kiến chuyên gia: ít nhất 03 chuyên gia, cần từ 2/3 có nhận xét; không thông qua nếu hơn 1/3 không thông qua (Thông tư 09/2026 Điều 6, Điều 13c).</li>
+      <li>Mẫu văn bản đề nghị thẩm định ĐTM: Mẫu số 02 Phụ lục II Thông tư 02/2022, sửa bởi Thông tư 09/2026.</li>
+    </ul>
+    <h3>5. Sau khi có kết quả ĐTM</h3>
+    <ul>
+      <li>Thay đổi sau phê duyệt (tăng lưu lượng nước thải, bụi, khí thải; đổi công nghệ xử lý chất thải…) có thể phải thẩm định lại hoặc lập báo cáo: Nghị định 48/2026 Điều 8 (sửa Điều 27 Nghị định 08/2022).</li>
+      <li>Giấy phép môi trường: đối tượng theo Luật 146/2025 Điều 1 khoản 9; thẩm quyền theo Điều 41 mới (khoản 11); điều chỉnh, cấp lại, thu hồi: Nghị định 48/2026 Điều 10; vận hành thử nghiệm công trình xử lý chất thải, thời gian không quá 06 tháng, gia hạn không quá 06 tháng: Nghị định 48/2026 Điều 11.</li>
+      <li>Chuyển tiếp và hiệu lực: Nghị định 48/2026 Điều 38, 39 (hiệu lực từ ngày ký 29/01/2026); Luật 146/2025 Điều 16, 17 (hiệu lực 01/01/2026).</li>
+    </ul>
+    <p class="note">Nghị quyết 66.19/2026/NQ-CP về phân quyền thẩm định ĐTM (có nguồn báo chí nhắc đến) chưa có văn bản trong trang và chưa kiểm chứng; cần đối chiếu trước khi xác định thẩm quyền cho từng dự án. Nguồn các điều trên là bản đăng lại hoặc bản trích; cần đối chiếu Công báo.</p>
+    <h3>Checklist ĐTM (chấm điểm 100)</h3>
+    <div class="ckbar"><span id="ckprog6"></span> <button type="button" id="ckreset6">Đặt lại</button> <button type="button" onclick="window.print()">In</button></div>
+    <div id="ck6"></div>
+  </section>
+</div></main>
+
+<footer><div class="wrap head">
+  <img src="https://tuvangiaothong.bzz.vn/wp-content/uploads/sites/1000002/2026/09/logo-tdc-nguyenban-253x300.png" alt="Logo TDC">
+  <div>Công ty Cổ phần Tư vấn Giao thông Thành phố Hồ Chí Minh (TDC)<br>ĐT: 0978 488 260 · Email: vuvhien@gmail.com · Website: <a href="https://tuvangiaothong.com/" target="_blank" rel="noopener">tuvangiaothong.com</a></div>
+</div></footer>
+
+<script>
+var names=["I. Tổng quan & căn cứ","II. Phân loại dự án","III. Cơ quan lập hồ sơ","IV. Trình tự thủ tục","V. Kế hoạch vốn","VI. Thực hiện & giải ngân","VII. Quyết toán & đánh giá","VIII. Cơ chế phối hợp","IX. Checklist theo Sở","X. Tra cứu thời hạn","XI. Sản phẩm tư vấn","XII. Hợp đồng & thanh toán tư vấn","XIII. Hồ sơ quyết toán, thanh tra","XIV. Thiết kế & thẩm định XD","XV. Đấu thầu tư vấn & năng lực","XVI. Giám sát tác giả & điều chỉnh","XVII. Checklist tư vấn thiết kế","XVIII. Mẫu văn bản tư vấn","XIX. Khảo sát xây dựng","XX. PCCC trong thiết kế","XXI. Đánh giá tác động môi trường"];
+var TABS=[{id:"tv",name:"Văn bản"}].concat(names.map(function(n,k){return {id:"t"+(k+1),name:n}}));
+var box=document.getElementById("tabs");
+function show(id,keep){
+  if(typeof id==="number")id=(id===0?"tv":"t"+id);
+  TABS.forEach(function(t,k){
+    var s=document.getElementById(t.id);if(s)s.classList.toggle("on",t.id===id);
+    box.children[k].classList.toggle("on",t.id===id);
+  });
+  if(!keep){location.hash=id;window.scrollTo(0,0)}
+}
+TABS.forEach(function(t){
+  var b=document.createElement("button");b.textContent=t.name;b.setAttribute("data-tab",t.id);
+  b.onclick=function(){window.__from=null;show(t.id)};box.appendChild(b);
+});
+var A=[4600,3000,2000,1600],B=[240,160,120,90];
+function calc(){
+  var g=+document.getElementById("cg").value,v=parseFloat(document.getElementById("cv").value),r=document.getElementById("cr");
+  if(isNaN(v)||v<0){r.textContent="Nhập tổng mức đầu tư để xem kết quả.";return}
+  var n=v>=A[g]?"Nhóm A":v>=B[g]?"Nhóm B":"Nhóm C";
+  r.textContent=n+" (ngưỡng A từ "+A[g].toLocaleString("vi-VN")+" tỷ, ngưỡng B từ "+B[g]+" tỷ)";
+}
+document.getElementById("cg").onchange=calc;document.getElementById("cv").oninput=calc;
+/* ---- Tab IX: checklist ---- */
+var CK=[
+ ["Chủ đầu tư, đơn vị lập hồ sơ",[
+  ["Được Chủ tịch UBND giao nhiệm vụ chuẩn bị đầu tư và có vốn chuẩn bị đầu tư","Luật 58/2024 Điều 58.1 (sửa)"],
+  ["Xác định nhóm dự án, nguồn vốn và cấp quyết định chủ trương","Tab II"],
+  ["Lập báo cáo nghiên cứu tiền khả thi (nhóm A) hoặc báo cáo đề xuất chủ trương (nhóm B, C) đủ nội dung","Luật 58/2024 Điều 34, 35"],
+  ["Lập tờ trình và hồ sơ điện tử (trừ tài liệu bí mật nhà nước)","NĐ 85/2025 Điều 11.1"],
+  ["Hoàn thiện báo cáo theo ý kiến thẩm định, trình cấp quyết định chủ trương","NĐ 85/2025 Điều 12.1"],
+  ["Kiểm tra quyết định đầu tư phù hợp mục tiêu, địa điểm, mức vốn trong chủ trương","Luật 58/2024 Điều 17.2 (sửa)"],
+  ["Nếu đổi mục tiêu, địa điểm hoặc vượt mức vốn đầu tư công: điều chỉnh chủ trương trước","Luật 58/2024 Điều 46.5 (sửa)"],
+  ["Lập bảng thông tin hợp đồng (Mẫu 02.a/TT), có bảo lãnh tạm ứng khi tạm ứng hợp đồng trên 01 tỷ đồng","NĐ 254/2025 Điều 8.1, 9.2"],
+  ["Thu hồi hết tạm ứng khi giải ngân đạt 80% giá trị hợp đồng; báo cáo tạm ứng trước ngày 05 tháng đầu quý","NĐ 254/2025 Điều 9.5, 9.6"],
+  ["Theo dõi thời gian bố trí vốn (06, 04, 03 năm) và xin gia hạn đúng thẩm quyền","Luật 58/2024 Điều 57"],
+  ["Lập hồ sơ quyết toán trong 09/06/04 tháng (quan trọng quốc gia và nhóm A / B / C) từ ngày nghiệm thu","NĐ 254/2025 Điều 46"],
+  ["Hoàn thành công nợ, tất toán tài khoản trong 06 tháng sau quyết định phê duyệt quyết toán","NĐ 254/2025 Điều 52.2"]]],
+ ["Hội đồng hoặc đơn vị thẩm định",[
+  ["Nhóm A: Hội đồng do Chủ tịch hoặc một Phó Chủ tịch UBND Thành phố làm Chủ tịch","Luật 58/2024 Điều 25"],
+  ["Thẩm định đủ nội dung: sự cần thiết, tuân thủ pháp luật, phù hợp quy hoạch và kế hoạch, phân loại nhóm, hiệu quả, môi trường","NĐ 85/2025 Điều 11.3"],
+  ["Lấy ý kiến cơ quan thẩm định nguồn vốn và khả năng cân đối vốn (trừ khi tự chủ trì)","NĐ 85/2025 Điều 11.4"],
+  ["Hồ sơ không hợp lệ: có văn bản yêu cầu bổ sung trong 05 ngày làm việc","NĐ 85/2025 Điều 11.5"],
+  ["Hoàn thành thẩm định trong 30 ngày làm việc (nhóm A) hoặc 20 ngày làm việc (nhóm B, C)","NĐ 85/2025 Điều 11.5"],
+  ["Gửi báo cáo thẩm định cho cơ quan trình, cơ quan quản lý dự án và cấp quyết định","NĐ 85/2025 Điều 11.6"],
+  ["Thẩm định dự án không có cấu phần xây dựng: 30 / 20 ngày làm việc; yêu cầu bổ sung trong 03 ngày làm việc","NĐ 85/2025 Điều 22.1"]]],
+ ["Cơ quan chuyên môn quản lý đầu tư công (Sở Tài chính hoặc cơ quan được Thành phố phân công)",[
+  ["Thẩm định nguồn vốn và khả năng cân đối vốn, trong hạn mức 02 lần vốn trung hạn đã giao","Luật 58/2024 Điều 36, 36a (sửa)"],
+  ["Nhận quyết định chủ trương trong 03 ngày làm việc kể từ ngày quyết định","NĐ 85/2025 Điều 12.3"],
+  ["Nhận quyết định đầu tư trong 05 ngày làm việc kể từ ngày quyết định","NĐ 85/2025 Điều 24.3"],
+  ["Tổng hợp kế hoạch trung hạn và hằng năm trình UBND, HĐND; báo cáo Bộ Tài chính đúng mốc","NĐ 85/2025 Điều 43, 44"],
+  ["Chủ trì thẩm tra quyết toán dự án hoàn thành vốn ngân sách Thành phố; có thể lập Tổ thẩm tra","NĐ 254/2025 Điều 34.2"],
+  ["Thẩm tra trong 08/05/04 tháng (quan trọng quốc gia và nhóm A / B / C)","NĐ 254/2025 Điều 46"],
+  ["Gửi báo cáo tình hình quyết toán trong năm trước 20/01; Thành phố gửi Bộ Tài chính trước 28/02","NĐ 254/2025 Điều 47"],
+  ["Trình UBND Thành phố quy định trình tự, thời hạn quyết toán niên độ vốn cấp xã","NĐ 254/2025 Điều 28.2.b"]]],
+ ["Sở chuyên ngành xây dựng và Sở quản lý ngành",[
+  ["Thẩm định dự án có cấu phần xây dựng theo pháp luật về xây dựng","NĐ 85/2025 Điều 21.3, 22.2"],
+  ["Quyết định đầu tư khi được Chủ tịch UBND Thành phố ủy quyền, trong thời hạn ủy quyền đến hết 31/12/2026","QĐ 3321/QĐ-UBND (theo báo SGGP)"],
+  ["Không ủy quyền lại; không phê duyệt quyết toán dự án hoàn thành vốn ngân sách Thành phố theo ủy quyền này","QĐ 3321/QĐ-UBND (theo báo SGGP)"],
+  ["Quyết định đầu tư đúng chủ trương đã được duyệt về mục tiêu, địa điểm, mức vốn","Luật 58/2024 Điều 17.2 (sửa)"]]],
+ ["UBND xã, phường, đặc khu",[
+  ["Quyết định chủ trương dự án nhóm B, C vốn ngân sách cấp mình; báo cáo HĐND cấp xã tại kỳ họp gần nhất","Luật 58/2024 Điều 18.9, 90.4 (sửa)"],
+  ["Tổ chức thẩm định dự án thuộc cấp mình; Chủ tịch quyết định đầu tư dự án nhóm B, C","Luật 58/2024 Điều 38.4, 90.2 (sửa)"],
+  ["Dự án trải trên từ hai xã: chỉ quyết định chủ trương khi Chủ tịch UBND Thành phố giao","Luật 58/2024 Điều 31 (sửa)"],
+  ["Lập kế hoạch trung hạn, hằng năm trình HĐND cấp xã; giao kế hoạch trong 30 ngày sau nghị quyết","Luật 58/2024 Điều 59.9, 90.1 (sửa)"],
+  ["Thẩm tra quyết toán dự án cấp xã (phòng chuyên môn hoặc công chức chuyên môn); gửi báo cáo quyết toán trong năm trước 20/01","NĐ 254/2025 Điều 34.2.b, 47.2"]]],
+ ["Kho bạc Nhà nước (cơ quan thanh toán)",[
+  ["Từ chối hồ sơ chưa đủ bằng một văn bản nêu lý do trong 02 ngày làm việc","NĐ 254/2025 Điều 8.9"],
+  ["Thanh toán trong 02 ngày làm việc; tạm ứng trong 01 ngày làm việc kể từ khi nhận đủ hồ sơ","NĐ 254/2025 Điều 12.4"],
+  ["Đôn đốc thu hồi tạm ứng; trích tài khoản chủ đầu tư nộp ngân sách khi tạm ứng quá hạn","NĐ 254/2025 Điều 9.6"],
+  ["Báo cáo tình hình tạm ứng trước 10/7 và 28/02; số liệu quyết toán niên độ trước 15/4","NĐ 254/2025 Điều 9.6, 28.2"]]],
+ ["HĐND Thành phố",[
+  ["Quyết định chủ trương dự án nhóm A và chương trình vốn ngân sách địa phương, theo chương trình kỳ họp","Luật 58/2024 Điều 18.5; NĐ 85/2025 Điều 12.2"],
+  ["Quyết định kế hoạch đầu tư công trung hạn; phê duyệt trước 10/3 năm đầu kỳ","Luật 58/2024 Điều 59.9 (sửa); NĐ 85/2025 Điều 43.10"],
+  ["Xem xét kế hoạch hằng năm tại kỳ họp cuối năm","NĐ 85/2025 Điều 44.6"],
+  ["Quyết định gia hạn bố trí vốn từ lần hai trở đi theo đề nghị của UBND","Luật 58/2024 Điều 57.3.d (sửa)"]]]
+];
+var CKALL={};
+mkCk("ck",CK,"dtc-ck-v1","ckprog","ckreset");
+
+/* ---- Tab X: tính thời hạn ---- */
+var PRE=[
+ ["Chủ trương đầu tư",[
+  ["Thẩm định chủ trương, nhóm A (NĐ 85 Điều 11.5)",30,"wd"],["Thẩm định chủ trương, nhóm B, C (NĐ 85 Điều 11.5)",20,"wd"],
+  ["Yêu cầu bổ sung hồ sơ chủ trương (NĐ 85 Điều 11.5)",5,"wd"],
+  ["Quyết định chủ trương, chương trình đầu tư công (Điều 12.2)",10,"wd"],["Quyết định chủ trương, nhóm A (Điều 12.2)",7,"wd"],["Quyết định chủ trương, nhóm B, C (Điều 12.2)",5,"wd"],
+  ["Gửi quyết định chủ trương (Điều 12.3)",3,"wd"]]],
+ ["Quyết định đầu tư",[
+  ["Thẩm định dự án không có cấu phần xây dựng, nhóm A (Điều 22.1)",30,"wd"],["Thẩm định dự án không có cấu phần xây dựng, nhóm B, C (Điều 22.1)",20,"wd"],
+  ["Yêu cầu bổ sung hồ sơ thẩm định dự án (Điều 22.1)",3,"wd"],
+  ["Quyết định đầu tư, chương trình (Điều 24.2)",10,"wd"],["Quyết định đầu tư, nhóm A (Điều 24.2)",7,"wd"],["Quyết định đầu tư, nhóm B, C (Điều 24.2)",5,"wd"],
+  ["Gửi quyết định đầu tư (Điều 24.3)",5,"wd"],
+  ["Quyết định điều chỉnh chủ trương, chương trình (Điều 14)",10,"wd"],["Quyết định điều chỉnh chủ trương, nhóm A (Điều 14)",7,"wd"],["Quyết định điều chỉnh chủ trương, nhóm B, C (Điều 14)",5,"wd"]]],
+ ["Kế hoạch và giải ngân",[
+  ["UBND giao kế hoạch trung hạn sau nghị quyết HĐND (Luật 58 Điều 59.9.c)",30,"d"],
+  ["Điều chỉnh vốn ngân sách trung ương, vốn bổ sung có mục tiêu: báo cáo Bộ Tài chính (NĐ 85 Điều 50.5, sửa bởi NĐ 275)",3,"wd"],
+  ["Cơ quan thanh toán từ chối hồ sơ thanh toán (NĐ 254 Điều 8.9)",2,"wd"],["Cơ quan thanh toán xử lý thanh toán (NĐ 254 Điều 12.4)",2,"wd"],["Cơ quan thanh toán xử lý tạm ứng (NĐ 254 Điều 12.4)",1,"wd"]]],
+ ["Tạm ứng và quyết toán",[
+  ["Bồi thường, hỗ trợ, tái định cư: thanh toán, thu hồi tạm ứng (NĐ 254 Điều 9.5.b)",30,"d"],
+  ["Tạm ứng hợp đồng quá hạn thu hồi (NĐ 254 Điều 9.6.d)",3,"m"],["Tạm ứng không qua hợp đồng phải hoàn trả (Điều 9.6.d)",6,"m"],
+  ["Lập hồ sơ quyết toán, quan trọng quốc gia và nhóm A (Điều 46)",9,"m"],["Lập hồ sơ quyết toán, nhóm B (Điều 46)",6,"m"],["Lập hồ sơ quyết toán, nhóm C (Điều 46)",4,"m"],
+  ["Thẩm tra quyết toán, quan trọng quốc gia và nhóm A (Điều 46)",8,"m"],["Thẩm tra quyết toán, nhóm B (Điều 46)",5,"m"],["Thẩm tra quyết toán, nhóm C (Điều 46)",4,"m"],
+  ["Phê duyệt quyết toán, quan trọng quốc gia và nhóm A (Điều 46)",1,"m"],["Phê duyệt quyết toán, nhóm B (Điều 46)",20,"d"],["Phê duyệt quyết toán, nhóm C (Điều 46)",15,"d"],
+  ["Tất toán sau phê duyệt quyết toán (Điều 52.2)",6,"m"]]]
+];
+var PF=[];
+(function(){
+  var sel=document.getElementById("tp"),o=document.createElement("option");o.value="-1";o.textContent="Tự nhập số lượng và đơn vị";sel.appendChild(o);
+  PRE.forEach(function(g){
+    var og=document.createElement("optgroup");og.label=g[0];
+    g[1].forEach(function(it){PF.push(it);var op=document.createElement("option");op.value=String(PF.length-1);op.textContent=it[0]+": "+it[1]+" "+({wd:"ngày làm việc",d:"ngày",m:"tháng"})[it[2]];og.appendChild(op)});
+    sel.appendChild(og);
+  });
+})();
+var FIX={"1-1":1,"30-4":1,"1-5":1,"2-9":1},WD=["Chủ nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"];
+function pd(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return m?new Date(+m[1],+m[2]-1,+m[3],12):null}
+function fd(d){return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear()+" ("+WD[d.getDay()]+")"}
+function extra(){
+  var set={};(document.getElementById("th").value||"").split(/[\s,;]+/).forEach(function(t){
+    var m=/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(t);if(m)set[+m[3]+"-"+(+m[2])+"-"+(+m[1])]=1});
+  return set;
+}
+function holKind(d,ex){
+  if(FIX[d.getDate()+"-"+(d.getMonth()+1)])return "lễ cố định";
+  if(ex[d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()])return "ngày nghỉ bổ sung";
+  return "";
+}
+function isOff(d,ex){return d.getDay()===0||d.getDay()===6||!!holKind(d,ex)}
+function calcT(){
+  var out=document.getElementById("tr"),s=pd(document.getElementById("ts").value),
+      n=parseInt(document.getElementById("tn").value,10),u=document.getElementById("tu").value;
+  if(!s||isNaN(n)||n<0){out.textContent="Chọn thời hạn và ngày bắt đầu để xem kết quả.";return}
+  var ex=extra(),d=new Date(s.getTime()),skipped=[];
+  if(u==="wd"){
+    var c=0;while(c<n){d.setDate(d.getDate()+1);if(isOff(d,ex)){var k=holKind(d,ex);if(k)skipped.push(fd(d)+": "+k)}else c++}
+  }else if(u==="d"){d.setDate(d.getDate()+n)}
+  else{
+    var tm=s.getMonth()+n,y=s.getFullYear()+Math.floor(tm/12),m=((tm%12)+12)%12,last=new Date(y,m+1,0).getDate();
+    d=new Date(y,m,Math.min(s.getDate(),last),12);
+  }
+  var txt="Hạn cuối: "+fd(d);
+  if(u!=="wd"&&isOff(d,ex))txt+=" - ngày này là ngày nghỉ, hãy kiểm tra cách tính của cơ quan áp dụng";
+  if(skipped.length)txt+=". Đã loại trừ ngày lễ trong khoảng: "+skipped.join("; ");
+  out.textContent=txt;
+}
+function calcC(){
+  var a=pd(document.getElementById("ca").value),b=pd(document.getElementById("cb").value),out=document.getElementById("cr2");
+  if(!a||!b||b<a){out.textContent="Chọn hai ngày hợp lệ.";return}
+  var ex=extra(),d=new Date(a.getTime()),c=0;
+  while(d<b){d.setDate(d.getDate()+1);if(!isOff(d,ex))c++}
+  out.textContent=c+" ngày làm việc";
+}
+document.getElementById("tp").onchange=function(){
+  var i=+this.value;if(i>=0){document.getElementById("tn").value=PF[i][1];document.getElementById("tu").value=PF[i][2]}
+  calcT();
+};
+["tn","tu","ts","th"].forEach(function(id){document.getElementById(id).oninput=function(){calcT();calcC()};document.getElementById(id).onchange=function(){calcT();calcC()}});
+["ca","cb"].forEach(function(id){document.getElementById(id).onchange=calcC});
+/* ---- Tab XI: checklist tư vấn ---- */
+var CK2=[["Việc của đơn vị tư vấn",[
+  ["Xác nhận với chủ đầu tư nhóm dự án, nguồn vốn, cấp quyết định chủ trương và đầu tư","Tab II"],
+  ["Báo cáo nghiên cứu khả thi có đủ thuyết minh (lý do, mục tiêu, địa điểm, quy mô; tổng mức đầu tư, nguồn vốn; tác động; chủ đầu tư, phân kỳ) và thiết kế cơ sở","Luật XD 135/2025 Điều 24"],
+  ["Nếu dùng thiết kế FEED hoặc thiết kế kỹ thuật thay thiết kế cơ sở: có văn bản cho phép của người quyết định đầu tư","Luật XD 135/2025 Điều 24.4"],
+  ["Thiết kế phù hợp nhiệm vụ thiết kế, quy hoạch làm căn cứ lập dự án, khả năng đấu nối hạ tầng, quy chuẩn, an toàn, phòng cháy chữa cháy","Luật XD Điều 26.3, 27.4"],
+  ["Tổng mức đầu tư tuân thủ quy định về quản lý chi phí đầu tư xây dựng; chi phí tư vấn đề xuất là mức tối đa, chỉ đổi khi đổi phạm vi, điều kiện, tiến độ","Luật XD Điều 27.4.d; NĐ 206/2026 Điều 26.3"],
+  ["Công trình thuộc diện thẩm tra thiết kế (quy mô lớn, phức tạp, ảnh hưởng an toàn cộng đồng, hoặc thẩm định phòng cháy chữa cháy): bố trí thẩm tra","Luật XD Điều 26.5"],
+  ["Gửi hồ sơ điện tử thẩm định; trả lời ý kiến thẩm định trong thời hạn chủ đầu tư yêu cầu","NĐ 85/2025 Điều 11.1"],
+  ["Hoàn thiện báo cáo theo ý kiến thẩm định trước khi chủ đầu tư trình quyết định chủ trương hoặc đầu tư","NĐ 85/2025 Điều 12.1"],
+  ["Thiết kế triển khai phù hợp thiết kế trong báo cáo nghiên cứu khả thi; khối lượng chủ yếu của dự toán khớp khối lượng thiết kế, giá trị dự toán khớp tổng mức đầu tư","Luật XD Điều 30.1"],
+  ["Tổ chức khảo sát, thiết kế, lập dự toán và cá nhân chủ trì đáp ứng điều kiện năng lực","Luật XD Điều 30.1.e, 88, 90; NĐ 212/2026 Điều 33 đến 41"],
+  ["Hợp đồng ghi mức tạm ứng, thời điểm tạm ứng, bảo lãnh, thu hồi, và bảo lãnh nếu tạm ứng trên 01 tỷ đồng","NĐ 214/2025 Điều 118.2; NĐ 254/2025 Điều 9.2"],
+  ["Cử người đủ năng lực giám sát tác giả theo hợp đồng; lập báo cáo đánh giá khi hạng mục hoàn thành thi công; tham gia nghiệm thu","Luật XD Điều 62.2; NĐ 207/2026 Điều 21"],
+  ["Hạng mục chưa đủ điều kiện nghiệm thu: có ý kiến bằng văn bản gửi chủ đầu tư","NĐ 207/2026 Điều 21.2.d"],
+  ["Thay đổi thông số đã duyệt hoặc vật liệu kết cấu chính khi lập thiết kế triển khai: chủ đầu tư báo cáo bằng văn bản người quyết định đầu tư; người này có 05 ngày làm việc để không đồng ý bằng văn bản, quá hạn thì chủ đầu tư phê duyệt","NĐ 217/2026 Điều 16.7, 16.8"],
+  ["Phát hiện thi công sai thiết kế đã duyệt: thông báo bằng văn bản cho chủ đầu tư và kiến nghị xử lý","Luật XD Điều 62.2.đ"],
+  ["Yêu cầu thay đổi thiết kế có đổi mục tiêu, địa điểm hoặc vượt vốn: đề nghị chủ đầu tư điều chỉnh chủ trương trước","Luật 58/2024 Điều 46.5 (sửa)"],
+  ["Cung cấp biên bản nghiệm thu từng giai đoạn thanh toán và nghiệm thu toàn bộ hợp đồng để chủ đầu tư lập đề nghị thanh toán","NĐ 254/2025 Điều 8.3, 33.1.d"],
+  ["Lập bảng quyết toán A - B (Mẫu 03.c/QT) trong 60 ngày kể từ nghiệm thu toàn bộ công việc (120 ngày với hợp đồng lớn); thanh lý trong 45 ngày (90 ngày)","NĐ 254/2025 Điều 33.1.d, 53.2.a; NĐ 210/2026 Điều 30, 31"],
+  ["Hoàn trả vốn đã giải ngân sai chế độ; phối hợp xử lý tồn tại theo hợp đồng","NĐ 254/2025 Điều 53.2.b"]]]];
+function ckRating(s){return s===null?"Chưa có mục áp dụng":s>=90?"Hoàn thành tốt":s>=75?"Khá":s>=50?"Trung bình":"Chưa đạt"}
+function ckF1(x){return (Math.round(x*10)/10).toLocaleString("vi-VN")}
+function ckCalc(data,st){
+  var tot=0,na=0,dn=0,groups=[];
+  data.forEach(function(g,i){var t=0,n=0,d=0;g[1].forEach(function(_,j){t++;var v=st[i+"-"+j];if(v===2)n++;else if(v===1)d++});groups.push({name:g[0],total:t,na:n,done:d});tot+=t;na+=n;dn+=d});
+  var ap=tot-na,score=ap?dn/ap*100:null;
+  groups.forEach(function(g){var a=g.total-g.na;g.ap=a;g.max=ap?100*a/ap:0;g.pts=ap?100*g.done/ap:0});
+  return {tot:tot,na:na,done:dn,ap:ap,score:score,groups:groups};
+}
+function mkCk(rootId,data,key,progId,resetId){
+  var st={};try{st=JSON.parse(localStorage.getItem(key)||"{}")||{}}catch(e){st={}}
+  var root=document.getElementById(rootId);
+  var sc=document.createElement("div");sc.className="scorebox";root.insertBefore(sc,root.firstChild);
+  var sels=[];
+  function save(){try{localStorage.setItem(key,JSON.stringify(st))}catch(e){}}
+  function render(){
+    var r=ckCalc(data,st);CKALL[rootId]={data:data,st:st,res:r};
+    var s=r.score;
+    var h='<div class="sbig"><span class="num">'+(s===null?"—":ckF1(s))+'</span><span class="den">/100 điểm</span><span class="rate r'+(s===null?0:s>=90?4:s>=75?3:s>=50?2:1)+'">'+ckRating(s)+'</span></div>'+
+      '<div class="bar"><i style="width:'+(s===null?0:Math.min(100,s))+'%"></i></div>'+
+      '<div class="note">Đạt '+r.done+' / '+r.ap+' mục áp dụng ('+r.tot+' mục, '+r.na+' mục không áp dụng).'+(r.ap?' Mỗi mục áp dụng được '+ckF1(100/r.ap)+' điểm.':'')+'</div>'+
+      '<details class="ckg"><summary>Điểm theo nhóm</summary><div class="tw"><table><thead><tr><th>Nhóm</th><th>Đạt</th><th>Áp dụng</th><th>Điểm đạt / điểm tối đa</th></tr></thead><tbody>'+
+      r.groups.map(function(g){return '<tr><td>'+g.name+'</td><td>'+g.done+'</td><td>'+g.ap+'/'+g.total+'</td><td>'+ckF1(g.pts)+' / '+ckF1(g.max)+'</td></tr>'}).join("")+
+      '</tbody></table></div></details>'+
+      '<div class="note">Cách tính: điểm = số mục đạt / số mục áp dụng x 100; mục chọn “Không áp dụng” không tính vào mẫu số. Thang xếp loại do trang đặt: từ 90 là Hoàn thành tốt; 75 đến dưới 90 là Khá; 50 đến dưới 75 là Trung bình; dưới 50 là Chưa đạt. Các mục có trọng số như nhau.</div>';
+    sc.innerHTML=h;
+    var pe=document.getElementById(progId);if(pe)pe.textContent="Đạt "+r.done+"/"+r.ap+" mục áp dụng · "+(s===null?"chưa có điểm":ckF1(s)+"/100 điểm ("+ckRating(s)+")");
+  }
+  data.forEach(function(g,i){
+    var det=document.createElement("details");det.className="ckg";det.open=(rootId==="ck")?i===0:true;
+    var sm=document.createElement("summary");sm.textContent=g[0];det.appendChild(sm);
+    var ul=document.createElement("ul");
+    g[1].forEach(function(it,j){
+      var li=document.createElement("li"),lb=document.createElement("label"),se=document.createElement("select");
+      se.className="st";se.setAttribute("aria-label","Trạng thái");
+      [["","Chưa"],["1","Đạt"],["2","Không áp dụng"]].forEach(function(o){var op=document.createElement("option");op.value=o[0];op.textContent=o[1];se.appendChild(op)});
+      se.value=st[i+"-"+j]?String(st[i+"-"+j]):"";
+      se.onchange=function(){if(se.value)st[i+"-"+j]=+se.value;else delete st[i+"-"+j];save();render();li.className=se.value==="1"?"okk":se.value==="2"?"nak":""};
+      li.className=se.value==="1"?"okk":se.value==="2"?"nak":"";
+      sels.push([se,li]);
+      var sp=document.createElement("span");sp.appendChild(document.createTextNode(it[0]+" "));
+      var sr=document.createElement("span");sr.className="src";sr.textContent="("+it[1]+")";sp.appendChild(sr);
+      lb.appendChild(se);lb.appendChild(sp);li.appendChild(lb);ul.appendChild(li);
+    });
+    det.appendChild(ul);root.appendChild(det);
+  });
+  document.getElementById(resetId).onclick=function(){st={};save();sels.forEach(function(x){x[0].value="";x[1].className=""});render()};
+  render();
+}
+mkCk("ck2",CK2,"dtc-ck2-v1","ckprog2","ckreset2");
+
+/* ---- Tab XVII: checklist tư vấn thiết kế ---- */
+var CK3=[
+ ["A. Nhận việc và ký hợp đồng",[
+  ["Xác nhận phạm vi gói thầu, nhóm dự án, nguồn vốn và cấp quyết định (khảo sát, lập dự án, thiết kế, dự toán)","Tab II"],
+  ["Hình thức chọn nhà thầu: nếu chỉ định thầu, kiểm tra thuộc trường hợp Điều 78 (tư vấn thuộc dự án không quá 3 tỷ đồng; tác giả phương án kiến trúc trúng tuyển có đủ năng lực)","NĐ 214/2025 Điều 78; NĐ 349/2026"],
+  ["Đối chiếu mẫu hồ sơ đang áp dụng cho gói thầu tư vấn: E-HSMT Mẫu 6A (qua mạng), hồ sơ yêu cầu Mẫu 1D (chỉ định thầu); Thông tư 134/2026 thay Thông tư 80/2025 từ 09/9/2026","TT 79/2025; TT 80/2025; TT 134/2026; tab XVIII"],
+  ["Hợp đồng soạn theo mẫu của Bộ Xây dựng (Phụ lục I lập báo cáo nghiên cứu khả thi, II thiết kế, V khảo sát) và điều chỉnh theo gói thầu","QĐ 1040/QĐ-BXD; tab XVIII"],
+  ["Thư bảo lãnh dự thầu, tạm ứng, thực hiện hợp đồng do ngân hàng phát hành đúng nội dung, giá trị và hiệu lực yêu cầu","NĐ 254/2025 Điều 9.2; NĐ 210/2026 Điều 12, 13"],
+  ["Bảo đảm thực hiện hợp đồng 2% đến 10% giá hợp đồng","NĐ 210/2026 Điều 13.2.đ"],
+  ["Tạm ứng: tối thiểu 15% (hợp đồng trên 10 tỷ đồng) hoặc 20% (đến 10 tỷ đồng), tối đa 30%; bảo lãnh tạm ứng nếu tạm ứng trên 01 tỷ đồng","NĐ 210/2026 Điều 12.3; NĐ 254/2025 Điều 9.2"],
+  ["Hợp đồng ghi rõ mức, thời điểm tạm ứng, thu hồi hết khi thanh toán đạt 80% giá hợp đồng","NĐ 210/2026 Điều 12.3.m"],
+  ["Bảo hiểm bắt buộc theo Điều 10 Luật Xây dựng (Điều 10 chưa đọc)","NĐ 210/2026 Điều 20"],
+  ["Chủ nhiệm, chủ trì từng lĩnh vực có chứng chỉ hành nghề đúng lĩnh vực và hạng; cập nhật thông tin năng lực của tổ chức trên csdlhdxd.gov.vn","Luật XD Điều 88, 90; NĐ 212/2026 Điều 33 đến 36, 41"]]],
+ ["B. Khảo sát xây dựng",[
+  ["Nhiệm vụ khảo sát và phương án kỹ thuật khảo sát được chủ đầu tư kiểm tra hoặc thuê tư vấn thẩm tra trước khi khảo sát","NĐ 217/2026 Điều 12.3"],
+  ["Báo cáo kết quả khảo sát đủ 7 nội dung theo quy định; chủ đầu tư có thể thuê tư vấn kiểm tra","NĐ 217/2026 Điều 14, 15.1"],
+  ["Báo cáo khảo sát được chủ đầu tư phê duyệt trước khi dùng để lập dự án (là thành phần hồ sơ thẩm định)","NĐ 217/2026 Điều 35.1"],
+  ["Hồ sơ khảo sát lưu vào hồ sơ hoàn thành công trình (Phụ lục VII nhóm II)","NĐ 207/2026 Phụ lục VII"]]],
+ ["C. Lập dự án và thiết kế cơ sở",[
+  ["Báo cáo nghiên cứu khả thi: thuyết minh đủ các nội dung và thiết kế cơ sở (hoặc FEED, thiết kế kỹ thuật nếu người quyết định đầu tư cho phép bằng văn bản)","Luật XD Điều 24; NĐ 217/2026 Điều 29.1"],
+  ["Dự án nhỏ chỉ lập báo cáo kinh tế - kỹ thuật: đủ nội dung và đánh giá bản vẽ thi công về an toàn, công trình lân cận, phòng cháy chữa cháy","Luật XD Điều 26.3.h; NĐ 217/2026 Điều 30.1"],
+  ["Xác định đúng nhóm dự án và cấp công trình (cấp I trở lên hay không quyết định thời hạn thẩm định); đối chiếu danh mục công trình ảnh hưởng an toàn cộng đồng","NĐ 217/2026 Điều 37.1; Phụ lục III, IV"],
+  ["Thiết kế phù hợp quy hoạch làm căn cứ lập dự án, đấu nối hạ tầng kỹ thuật, quy chuẩn, tiêu chuẩn, an toàn xây dựng, giải pháp phòng cháy chữa cháy","Luật XD Điều 27.4"],
+  ["Thủ tục môi trường, hình thức quản lý dự án, phân kỳ, dự án thành phần","Luật XD Điều 24.2, 26.3"],
+  ["Tổng mức đầu tư lập theo quy định về quản lý chi phí; chi phí tư vấn xác định theo định mức hoặc dự toán; chi phí chưa đủ cơ sở thì ước tính và làm rõ khi triển khai","NĐ 206/2026 Điều 6.2.h, 26"],
+  ["Thẩm tra tổng mức đầu tư (nếu thực hiện) do tổ chức tư vấn có năng lực: danh mục khoản mục, loại thiết kế, khối lượng, công cụ xác định giá","NĐ 206/2026 Điều 8"]]],
+ ["D. Hồ sơ trình thẩm định và thẩm tra",[
+  ["Công trình thuộc diện thẩm tra thiết kế (quy mô lớn, phức tạp, ảnh hưởng an toàn cộng đồng, thẩm định phòng cháy chữa cháy): bố trí thẩm tra và lập Mẫu 02","Luật XD Điều 26.5; NĐ 217/2026 Điều 35.2.h"],
+  ["Hồ sơ trình thẩm định đủ: tờ trình Mẫu 01, báo cáo nghiên cứu khả thi, hồ sơ khảo sát đã phê duyệt, văn bản chủ trương, chấp thuận quy hoạch, văn bản đấu nối hạ tầng, tài liệu pháp lý khác","NĐ 217/2026 Điều 35.1, 35.2"],
+  ["Theo dõi thời hạn: 05 ngày làm việc cơ quan xem xét và yêu cầu bổ sung một lần; bổ sung trong 20 ngày làm việc, quá hạn thì dừng thẩm định","NĐ 217/2026 Điều 36.3 đến 36.5"],
+  ["Thời hạn thẩm định báo cáo nghiên cứu khả thi: nhóm A 25 / 20, nhóm B 20 / 16, nhóm C 15 / 12 ngày làm việc (có công trình cấp I trở lên / còn lại); dự án quan trọng quốc gia 60 ngày","NĐ 217/2026 Điều 37.1"],
+  ["Giải trình, hoàn thiện báo cáo theo thông báo kết quả thẩm định (Mẫu 03, 06, 07 hoặc 08)","NĐ 217/2026 Phụ lục I"],
+  ["Hồ sơ trình quyết định chủ trương hoặc quyết định đầu tư đã hoàn thiện theo báo cáo thẩm định","NĐ 85/2025 Điều 12.1"]]],
+ ["E. Thiết kế triển khai và dự toán",[
+  ["Có nhiệm vụ thiết kế; thiết kế triển khai đáp ứng yêu cầu của nhiệm vụ thiết kế","Luật XD Điều 30.1.a"],
+  ["Thiết kế bước sau phù hợp bước trước; không đổi quy mô đầu tư ghi trong quyết định phê duyệt dự án","NĐ 217/2026 Điều 16.6"],
+  ["Thay đổi thông số đã duyệt hoặc vật liệu kết cấu chính: lập bảng so sánh để chủ đầu tư báo cáo người quyết định đầu tư (chờ 05 ngày làm việc)","NĐ 217/2026 Điều 16.7, 16.8"],
+  ["Thiết kế tuân thủ quy chuẩn, tiêu chuẩn, an toàn chịu lực, bảo vệ công trình lân cận, phòng cháy chữa cháy; dây chuyền, thiết bị hợp lý với công trình công nghệ","Luật XD Điều 30.1.c, d"],
+  ["Khối lượng chủ yếu của dự toán khớp khối lượng thiết kế; giá trị dự toán không vượt tổng mức đầu tư","Luật XD Điều 30.1.đ; NĐ 206/2026 Điều 16.3"],
+  ["Hồ sơ thiết kế điện tử; đóng dấu thiết kế theo Mẫu 14; công trình phải thẩm tra có Mẫu 11 và bản vẽ được đóng dấu thẩm tra","NĐ 217/2026 Điều 18.5, 41.4; Phụ lục I"],
+  ["Dự án đã chọn nhà thầu EPC, EC, EP hoặc thi công thì không thẩm định dự toán ở bước triển khai","NĐ 206/2026 Điều 16.11"],
+  ["Chủ đầu tư thẩm định, kiểm soát và phê duyệt (Mẫu 12, 13); tư vấn trả lời ý kiến thẩm định","Luật XD Điều 29.1; NĐ 217/2026 Điều 41"]]],
+ ["F. Giám sát tác giả và nghiệm thu",[
+  ["Cử người đủ năng lực giám sát tác giả theo hợp đồng; người này chịu trách nhiệm pháp lý và bồi thường thiệt hại do mình gây ra","Luật XD Điều 62.2.b; NĐ 207/2026 Điều 21.1"],
+  ["Giải thích hồ sơ thiết kế khi có yêu cầu; phối hợp xử lý vướng mắc và điều chỉnh thiết kế theo thực tế","NĐ 207/2026 Điều 21.2"],
+  ["Phát hiện thi công sai thiết kế đã duyệt: thông báo kịp thời bằng văn bản cho chủ đầu tư và kiến nghị biện pháp xử lý","Luật XD Điều 62.2.đ"],
+  ["Từ chối yêu cầu thay đổi thiết kế trái pháp luật, quy chuẩn, tiêu chuẩn; từ chối nghiệm thu hạng mục thi công không đúng thiết kế","Luật XD Điều 62.1.c, d"],
+  ["Tham gia nghiệm thu; hạng mục chưa đủ điều kiện thì có ý kiến bằng văn bản gửi chủ đầu tư","NĐ 207/2026 Điều 21.2.d"],
+  ["Lập báo cáo đánh giá việc thực hiện giám sát tác giả khi hạng mục hoàn thành thi công","NĐ 207/2026 Điều 21.1"],
+  ["Lưu văn bản kiến nghị, trả lời trong hồ sơ giám sát tác giả (gợi ý, nghị định không có mẫu riêng)","Gợi ý của người soạn"]]],
+ ["G. Điều chỉnh thiết kế và dự án",[
+  ["Điều chỉnh thiết kế triển khai do điều chỉnh dự án hoặc do yêu cầu chất lượng, hiệu quả khi thi công: chủ đầu tư quyết định, thẩm định và phê duyệt theo Điều 29","Luật XD Điều 31"],
+  ["Thiết kế điều chỉnh làm song song thi công; cập nhật thiết kế điều chỉnh và trình chủ đầu tư xác nhận","NĐ 217/2026 Điều 70.1.d, 71.3.b"],
+  ["Điều chỉnh làm đổi mục tiêu, địa điểm hoặc vượt mức vốn đầu tư công: đề nghị chủ đầu tư điều chỉnh chủ trương trước","Luật 58/2024 Điều 46.5 (sửa)"],
+  ["Điều chỉnh hợp đồng: khối lượng đổi trên 20% xem xét đơn giá mới; vượt thời gian thực hiện dự án thì chủ đầu tư báo cáo người quyết định đầu tư","NĐ 210/2026 Điều 24.2, 25.2"]]],
+ ["H. Thanh toán và quyết toán hợp đồng",[
+  ["Gửi chủ đầu tư biên bản nghiệm thu khối lượng từng giai đoạn kèm bảng xác định giá trị khối lượng hoàn thành (Mẫu 03.a/TT) đủ để lập hồ sơ","NĐ 254/2025 Điều 8.3"],
+  ["Chủ đầu tư thanh toán trong 14 ngày làm việc kể từ khi nhận đủ hồ sơ hợp lệ; chậm trên 28 ngày được tạm dừng, trên 56 ngày là căn cứ chấm dứt","NĐ 210/2026 Điều 28.4.l, 26.2.a, 27.2.đ"],
+  ["Khối lượng nghiệm thu đến 31/12 để kịp thanh toán đến 31/01 năm sau","NĐ 254/2025 Điều 12.2"],
+  ["Thu hồi tạm ứng đủ khi thanh toán đạt 80%; theo dõi tạm ứng quá hạn 3 tháng","NĐ 254/2025 Điều 9.5, 9.6"],
+  ["Lập quyết toán hợp đồng A - B (Mẫu 03.c/QT) trong 60 ngày (120 ngày với hợp đồng lớn) kể từ nghiệm thu toàn bộ công việc","NĐ 210/2026 Điều 30"],
+  ["Thanh lý hợp đồng trong 45 ngày (90 ngày với hợp đồng lớn)","NĐ 210/2026 Điều 31.3"],
+  ["Hoàn trả vốn đã giải ngân sai chế độ; phối hợp xử lý tồn tại","NĐ 254/2025 Điều 53.2.b"]]],
+ ["I. Hồ sơ lưu và giải trình",[
+  ["Hồ sơ hoàn thành phần mình lập: hồ sơ khảo sát, thiết kế được duyệt, danh mục thay đổi thiết kế, bản vẽ hoàn công (nếu thuộc phạm vi hợp đồng)","NĐ 207/2026 Điều 28, Phụ lục VII"],
+  ["Lưu hồ sơ công việc mình thực hiện; thời hạn lưu theo pháp luật về lưu trữ (Điều 42 Luật Xây dựng không ghi số năm)","Luật XD Điều 42"],
+  ["Chuẩn bị giải trình khối lượng, đơn giá khi thẩm tra quyết toán, kiểm toán, thanh tra","NĐ 254/2025 Điều 33.1, 53.1.g"],
+  ["Giữ bản sao quyết định phê duyệt quyết toán; theo dõi công nợ, tất toán trong 06 tháng","NĐ 254/2025 Điều 52.2"]]]
+];
+mkCk("ck3",CK3,"dtc-ck3-v1","ckprog3","ckreset3");
+
+var CK4=[["A. Chuẩn bị",[
+  ["Nhiệm vụ khảo sát được chủ đầu tư phê duyệt, có đủ mục đích, phạm vi, yêu cầu tiêu chuẩn, sơ bộ khối lượng, thời gian","Nghị định 217/2026 Điều 11.4"],
+  ["Nhiệm vụ phù hợp loại, cấp công trình và bước thiết kế; đã xem lại kết quả khảo sát bước trước","Luật Xây dựng 135/2025 Điều 22.1; Nghị định 217/2026 Điều 11.6"],
+  ["Người chủ trì, chủ nhiệm khảo sát có chứng chỉ hành nghề phù hợp hạng","Nghị định 212/2026 Điều 28, 34"]]],
+ ["B. Phương án và thực hiện",[
+  ["Phương án kỹ thuật có đủ cơ sở, khối lượng, phương pháp và thiết bị, tiêu chuẩn, kiểm soát chất lượng, tiến độ, an toàn và môi trường","Nghị định 217/2026 Điều 12.2"],
+  ["Phương án được chủ đầu tư kiểm tra hoặc thẩm tra và phê duyệt trước khi khảo sát","Nghị định 217/2026 Điều 12.3"],
+  ["Thực hiện đúng phương án; lưu số liệu, mẫu thí nghiệm; có giám sát khảo sát","Nghị định 217/2026 Điều 13.2"],
+  ["Phát hiện yếu tố khác thường: đề xuất bổ sung nhiệm vụ bằng văn bản","Luật Xây dựng 135/2025 Điều 37.2.b; Nghị định 217/2026 Điều 11.5"]]],
+ ["C. Báo cáo và hồ sơ",[
+  ["Báo cáo kết quả khảo sát có đủ 7 phần theo quy định","Nghị định 217/2026 Điều 14"],
+  ["Báo cáo được kiểm tra (tư vấn thiết kế hoặc tư vấn kiểm tra) và chủ đầu tư phê duyệt","Nghị định 217/2026 Điều 15.1"],
+  ["Hồ sơ khảo sát được phê duyệt đưa vào hồ sơ trình thẩm định; đưa vào hồ sơ hoàn thành công trình","Nghị định 217/2026 Điều 35.2.g, 15.3"],
+  ["Dự toán khảo sát lập theo Phụ lục V; có mục lập nhiệm vụ, phương án, báo cáo","Thông tư 36/2026/TT-BXD Phụ lục V"]]]];
+mkCk("ck4",CK4,"dtc-ck4-v1","ckprog4","ckreset4");
+var CK5=[["A. Thiết kế",[
+  ["Xác định công trình có thuộc Phụ lục III (thẩm định thiết kế PCCC) không, kể cả các hạng mục khác trong dự án","Nghị định 105/2025 Phụ lục III"],
+  ["Báo cáo nghiên cứu khả thi có nội dung PCCC: tiêu chuẩn, quy chuẩn, bảng tính, bậc chịu lửa, ngăn cháy, thoát khói, bản vẽ, sơ đồ nguyên lý","Nghị định 105/2025 Điều 6.3.a"],
+  ["Thiết kế triển khai có tính toán chi tiết ngăn cháy, chống cháy lan và bảng tính","Nghị định 105/2025 Điều 6.3.b"],
+  ["Thiết kế theo QCVN 06:2022/BXD và Sửa đổi 1:2023","Thông tư 06/2022/TT-BXD; Thông tư 09/2023/TT-BXD"]]],
+ ["B. Thẩm định",[
+  ["Phân rõ phần do cơ quan chuyên môn về xây dựng, Công an và chủ đầu tư thẩm định","Luật PCCC 55/2024 Điều 17.1"],
+  ["Hồ sơ gửi Công an có Mẫu PC11, giấy tờ đất hoặc chủ trương, hồ sơ thiết kế, xác nhận của tư vấn thiết kế","Nghị định 105/2025 Điều 9.4; Nghị định 347/2026 Điều 14"],
+  ["Có văn bản thẩm định trước khi khởi công","Luật PCCC 55/2024 Điều 17.3"],
+  ["Thiết kế điều chỉnh làm đổi yêu cầu PCCC được thẩm định lại","Luật PCCC 55/2024 Điều 17.2"]]],
+ ["C. Thi công và nghiệm thu",[
+  ["Giám sát tác giả về PCCC; báo chủ đầu tư khi thi công sai thiết kế","Nghị định 105/2025 Điều 12.4"],
+  ["Hồ sơ nghiệm thu có bản vẽ hoàn công, biên bản nghiệm thu, tài liệu vận hành","Nghị định 105/2025 Điều 8.3"],
+  ["Công trình thuộc diện được Công an kiểm tra nghiệm thu và chấp thuận trước khi sử dụng","Luật PCCC 55/2024 Điều 18.4; Nghị định 105/2025 Điều 10"]]]];
+mkCk("ck5",CK5,"dtc-ck5-v1","ckprog5","ckreset5");
+var CK6=[["A. Xác định yêu cầu",[
+  ["Phân nhóm dự án theo tiêu chí môi trường; xác định có phải làm ĐTM","Luật BVMT 72/2020 Điều 28, 30; Luật 146/2025 Điều 1"],
+  ["Dự án nhóm I: có đánh giá sơ bộ tác động môi trường ở giai đoạn tiền khả thi","Luật BVMT 72/2020 Điều 29"],
+  ["Xác định cơ quan thẩm định (Bộ hay Chủ tịch UBND cấp tỉnh), kể cả dự án nhiều tỉnh","Luật 146/2025 Điều 1.7; Nghị định 48/2026 Điều 7, 9"]]],
+ ["B. Lập và thẩm định",[
+  ["ĐTM lập đồng thời với báo cáo nghiên cứu khả thi; mỗi dự án một báo cáo","Luật 146/2025 Điều 1.5"],
+  ["Tham vấn thực hiện theo quy định","Luật BVMT 72/2020 Điều 33; Nghị định 08/2022 Điều 26"],
+  ["Nộp hồ sơ thẩm định theo Mẫu số 02; theo dõi thời hạn 30 hoặc 20 ngày","Thông tư 09/2026/TT-BNNMT Điều 4"],
+  ["Có quyết định phê duyệt kết quả thẩm định ĐTM trước khi phê duyệt dự án","Luật 146/2025 Điều 1.6"],
+  ["Chuyên gia lập ĐTM không tham gia hội đồng thẩm định dự án đó","Thông tư 09/2026/TT-BNNMT Điều 5"]]],
+ ["C. Sau thẩm định",[
+  ["Sửa báo cáo theo kết luận trong 12 tháng","Thông tư 09/2026/TT-BNNMT Điều 7"],
+  ["Thay đổi dự án sau phê duyệt đã được đánh giá theo Điều 27","Nghị định 48/2026 Điều 8"],
+  ["Lập hồ sơ giấy phép môi trường, vận hành thử nghiệm công trình xử lý chất thải","Nghị định 48/2026 Điều 10, 11"]]]];
+mkCk("ck6",CK6,"dtc-ck6-v1","ckprog6","ckreset6");
+
+/* ---- Tab XII: tạm ứng ---- */
+function calcH(){
+  var v=parseFloat(document.getElementById("hv").value),p=parseFloat(document.getElementById("hp").value),o=document.getElementById("hr");
+  if(isNaN(v)||isNaN(p)||v<0||p<0||p>100){o.textContent="Nhập giá trị hợp đồng và tỷ lệ tạm ứng.";return}
+  var t=v*p/100,f=function(x){return Math.round(x).toLocaleString("vi-VN")};
+  var mn=v>10000?15:20,w="";
+  if(p>30)w=" Vượt mức tối đa 30%: cần người quyết định đầu tư cho phép (NĐ 210/2026 Điều 12.3.g).";
+  else if(p<mn)w=" Thấp hơn mức tối thiểu "+mn+"% của hợp đồng tư vấn (Điều 12.3.h).";
+  o.textContent="Tạm ứng "+f(t)+" triệu đồng."+w+" "+(t>1000?"Lớn hơn 01 tỷ đồng: phải có bảo lãnh tạm ứng. ":"Từ 01 tỷ đồng trở xuống: không bắt buộc bảo lãnh theo Nghị định 254, theo thỏa thuận hợp đồng. ")+"Thu hồi hết tạm ứng khi giải ngân đạt "+f(v*0.8)+" triệu đồng (80% giá trị hợp đồng).";
+}
+document.getElementById("hv").oninput=calcH;document.getElementById("hp").oninput=calcH;
+</script>
+<script src="vb-idx.js"></script>
+<script src="vanban.js"></script>
+<script src="export.js"></script>
+</body>
+</html>
